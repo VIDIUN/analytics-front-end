@@ -2,8 +2,8 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EngagementBaseReportComponent } from '../engagement-base-report/engagement-base-report.component';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
-import { KalturaAPIException, KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTotal } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunAPIException, VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTotal } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorsManagerService, Report, ReportService } from 'shared/services';
 import { BehaviorSubject, Unsubscribable } from 'rxjs';
 import { CompareService } from 'shared/services/compare.service';
@@ -13,15 +13,15 @@ import { MiniHighlightsConfig } from './mini-highlights.config';
 import { DateFilterComponent } from 'shared/components/date-filter/date-filter.component';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { analyticsConfig } from 'configuration/analytics-config';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 
 @Component({
   selector: 'app-engagement-mini-highlights',
   templateUrl: './mini-highlights.component.html',
   styleUrls: ['./mini-highlights.component.scss'],
   providers: [
-    KalturaLogger.createLogger('EngagementMiniHighlightsComponent'),
+    VidiunLogger.createLogger('EngagementMiniHighlightsComponent'),
     MiniHighlightsConfig,
     ReportService,
   ]
@@ -29,7 +29,7 @@ import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
 export class EngagementMiniHighlightsComponent extends EngagementBaseReportComponent implements OnDestroy, OnInit {
   @Input() dateFilterComponent: DateFilterComponent;
   
-  @Input() highlights$: BehaviorSubject<{ current: Report, compare: Report, busy: boolean, error: KalturaAPIException }>;
+  @Input() highlights$: BehaviorSubject<{ current: Report, compare: Report, busy: boolean, error: VidiunAPIException }>;
   
   private _dataConfig: ReportDataConfig;
   
@@ -58,7 +58,7 @@ export class EngagementMiniHighlightsComponent extends EngagementBaseReportCompo
               private _authService: AuthService,
               private pageScrollService: PageScrollService,
               private _dataConfigService: MiniHighlightsConfig,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     super();
     
     this._dataConfig = _dataConfigService.getConfig();
@@ -106,7 +106,7 @@ export class EngagementMiniHighlightsComponent extends EngagementBaseReportCompo
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {

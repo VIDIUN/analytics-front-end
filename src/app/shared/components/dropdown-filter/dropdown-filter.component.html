@@ -21,11 +21,11 @@
         <ng-container [ngSwitch]="templateType">
 
           <ng-container *ngSwitchCase="'country'">
-            <i class="kFlag" *ngIf="item.value"
-               [ngClass]="'kFlag-' + item?.value?.id.toUpperCase()"
+            <i class="vFlag" *ngIf="item.value"
+               [ngClass]="'vFlag-' + item?.value?.id.toUpperCase()"
                style="margin-right: 8px; margin-left: 4px; display:inline-block; vertical-align:middle"></i>
             <span style="margin-top:2px; position: absolute; overflow: hidden; width: 140px; text-overflow: ellipsis"
-                  [kTooltip]="item.label" [showOnEllipsis]="true">
+                  [vTooltip]="item.label" [showOnEllipsis]="true">
               {{item.label}}
             </span>
           </ng-container>
@@ -35,17 +35,17 @@
                  style="margin-right: 8px; margin-left: 4px; display:inline-block; vertical-align:middle; height: 16px; width: 16px">
               <img [src]="'http://' + item?.value?.id + '/favicon.ico'"
                    onError="this.onerror=null;this.style.display='none'"
-                   (error)="holder.classList.add('kIconfile-small')">
+                   (error)="holder.classList.add('vIconfile-small')">
             </div>
             <span style="margin-top:2px; position: absolute; overflow: hidden; width: 140px; text-overflow: ellipsis"
-                  [kTooltip]="item.label" [showOnEllipsis]="true">
+                  [vTooltip]="item.label" [showOnEllipsis]="true">
               {{item.label}}
             </span>
           </ng-container>
 
           <ng-container *ngSwitchDefault>
             <span style="margin-top:2px; position: absolute; overflow: hidden; width: 160px; text-overflow: ellipsis"
-                  [kTooltip]="item.label" [showOnEllipsis]="true">
+                  [vTooltip]="item.label" [showOnEllipsis]="true">
               {{item.label}}
             </span>
           </ng-container>

@@ -1,6 +1,6 @@
-<div data-aid="report-end-user" class="kReport kContent kOverrideFAIcons">
-  <div class="kReportHeader">
-    <span class="kTitle">{{'app.bandwidth.usersStorage' | translate}}</span>
+<div data-aid="report-end-user" class="vReport vContent vOverrideFAIcons">
+  <div class="vReportHeader">
+    <span class="vTitle">{{'app.bandwidth.usersStorage' | translate}}</span>
     <app-export-csv name="end-user"
                     [reports]="_exportConfig"
                     [dateFilter]="_dateFilter"></app-export-csv>
@@ -52,7 +52,7 @@
           <i [class.vIcondropdown_arrow_bottom]="!_showTable" [class.vIcondropdown_arrow_top]="_showTable"></i>
           <a (click)="toggleTable()">{{(_showTable ? 'app.common.hideDetails' : 'app.common.viewDetails') | translate}}</a>
         </div>
-        <div class="kTableContainer" [class.kOpen]="_showTable" [class.kClose]="!_showTable">
+        <div class="vTableContainer" [class.vOpen]="_showTable" [class.vClose]="!_showTable">
           <p-table appScrollTopOnPaging
                    [customPaginationEvent]="_paginationChanged$"
                    [value]="_tableData"
@@ -85,8 +85,8 @@
                                      [trend]="data[col].trend"></app-trend-value>
                   </span>
                   <ng-container *ngIf="!isCompareMode || col === 'name' || col === 'month_id' || col === 'date_id'">
-                    <span *ngIf="col !== 'name'" [class.kHighlight]="col === 'month_id'">{{data[col]}}</span>
-                    <a *ngIf="col === 'name'" (click)="_onDrillDown(data[col])" class="nameLink" [kTooltip]="data[col]" [showOnEllipsis]="true">{{data[col]}}</a>
+                    <span *ngIf="col !== 'name'" [class.vHighlight]="col === 'month_id'">{{data[col]}}</span>
+                    <a *ngIf="col === 'name'" (click)="_onDrillDown(data[col])" class="nameLink" [vTooltip]="data[col]" [showOnEllipsis]="true">{{data[col]}}</a>
                   </ng-container>
                 </td>
               </tr>

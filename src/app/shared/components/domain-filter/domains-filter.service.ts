@@ -1,7 +1,7 @@
 import { Injectable, KeyValueDiffer, KeyValueDiffers, OnDestroy } from '@angular/core';
 import { ReportConfig, ReportService } from 'src/app/shared/services';
-import { KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInputFilter, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInputFilter, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { BehaviorSubject } from 'rxjs';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
 
@@ -15,8 +15,8 @@ export class DomainsFilterService implements OnDestroy {
   private _isBusy: boolean;
   private _domainsOptions = new BehaviorSubject<DomainFilterItem[]>([]);
   private _dateFilterDiffer: KeyValueDiffer<DateChangeEvent, any>;
-  private _pager = new KalturaFilterPager({ pageSize: 500, pageIndex: 1 });
-  private _filter = new KalturaReportInputFilter({
+  private _pager = new VidiunFilterPager({ pageSize: 500, pageIndex: 1 });
+  private _filter = new VidiunReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -40,7 +40,7 @@ export class DomainsFilterService implements OnDestroy {
     this._domainsOptions.complete();
   }
   
-  private _handleDomainsTable(table: KalturaReportTable): void {
+  private _handleDomainsTable(table: VidiunReportTable): void {
     const { tableData } = this._reportService.parseTableData(table, this._reportConfig.table);
   
     this._domainsOptions.next(tableData.map(data => ({
@@ -54,7 +54,7 @@ export class DomainsFilterService implements OnDestroy {
     this._isBusy = true;
     
     const reportConfig: ReportConfig = {
-      reportType: KalturaReportType.topSyndication,
+      reportType: VidiunReportType.topSyndication,
       filter: this._filter,
       pager: this._pager,
       order: null,

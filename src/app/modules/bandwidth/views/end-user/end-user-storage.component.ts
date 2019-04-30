@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DateChangeEvent, DateRanges, DateRangeType } from 'shared/components/date-filter/date-filter.service';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType, KalturaUser } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType, VidiunUser } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { UsersFilterComponent } from 'shared/components/users-filter/users-filter.component';
 import { EndUserStorageDataConfig } from './end-user-storage-data.config';
@@ -12,7 +12,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf, Subject } from 'rxjs';
 import { CompareService } from 'shared/services/compare.service';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 import { EndUserExportConfig } from './end-user-export.config';
@@ -26,7 +26,7 @@ import { refineFilterToServerValue } from 'shared/components/filter/filter-to-se
   styleUrls: ['./end-user-storage.component.scss'],
   providers: [
     EndUserExportConfig,
-    KalturaLogger.createLogger('EndUserStorageComponent'),
+    VidiunLogger.createLogger('EndUserStorageComponent'),
     EndUserStorageDataConfig,
   ]
 })
@@ -58,12 +58,12 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
   public _drillDown = '';
   public _paginationChanged$ = this._paginationChanged.asObservable();
 
-  public pager: KalturaFilterPager = new KalturaFilterPager({pageSize: 25, pageIndex: 1});
-  public reportType: KalturaReportType = KalturaReportType.userUsage;
-  public compareFilter: KalturaEndUserReportInputFilter = null;
+  public pager: VidiunFilterPager = new VidiunFilterPager({pageSize: 25, pageIndex: 1});
+  public reportType: VidiunReportType = VidiunReportType.userUsage;
+  public compareFilter: VidiunEndUserReportInputFilter = null;
   public _exportConfig: ExportItem[] = [];
   public _dateFilter: DateChangeEvent;
-  public filter: KalturaEndUserReportInputFilter = new KalturaEndUserReportInputFilter(
+  public filter: VidiunEndUserReportInputFilter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -84,7 +84,7 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
               private _authService: AuthService,
               private _compareService: CompareService,
               private _dataConfigService: EndUserStorageDataConfig,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _exportConfigService: EndUserExportConfig) {
     this._dataConfig = _dataConfigService.getConfig();
     this._selectedMetrics = this._dataConfig.totals.preSelected;
@@ -111,7 +111,7 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
     this.pager.pageIndex = 1;
     if (event.compare.active) {
       const compare = event.compare;
-      this.compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this.filter), this.filter);
+      this.compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this.filter), this.filter);
       this.compareFilter.fromDate = compare.startDate;
       this.compareFilter.toDate = compare.endDate;
     } else {

@@ -1,9 +1,9 @@
 @import '../../../styles/variables';
-.kEntryPreview {
+.vEntryPreview {
   background-color: #FFFFFF;
 }
 
-.kReport{
+.vReport{
   background-color: $appBkgColor !important;
   .vBackBtn{
     margin-top: 4px;
@@ -23,7 +23,7 @@
       color: $vPrimary;
     }
   }
-  .kReportHeader{
+  .vReportHeader{
     height: 80px;
   }
   .vEntryDetails{
@@ -90,24 +90,24 @@
   }
 }
 
-.kReportContainer {
+.vReportContainer {
   padding-bottom: 24px;
   background-color: $appBkgColor;
   display: flex;
   flex-wrap: wrap;
 }
 
-:host /deep/ .kErrorMessageContainer{
+:host /deep/ .vErrorMessageContainer{
   top: 200px !important;
   position: absolute;
 }
 
 :host /deep/ {
-  ktags{
+  vtags{
     margin: 0 !important;
   }
 }
 
-:host /deep/ .kReport{
+:host /deep/ .vReport{
   margin-bottom: 0px !important;
 }

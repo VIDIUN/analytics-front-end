@@ -22,8 +22,8 @@ import { EngagementDurationComponent } from './views/engagement/duration/duratio
 import { EngagementUsersComponent } from './views/engagement/users/users.component';
 
 import { SharedModule } from 'shared/shared.module';
-import { AreaBlockerModule, TagsModule, TooltipModule, PopupWidgetModule, InputHelperModule } from '@kaltura-ng/kaltura-ui';
-import { AutoCompleteModule } from '@kaltura-ng/kaltura-primeng-ui';
+import { AreaBlockerModule, TagsModule, TooltipModule, PopupWidgetModule, InputHelperModule } from '@vidiun-ng/vidiun-ui';
+import { AutoCompleteModule } from '@vidiun-ng/vidiun-primeng-ui';
 import { TableModule } from 'primeng/table';
 import { DevicesOverviewComponent } from './views/technology/devices-overview/devices-overview.component';
 import { CheckboxModule, OverlayPanelModule } from 'primeng/primeng';

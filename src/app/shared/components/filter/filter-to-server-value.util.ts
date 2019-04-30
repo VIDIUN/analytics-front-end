@@ -1,16 +1,16 @@
 import {
-  KalturaEndUserReportInputFilter,
-  KalturaESearchEntryFieldName,
-  KalturaESearchEntryItem,
-  KalturaESearchEntryOperator,
-  KalturaESearchItemType,
-  KalturaESearchOperatorType,
-  KalturaReportInputFilter
-} from 'kaltura-ngx-client';
+  VidiunEndUserReportInputFilter,
+  VidiunESearchEntryFieldName,
+  VidiunESearchEntryItem,
+  VidiunESearchEntryOperator,
+  VidiunESearchItemType,
+  VidiunESearchOperatorType,
+  VidiunReportInputFilter
+} from 'vidiun-ngx-client';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 
-export function refineFilterToServerValue(refineFilter: RefineFilter, serverFilter: KalturaReportInputFilter): void {
+export function refineFilterToServerValue(refineFilter: RefineFilter, serverFilter: VidiunReportInputFilter): void {
   let categories = [], mediaType = [], sourceType = [],
     tags = [], owners = [], country = [], region = [], city = [], domains = [], users = [];
   
@@ -82,9 +82,9 @@ export function refineFilterToServerValue(refineFilter: RefineFilter, serverFilt
   }
 
   if (users.length) {
-    (serverFilter as KalturaEndUserReportInputFilter).userIds = users.join(analyticsConfig.valueSeparator);
+    (serverFilter as VidiunEndUserReportInputFilter).userIds = users.join(analyticsConfig.valueSeparator);
   } else {
-    delete (serverFilter as KalturaEndUserReportInputFilter).userIds;
+    delete (serverFilter as VidiunEndUserReportInputFilter).userIds;
   }
 
   if (country.length) {
@@ -106,15 +106,15 @@ export function refineFilterToServerValue(refineFilter: RefineFilter, serverFilt
   }
 
   if (tags.length) {
-    serverFilter.entryOperator = new KalturaESearchEntryOperator({
-        operator: KalturaESearchOperatorType.orOp,
+    serverFilter.entryOperator = new VidiunESearchEntryOperator({
+        operator: VidiunESearchOperatorType.orOp,
         searchItems: []
       }
     );
     tags.forEach( tag => {
-      serverFilter.entryOperator.searchItems.push(new KalturaESearchEntryItem({
-        itemType: KalturaESearchItemType.exactMatch,
-        fieldName: KalturaESearchEntryFieldName.tags,
+      serverFilter.entryOperator.searchItems.push(new VidiunESearchEntryItem({
+        itemType: VidiunESearchItemType.exactMatch,
+        fieldName: VidiunESearchEntryFieldName.tags,
         searchTerm: tag
       }));
     });

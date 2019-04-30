@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { EngagementBaseReportComponent } from '../engagement-base-report/engagement-base-report.component';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
-import { KalturaAPIException, KalturaEndUserReportInputFilter, KalturaObjectBaseFactory, KalturaReportGraph, KalturaReportInterval, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunAPIException, VidiunEndUserReportInputFilter, VidiunObjectBaseFactory, VidiunReportGraph, VidiunReportInterval, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, of as ObservableOf } from 'rxjs';
@@ -13,7 +13,7 @@ import { HighlightsConfig } from './highlights.config';
 import { DateFilterComponent } from 'shared/components/date-filter/date-filter.component';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { isEmptyObject } from 'shared/utils/is-empty-object';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { SortEvent } from 'primeng/api';
 import { tableLocalSortHandler, TableRow } from 'shared/utils/table-local-sort-handler';
@@ -23,7 +23,7 @@ import { tableLocalSortHandler, TableRow } from 'shared/utils/table-local-sort-h
   templateUrl: './highlights.component.html',
   styleUrls: ['./highlights.component.scss'],
   providers: [
-    KalturaLogger.createLogger('EngagementHighlightsComponent'),
+    VidiunLogger.createLogger('EngagementHighlightsComponent'),
     HighlightsConfig,
     ReportService
   ],
@@ -32,12 +32,12 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
   @Input() dateFilterComponent: DateFilterComponent;
   
   private _order = '-date_id';
-  private _reportType = KalturaReportType.userEngagementTimeline;
+  private _reportType = VidiunReportType.userEngagementTimeline;
   private _dataConfig: ReportDataConfig;
   
   protected _componentId = 'highlights';
   
-  public highlights$ = new BehaviorSubject<{ current: Report, compare: Report, busy: boolean, error: KalturaAPIException }>({ current: null, compare: null, busy: false, error: null });
+  public highlights$ = new BehaviorSubject<{ current: Report, compare: Report, busy: boolean, error: VidiunAPIException }>({ current: null, compare: null, busy: false, error: null });
 
   public _columns: string[] = [];
   public _firstTimeLoading = true;
@@ -52,7 +52,7 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
   public _showTable = false;
   public _totalCount = 0;
   public _pageSize = analyticsConfig.defaultPageSize;
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -68,7 +68,7 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
               private _errorsManager: ErrorsManagerService,
               private _authService: AuthService,
               private _dataConfigService: HighlightsConfig,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     super();
     
     this._dataConfig = _dataConfigService.getConfig();
@@ -140,10 +140,10 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
     this._filter.toDate = this._dateFilter.endDate;
     this._filter.interval = this._dateFilter.timeUnits;
     this._reportInterval = this._dateFilter.timeUnits;
-    this._order = this._reportInterval === KalturaReportInterval.days ? '-date_id' : '-month_id';
+    this._order = this._reportInterval === VidiunReportInterval.days ? '-date_id' : '-month_id';
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {
@@ -191,7 +191,7 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
     }
   }
   
-  private _handleTable(graphs: KalturaReportGraph[]): void {
+  private _handleTable(graphs: VidiunReportGraph[]): void {
     const { columns, tableData, totalCount } = this._reportService.tableFromGraph(
       graphs,
       this._dataConfig.table,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, publishReplay, refCount } from 'rxjs/operators';
 import { ReportConfig, ReportService } from 'shared/services';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportType } from 'vidiun-ngx-client';
 
 export type HeatMapPoints = number[];
 
@@ -13,7 +13,7 @@ export interface HeatMapCache {
 @Injectable()
 export class HeatMapStoreService {
   private _cache: HeatMapCache = {};
-  private _pager = new KalturaFilterPager({ pageSize: 500, pageIndex: 1 });
+  private _pager = new VidiunFilterPager({ pageSize: 500, pageIndex: 1 });
   private _localConfig = {
     table: {
       fields: {
@@ -36,13 +36,13 @@ export class HeatMapStoreService {
     this._cache = {};
   }
   
-  public getHeatMap(userId: string, entryId: string, filter: KalturaEndUserReportInputFilter): Observable<HeatMapPoints> {
+  public getHeatMap(userId: string, entryId: string, filter: VidiunEndUserReportInputFilter): Observable<HeatMapPoints> {
     if (!this._cache[userId]) {
-      const userFilter = Object.assign(KalturaObjectBaseFactory.createObject(filter), filter); // don't mess with original filter
+      const userFilter = Object.assign(VidiunObjectBaseFactory.createObject(filter), filter); // don't mess with original filter
       userFilter.userIds = userId;
       const reportConfig: ReportConfig = {
         filter: userFilter,
-        reportType: KalturaReportType.percentiles,
+        reportType: VidiunReportType.percentiles,
         pager: this._pager,
         objectIds: entryId,
         order: null,

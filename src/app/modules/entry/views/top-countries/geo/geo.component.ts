@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { analyticsConfig } from 'configuration/analytics-config';
 import * as echarts from 'echarts';
 import { EChartOption } from 'echarts';
@@ -44,7 +44,7 @@ export class GeoComponent {
   public _mapDataReady = false;
   
   constructor(private _translate: TranslateService,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _dataConfigService: TopCountriesConfig) {
   }
   

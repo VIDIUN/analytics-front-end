@@ -8,18 +8,18 @@
   font-weight: 700;
 }
 
-.kMini{
+.vMini{
   height: 100%;
 
-  .kFilters {
+  .vFilters {
     height: 93px !important;
-    .kTitle{
+    .vTitle{
       width: auto;
       padding-right: 0;
     }
   }
 
-  .kDetails {
+  .vDetails {
     margin-left: auto;
     white-space: nowrap;
     margin-right: 24px;
@@ -83,7 +83,7 @@
     &.vNoResults {
       font-size: 28px;
       height: 100%;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
     }
 
     &:last-child {
@@ -152,12 +152,12 @@
         text-overflow: ellipsis;
       }
 
-      .kScore {
-        color: $kGrayscale3;
-        .kIconhelp_full{
+      .vScore {
+        color: $vGrayscale3;
+        .vIconhelp_full{
           font-size: 15px;
           &:hover{
-            color: $kSecondary;
+            color: $vSecondary;
             cursor: pointer;
           }
         }

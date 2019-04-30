@@ -60,35 +60,35 @@ export class VideoPerformanceConfig extends ReportDataBaseConfig {
             title: this._translate.instant(`app.entry.count_plays`),
             sortOrder: 1,
             colors: [getPrimaryColor(), getSecondaryColor()],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.count_plays`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.count_plays`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'unique_known_users': {
             format: value => value,
             title: this._translate.instant(`app.entry.unique_known_users`),
             sortOrder: 2,
             colors: [getPrimaryColor('viewers'), getSecondaryColor('viewers')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.unique_known_users`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.unique_known_users`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'sum_time_viewed': {
             format: value => value,
             title: this._translate.instant(`app.entry.sum_time_viewed`),
             sortOrder: 3,
             colors: [getPrimaryColor('time'), getSecondaryColor('time')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.sum_time_viewed`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.sum_time_viewed`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'avg_completion_rate': {
             format: value => Math.min(value, 100),
             title: this._translate.instant(`app.entry.avg_completion_rate`),
             sortOrder: 4,
             colors: [getPrimaryColor('dropoff'), getSecondaryColor('dropoff')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.avg_completion_rate`)}:&nbsp;${ReportHelper.percents(value / 100, false, true)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.avg_completion_rate`)}:&nbsp;${ReportHelper.percents(value / 100, false, true)}</span>`
           },
           'avg_view_drop_off': {
             format: value => Math.min(value * 100, 100),
             title: this._translate.instant(`app.entry.avg_view_drop_off`),
             sortOrder: 5,
             colors: [getPrimaryColor('dropoff'), getSecondaryColor('dropoff')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.avg_view_drop_off`)}:&nbsp;${ReportHelper.percents(value / 100, false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.avg_view_drop_off`)}:&nbsp;${ReportHelper.percents(value / 100, false)}</span>`
           },
         }
       },

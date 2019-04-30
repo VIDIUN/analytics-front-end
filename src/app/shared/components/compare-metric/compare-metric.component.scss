@@ -3,38 +3,38 @@
   margin: 0 16px;
 }
 
-.kCompareMetric {
+.vCompareMetric {
   display: flex;
   align-items: center;
 
-  .kCompareMetricLabel {
+  .vCompareMetricLabel {
     margin-right: 12px;
   }
 }
 
-.kOptionsLabelWrapper {
+.vOptionsLabelWrapper {
   display: flex;
   align-items: center;
 
-  &.kItemLabel {
+  &.vItemLabel {
     width: calc(100% - 15px);
   }
 
-  .kOptionLabel {
+  .vOptionLabel {
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .kCompareMetricBullet {
+  .vCompareMetricBullet {
     font-size: 18px;
     font-style: normal;
     margin-right: 8px
   }
 }
 
-:host /deep/ .kCompareMetric {
+:host /deep/ .vCompareMetric {
   .ui-dropdown {
     width: 200px !important;
   }

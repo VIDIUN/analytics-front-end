@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DateChangeEvent, DateRanges } from 'shared/components/date-filter/date-filter.service';
-import { KalturaEndUserReportInputFilter, KalturaReportInterval, KalturaReportType } from 'kaltura-ngx-client';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunEndUserReportInputFilter, VidiunReportInterval, VidiunReportType } from 'vidiun-ngx-client';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { EngagementExportConfig } from './engagement-export.config';
 import { ExportItem } from 'shared/components/export-csv/export-csv.component';
@@ -12,13 +12,13 @@ import { ExportItem } from 'shared/components/export-csv/export-csv.component';
   styleUrls: ['./engagement.component.scss'],
   providers: [
     EngagementExportConfig,
-    KalturaLogger.createLogger('EngagementComponent')
+    VidiunLogger.createLogger('EngagementComponent')
   ]
 })
 export class EngagementComponent {
   public _selectedRefineFilters: RefineFilter = null;
   public _dateRange = DateRanges.Last30D;
-  public _timeUnit = KalturaReportInterval.days;
+  public _timeUnit = VidiunReportInterval.days;
   public _totalCount: number;
   public _reportType: VidiunReportType = VidiunReportType.userUsage;
   public _selectedMetrics: string;
@@ -26,7 +26,7 @@ export class EngagementComponent {
   public _refineFilter: RefineFilter = null;
   public _refineFilterOpened = false;
   public _exportConfig: ExportItem[] = [];
-  public _filter: KalturaEndUserReportInputFilter = new KalturaEndUserReportInputFilter(
+  public _filter: VidiunEndUserReportInputFilter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { analyticsConfig, getKalturaServerUri } from 'configuration/analytics-config';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
-import { KalturaClient } from 'kaltura-ngx-client';
+import { analyticsConfig, getVidiunServerUri } from 'configuration/analytics-config';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
+import { VidiunClient } from 'vidiun-ngx-client';
 import { TranslateService } from '@ngx-translate/core';
 import { BrowserService } from 'shared/services';
 import { ConfirmationService, ConfirmDialog } from 'primeng/primeng';
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
               private _logger: VidiunLogger,
               private _router: Router,
               private _browserService: BrowserService,
-              private _kalturaServerClient: KalturaClient) {
+              private _vidiunServerClient: VidiunClient) {
     if (window['analyticsConfig']) { // standalone
       this._initApp(window['analyticsConfig']);
     } else { // hosted
@@ -105,7 +105,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.hosted = hosted; // hosted;
     
-    analyticsConfig.ks = config.ks;
+    analyticsConfig.vs = config.vs;
     analyticsConfig.pid = config.pid;
     analyticsConfig.locale = config.locale;
     analyticsConfig.vidiunServer = config.vidiunServer;
@@ -115,11 +115,11 @@ export class AppComponent implements OnInit, OnDestroy {
     analyticsConfig.isHosted = this.hosted;
     analyticsConfig.permissions = config.permissions || {};
 
-    // set ks in ngx-client
-    this._logger.info(`Setting ks in ngx-client: ${analyticsConfig.ks}`);
-    this._kalturaServerClient.setOptions({
-      endpointUrl: getKalturaServerUri(),
-      clientTag: `kmc-analytics:${analyticsConfig.appVersion}`
+    // set vs in ngx-client
+    this._logger.info(`Setting vs in ngx-client: ${analyticsConfig.vs}`);
+    this._vidiunServerClient.setOptions({
+      endpointUrl: getVidiunServerUri(),
+      clientTag: `vmc-analytics:${analyticsConfig.appVersion}`
     });
     this._vidiunServerClient.setDefaultRequestOptions({
       vs: analyticsConfig.vs

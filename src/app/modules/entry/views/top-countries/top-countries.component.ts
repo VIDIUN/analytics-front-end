@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
 import { AuthService, ErrorsManagerService, ReportConfig, ReportHelper, ReportService } from 'shared/services';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,13 +8,13 @@ import { DateChangeEvent } from 'shared/components/date-filter/date-filter.servi
 import { EntryBase } from '../entry-base/entry-base';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { TrendService } from 'shared/services/trend.service';
 import { HttpClient } from '@angular/common/http';
 import { refineFilterToServerValue } from 'shared/components/filter/filter-to-server-value.util';
 import { analyticsConfig } from 'configuration/analytics-config';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { significantDigits } from 'shared/utils/significant-digits';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import { GeoComponent } from './geo/geo.component';
@@ -36,14 +36,14 @@ export class TopCountriesComponent extends EntryBase implements OnInit, OnDestro
   private _dataConfig: ReportDataConfig;
   private _mapCenter = [0, 10];
   private _order = '-count_plays';
-  private _pager: KalturaFilterPager = new KalturaFilterPager({ pageSize: 500, pageIndex: 1 });
+  private _pager: VidiunFilterPager = new VidiunFilterPager({ pageSize: 500, pageIndex: 1 });
 
   protected _componentId = 'top-videos';
   
   public _dateFilter: DateChangeEvent = null;
   public _refineFilter: RefineFilter = [];
   public _selectedMetrics: string;
-  public _reportInterval = KalturaReportInterval.days;
+  public _reportInterval = VidiunReportInterval.days;
   public _tableData: TableRow<any>[] = [];
   public _compareTableData: TableRow<any>[] = [];
   public _tabsData: Tab[] = [];
@@ -52,9 +52,9 @@ export class TopCountriesComponent extends EntryBase implements OnInit, OnDestro
   public _blockerMessage: AreaBlockerMessage = null;
   public _columns: string[] = [];
   public _totalCount: number;
-  public _reportType = KalturaReportType.mapOverlayCountry;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
-  public _filter = new KalturaEndUserReportInputFilter({ searchInTags: true, searchInAdminTags: false });
+  public _reportType = VidiunReportType.mapOverlayCountry;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
+  public _filter = new VidiunEndUserReportInputFilter({ searchInTags: true, searchInAdminTags: false });
   public _drillDown: string[] = [];
   public _mapData: any;
   public _currentPeriodTitle: string;
@@ -108,7 +108,7 @@ export class TopCountriesComponent extends EntryBase implements OnInit, OnDestro
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {
@@ -221,7 +221,7 @@ export class TopCountriesComponent extends EntryBase implements OnInit, OnDestro
     };
   }
   
-  private _handleTable(table: KalturaReportTable, tabsData: Tab[]): TableRow[] {
+  private _handleTable(table: VidiunReportTable, tabsData: Tab[]): TableRow[] {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._columns = columns;
@@ -248,7 +248,7 @@ export class TopCountriesComponent extends EntryBase implements OnInit, OnDestro
     });
   }
   
-  private _handleTotals(totals: KalturaReportTotal): Tab[] {
+  private _handleTotals(totals: VidiunReportTotal): Tab[] {
     return this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
   }
   
@@ -269,7 +269,7 @@ export class TopCountriesComponent extends EntryBase implements OnInit, OnDestro
     if (this._drillDown.length > 0) {
       reportConfig.filter.countryIn = this._drillDown[0];
     } else if (countriesFilterApplied) {
-      refineFilterToServerValue(this._refineFilter, reportConfig.filter as KalturaEndUserReportInputFilter);
+      refineFilterToServerValue(this._refineFilter, reportConfig.filter as VidiunEndUserReportInputFilter);
     }
     
     if (this._drillDown.length > 1) {
@@ -298,7 +298,7 @@ export class TopCountriesComponent extends EntryBase implements OnInit, OnDestro
   public _onDrillDown(event: { drillDown: string[], reload: boolean }): void {
     const { drillDown, reload } = event;
     this._drillDown = Array.isArray(drillDown) ? drillDown : [drillDown];
-    this._reportType = this._drillDown.length === 2 ? KalturaReportType.mapOverlayCity : this._drillDown.length === 1 ? KalturaReportType.mapOverlayRegion : KalturaReportType.mapOverlayCountry;
+    this._reportType = this._drillDown.length === 2 ? VidiunReportType.mapOverlayCity : this._drillDown.length === 1 ? VidiunReportType.mapOverlayRegion : VidiunReportType.mapOverlayCountry;
     
     if (reload) {
       this._loadReport();

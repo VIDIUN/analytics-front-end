@@ -1,42 +1,42 @@
 @import '../../../../../../styles/variables';
 
-:host /deep/ .kValue {
+:host /deep/ .vValue {
   font-size: 24px;
   font-weight: 700;
 }
 
-:host /deep/ .kUnits {
+:host /deep/ .vUnits {
   font-size: 13px;
   font-weight: 700;
 }
 
-.kReportContent {
+.vReportContent {
   overflow: hidden;
   position: relative;
   padding-bottom: 45px;
   justify-content: space-around;
 }
 
-.kFilters {
+.vFilters {
   height: 93px !important;
 }
 
-.kMini {
+.vMini {
   height: 100%;
 
-  .kDetails {
+  .vDetails {
     margin-left: auto;
     white-space: nowrap;
     margin-right: 24px;
   }
 
-  .kReportRow {
+  .vReportRow {
     display: flex;
     padding: 0 24px;
     margin-bottom: 20px;
-    color: $kGrayscale1;
+    color: $vGrayscale1;
 
-    .kValue {
+    .vValue {
       font-size: 18px;
       font-weight: bold;
       margin-right: 12px;
@@ -44,26 +44,26 @@
       line-height: 24px;
     }
 
-    .kInfo {
+    .vInfo {
       display: flex;
       flex-direction: column;
 
-      .kLabel {
+      .vLabel {
         font-size: 18px;
         font-weight: normal;
       }
 
-      .kDesc {
+      .vDesc {
         font-size: 15px;
         font-weight: normal;
-        color: $kGrayscale3;
+        color: $vGrayscale3;
       }
     }
 
-    &.kNoResults {
+    &.vNoResults {
       height: 100%;
       font-size: 28px;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
       position: absolute;
       background-color: white;
       width: 100%;

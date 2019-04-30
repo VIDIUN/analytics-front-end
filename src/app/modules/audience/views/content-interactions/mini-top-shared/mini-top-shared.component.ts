@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
-import { KalturaEndUserReportInputFilter, KalturaEntryStatus, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunEntryStatus, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { BrowserService, ErrorsManagerService, ReportConfig, ReportService } from 'shared/services';
 import { of as ObservableOf } from 'rxjs';
 import { ISubscription } from 'rxjs/Subscription';
@@ -12,7 +12,7 @@ import { DateFilterComponent } from 'shared/components/date-filter/date-filter.c
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import { analyticsConfig } from 'configuration/analytics-config';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 import { InteractionsBaseReportComponent } from '../interactions-base-report/interactions-base-report.component';
 import { map, switchMap } from 'rxjs/operators';
@@ -23,7 +23,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './mini-top-shared.component.html',
   styleUrls: ['./mini-top-shared.component.scss'],
   providers: [
-    KalturaLogger.createLogger('MiniTopSharedComponent'),
+    VidiunLogger.createLogger('MiniTopSharedComponent'),
     MiniTopSharedConfig,
     ReportService
   ]
@@ -34,12 +34,12 @@ export class MiniTopSharedComponent extends InteractionsBaseReportComponent {
   protected _componentId = 'mini-top-shared';
   
   private readonly _order = '-count_viral';
-  private _reportType = KalturaReportType.playerRelatedInteractions;
+  private _reportType = VidiunReportType.playerRelatedInteractions;
   private _dataConfig: ReportDataConfig;
   private _partnerId = analyticsConfig.pid;
-  private _apiUrl = analyticsConfig.kalturaServer.uri.startsWith('http')
-    ? analyticsConfig.kalturaServer.uri
-    : `${location.protocol}//${analyticsConfig.kalturaServer.uri}`;
+  private _apiUrl = analyticsConfig.vidiunServer.uri.startsWith('http')
+    ? analyticsConfig.vidiunServer.uri
+    : `${location.protocol}//${analyticsConfig.vidiunServer.uri}`;
   private subscription: ISubscription = null;
   
   public _isBusy: boolean;
@@ -49,10 +49,10 @@ export class MiniTopSharedComponent extends InteractionsBaseReportComponent {
   public _compareFirstTimeLoading = true;
   public _currentDates: string;
   public _compareDates: string;
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
-  public _pager = new KalturaFilterPager({ pageSize: 3, pageIndex: 1 });
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
+  public _pager = new VidiunFilterPager({ pageSize: 3, pageIndex: 1 });
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -67,7 +67,7 @@ export class MiniTopSharedComponent extends InteractionsBaseReportComponent {
               private _dataConfigService: MiniTopSharedConfig,
               private _pageScrollService: PageScrollService,
               private _errorsManager: ErrorsManagerService,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _browserService: BrowserService,
               private _router: Router,
               private _activatedRoute: ActivatedRoute) {
@@ -124,7 +124,7 @@ export class MiniTopSharedComponent extends InteractionsBaseReportComponent {
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {
@@ -140,7 +140,7 @@ export class MiniTopSharedComponent extends InteractionsBaseReportComponent {
     }
   }
   
-  private _handleTable(table: KalturaReportTable, compare?: KalturaReportTable): void {
+  private _handleTable(table: VidiunReportTable, compare?: VidiunReportTable): void {
     const { tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     const extendTableRow = (item, index) => {
       (<any>item)['index'] = index + 1;
@@ -178,7 +178,7 @@ export class MiniTopSharedComponent extends InteractionsBaseReportComponent {
   public _drillDown(row: TableRow<string>): void {
     const { object_id, status } = row;
 
-    if (status === KalturaEntryStatus.ready) {
+    if (status === VidiunEntryStatus.ready) {
       if (analyticsConfig.isHosted) {
         const params = this._browserService.getCurrentQueryParams('string');
         this._frameEventManager.publish(FrameEvents.NavigateTo, `/analytics/entry?id=${object_id}&${params}`);

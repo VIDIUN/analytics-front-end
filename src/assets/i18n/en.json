@@ -103,7 +103,7 @@
     "exportReports": {
       "exportReports": "Export Reports",
       "successMessage": "We are preparing your report. We will send it to your email address shortly.",
-      "errorMessage": "There was an error processing your export request, please try again or contact Kaltura support."
+      "errorMessage": "There was an error processing your export request, please try again or contact Vidiun support."
     },
     "entryType": {
       "video": "Video",
@@ -144,7 +144,7 @@
       "mostPopular": "Most Popular Way To Add Content",
       "others": "Others",
       "top-contributors": "Top Contributors",
-      "top-contributors_tt": "List of users with the highest contribution score based on Kaltura’s contribution formula",
+      "top-contributors_tt": "List of users with the highest contribution score based on Vidiun’s contribution formula",
       "highlights": "Highlights",
       "highlights_tt": "Snapshot of important metrics for the selected timeframe",
       "added_entries": "Added Entries",
@@ -322,7 +322,7 @@
       "peak": "Peak day",
       "userHighlights": "User Highlights",
       "topVideos": "Top Videos",
-      "topVideos_tt": "Top videos based on the Kaltura engagement formula",
+      "topVideos_tt": "Top videos based on the Vidiun engagement formula",
       "duration": "Which video duration leads to better engagement?",
       "impressions": "How player impressions are leading to engagement?",
       "users": "How many users watched at least once?",

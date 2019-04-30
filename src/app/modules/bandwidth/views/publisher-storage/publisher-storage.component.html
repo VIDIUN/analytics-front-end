@@ -1,6 +1,6 @@
-<div data-aid="report-storage" class="kReport kContent kOverrideFAIcons">
-  <div class="kReportHeader">
-    <span class="kTitle">{{'app.bandwidth.publisherStorage' | translate}}</span>
+<div data-aid="report-storage" class="vReport vContent vOverrideFAIcons">
+  <div class="vReportHeader">
+    <span class="vTitle">{{'app.bandwidth.publisherStorage' | translate}}</span>
     <app-export-csv name="storage"
                     [reports]="_exportConfig"
                     [dateFilter]="_dateFilter"></app-export-csv>
@@ -50,7 +50,7 @@
           <i [class.vIcondropdown_arrow_bottom]="!_showTable" [class.vIcondropdown_arrow_top]="_showTable"></i>
           <a (click)="toggleTable()">{{(_showTable ? 'app.common.hideDetails' : 'app.common.viewDetails') | translate}}</a>
         </div>
-        <div class="kTableContainer" [class.kOpen]="_showTable" [class.kClose]="!_showTable">
+        <div class="vTableContainer" [class.vOpen]="_showTable" [class.vClose]="!_showTable">
           <p-table appScrollTopOnPaging
                    [value]="_tableData"
                    [paginator]="true"

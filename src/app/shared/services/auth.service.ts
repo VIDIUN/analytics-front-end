@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 @Injectable()
 export class AuthService {
 
     constructor(private _frameEventManager: FrameEventManagerService,
-                private _logger: KalturaLogger) {
+                private _logger: VidiunLogger) {
       this._logger = _logger.subLogger('AuthService');
     }
 

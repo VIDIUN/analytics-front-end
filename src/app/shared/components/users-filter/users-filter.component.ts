@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { VidiunUser } from 'vidiun-ngx-client';
 import { UsersFilterService } from './users-filter.service';
 import { TranslateService } from '@ngx-translate/core';
-import { AutoComplete, SuggestionsProviderData } from '@kaltura-ng/kaltura-primeng-ui';
+import { AutoComplete, SuggestionsProviderData } from '@vidiun-ng/vidiun-primeng-ui';
 import { ISubscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
@@ -16,11 +16,11 @@ export class UsersFilterComponent implements OnInit {
   @Input() hideLabels = true;
   @Input() disabled = false;
 
-  @Output() filterChange: EventEmitter<KalturaUser[]> = new EventEmitter();
+  @Output() filterChange: EventEmitter<VidiunUser[]> = new EventEmitter();
   
   @ViewChild('autocomplete') _autoComplete: AutoComplete;
 
-  private _selectedUsers: KalturaUser[] = [];
+  private _selectedUsers: VidiunUser[] = [];
   private _searchUsersSubscription: ISubscription;
 
   public _usersProvider = new Subject<SuggestionsProviderData>();

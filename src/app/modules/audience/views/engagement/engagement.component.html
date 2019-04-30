@@ -1,12 +1,12 @@
-<div data-aid="report-group-engagement" class="kReport kContent kOverrideFAIcons">
-  <div class="kReportHeader">
-    <span class="kTitle">{{'app.engagement.title' | translate}}</span>
+<div data-aid="report-group-engagement" class="vReport vContent vOverrideFAIcons">
+  <div class="vReportHeader">
+    <span class="vTitle">{{'app.engagement.title' | translate}}</span>
     <app-export-csv name="engagement"
                     [reports]="_exportConfig"
                     [refineFilter]="_refineFilter"
                     [dateFilter]="_dateFilter"></app-export-csv>
-    <div class="kFilter kOverrideFAIcons">
-      <div class="kDropDown" (click)="_refineFilterOpened = !_refineFilterOpened">
+    <div class="vFilter vOverrideFAIcons">
+      <div class="vDropDown" (click)="_refineFilterOpened = !_refineFilterOpened">
         <span>{{'app.filters.filter' | translate}}</span>
         <i *ngIf="!_refineFilterOpened" class="vIcondropdown_arrow_bottom"></i>
         <i *ngIf="_refineFilterOpened" class="vIcondropdown_arrow_top"></i>
@@ -19,7 +19,7 @@
                      (filterChange)="_onDateFilterChange($event)"></app-date-filter>
   </div>
 
-  <div class="kReportContainer kNoPadding">
+  <div class="vReportContainer vNoPadding">
     <app-refine-filter name="engagement"
                        [opened]="_refineFilterOpened"
                        [dateFilter]="_dateFilter"
@@ -28,14 +28,14 @@
                        (filterChange)="_onRefineFilterChange($event)"></app-refine-filter>
   </div>
 
-  <div class="kReportContainer">
-    <div class="kMiniReportContainer">
+  <div class="vReportContainer">
+    <div class="vMiniReportContainer">
       <app-engagement-mini-highlights [highlights$]="highlights.highlights$"
                                       [dateFilter]="_dateFilter"
                                       [refineFilter]="_refineFilter"></app-engagement-mini-highlights>
     </div>
 
-    <div class="kMiniReportContainer">
+    <div class="vMiniReportContainer">
       <app-engagement-mini-top-videos [dateFilter]="_dateFilter" [topVideos$]="topVideos.topVideos$"
                                       [refineFilter]="_refineFilter"></app-engagement-mini-top-videos>
     </div>
@@ -62,14 +62,14 @@
     <!--</div>-->
   </div>
 
-  <div id="highlights-report" class="kReportContainer">
+  <div id="highlights-report" class="vReportContainer">
     <app-engagement-highlights #highlights
                                [dateFilterComponent]="dateFilter"
                                [dateFilter]="_dateFilter"
                                [refineFilter]="_refineFilter"></app-engagement-highlights>
   </div>
 
-  <div id="top-videos" class="kReportContainer">
+  <div id="top-videos" class="vReportContainer">
     <app-engagement-top-videos #topVideos
                                [dateFilter]="_dateFilter"
                                [refineFilter]="_refineFilter"></app-engagement-top-videos>
@@ -80,8 +80,8 @@
                              [refineFilter]="_refineFilter"></app-engagement-duration>
   </div-->
 
-  <div class="kReportContainer">
-    <!--div class="kSmallReportContainer"-->
+  <div class="vReportContainer">
+    <!--div class="vSmallReportContainer"-->
       <app-impressions [dateFilter]="_dateFilter"
                        [refineFilter]="_refineFilter"></app-impressions>
     <!--/div-->
@@ -91,7 +91,7 @@
     </div-->
   </div>
 
-  <div class="kReportContainer">
+  <div class="vReportContainer">
     <app-syndication [dateFilterComponent]="dateFilter"
                      [dateFilter]="_dateFilter"
                      [refineFilter]="_refineFilter"></app-syndication>

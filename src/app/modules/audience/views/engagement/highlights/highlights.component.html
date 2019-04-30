@@ -1,5 +1,5 @@
-<div data-aid="report-engagement-highlights" class="kReport kContent kOverrideFAIcons">
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+<div data-aid="report-engagement-highlights" class="vReport vContent vOverrideFAIcons">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
 
     <div class="vReportContent">
       <app-report-tabs [tabs]="_tabsData" [showValue]="false" (tabChange)="_onTabChange($event)"></app-report-tabs>
@@ -25,7 +25,7 @@
             {{(_showTable ? 'app.common.hideDetails' : 'app.common.viewDetails') | translate}}
           </a>
         </div>
-        <div class="kTableContainer" [class.kOpen]="_showTable" [class.kClose]="!_showTable">
+        <div class="vTableContainer" [class.vOpen]="_showTable" [class.vClose]="!_showTable">
           <p-table appScrollTopOnPaging
                    [sortField]="_columns[0]"
                    [value]="_tableData"
@@ -46,9 +46,9 @@
             </ng-template>
             <ng-template pTemplate="body" let-data>
               <tr [ngStyle]="{'width': '100%'}">
-                <td *ngFor="let col of _columns; let i = index" [class.kHighlight]="i===0" [ngStyle]="{'width': '100%'}">
-                  <span *ngIf="_isCompareMode && data[col]?.value && col !== 'month_id' && col !== 'date_id'" class="kTrend">
-                    <span [kTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
+                <td *ngFor="let col of _columns; let i = index" [class.vHighlight]="i===0" [ngStyle]="{'width': '100%'}">
+                  <span *ngIf="_isCompareMode && data[col]?.value && col !== 'month_id' && col !== 'date_id'" class="vTrend">
+                    <span [vTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
                       <app-trend-value [value]="data[col].value"
                                        [units]="data[col].units"
                                        [trend]="data[col].trend"></app-trend-value>

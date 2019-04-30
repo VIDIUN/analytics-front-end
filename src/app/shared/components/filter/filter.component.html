@@ -1,10 +1,10 @@
-<div [attr.data-aid]="'filter-' + name" class="kRefineFilters kReport">
-  <div class="kTagsContainer" *ngIf="_tags.length">
-    <span class="kDisclaimer" *ngIf="_showDisclaimer">
-      <i class="kIconInfo_Full"></i>
+<div [attr.data-aid]="'filter-' + name" class="vRefineFilters vReport">
+  <div class="vTagsContainer" *ngIf="_tags.length">
+    <span class="vDisclaimer" *ngIf="_showDisclaimer">
+      <i class="vIconInfo_Full"></i>
       {{'app.filters.disclaimer' | translate}}
     </span>
-    <kTags title=""
+    <vTags title=""
            labelField="label"
            tooltipField="tooltip"
            [data]="_tags"
@@ -56,8 +56,8 @@
           </div>
         </div>
       </div>
-      <div class="kRefineFiltersFooter">
-        <button type="button" class="kButtonBranded" pButton
+      <div class="vRefineFiltersFooter">
+        <button type="button" class="vButtonBranded" pButton
                 [label]="'app.common.apply' | translate"
                 (click)="_apply()"></button>
       </div>

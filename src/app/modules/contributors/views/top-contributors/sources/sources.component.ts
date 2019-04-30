@@ -2,8 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, of as ObservableOf } from 'rxjs';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
-import { KalturaAPIException, KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
+import { VidiunAPIException, VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
 import { ReportDataConfig, ReportDataSection } from 'shared/services/storage-data-base.config';
 import { TranslateService } from '@ngx-translate/core';
 import { CompareService } from 'shared/services/compare.service';
@@ -11,21 +11,21 @@ import { SourcesDataConfig } from './sources-data.config';
 import { TrendService } from 'shared/services/trend.service';
 import { TopContributorsBaseReportComponent } from '../top-contributors-base-report/top-contributors-base-report.component';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 @Component({
   selector: 'app-contributors-sources',
   templateUrl: './sources.component.html',
   styleUrls: ['./sources.component.scss'],
   providers: [
-    KalturaLogger.createLogger('ContributorsSourcesComponent'),
+    VidiunLogger.createLogger('ContributorsSourcesComponent'),
     ReportService,
     SourcesDataConfig,
   ]
 })
 export class ContributorsSourcesComponent extends TopContributorsBaseReportComponent implements OnDestroy{
-  private _compareFilter: KalturaEndUserReportInputFilter = null;
-  private _pager = new KalturaFilterPager();
+  private _compareFilter: VidiunEndUserReportInputFilter = null;
+  private _pager = new VidiunFilterPager();
   private _dataConfig: ReportDataConfig;
   private _reportInterval = VidiunReportInterval.months;
   private _filter = new VidiunEndUserReportInputFilter({
@@ -35,7 +35,7 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
   });
   
   protected _componentId = 'sources';
-  public topSources$: BehaviorSubject<{table: KalturaReportTable, compare: KalturaReportTable, busy: boolean, error: KalturaAPIException}> = new BehaviorSubject({table: null, compare: null, busy: false, error: null});
+  public topSources$: BehaviorSubject<{table: VidiunReportTable, compare: VidiunReportTable, busy: boolean, error: VidiunAPIException}> = new BehaviorSubject({table: null, compare: null, busy: false, error: null});
 
   public _blockerMessage: AreaBlockerMessage = null;
   public _isBusy = true;
@@ -54,7 +54,7 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
               private _authService: AuthService,
               private _compareService: CompareService,
               private _dataConfigService: SourcesDataConfig,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     super();
     
     this._dataConfig = _dataConfigService.getConfig();
@@ -124,7 +124,7 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
     if (this._dateFilter.compare.active) {
       this._isCompareMode = true;
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {

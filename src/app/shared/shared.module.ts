@@ -19,8 +19,8 @@ import { InsightsBulletComponent } from './components/insights-bullet/insights-b
 import { ReportService } from './services/report.service';
 import { ReportTabsComponent } from './components/report-tabs/report-tabs.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { AutoCompleteModule } from '@kaltura-ng/kaltura-primeng-ui';
-import { AreaBlockerModule, InputHelperModule, PopupWidgetModule, TagsModule, TooltipModule } from '@kaltura-ng/kaltura-ui';
+import { AutoCompleteModule } from '@vidiun-ng/vidiun-primeng-ui';
+import { AreaBlockerModule, InputHelperModule, PopupWidgetModule, TagsModule, TooltipModule } from '@vidiun-ng/vidiun-ui';
 import { TimeUnitsComponent } from './components/date-filter/time-units.component';
 import { CompareService } from 'shared/services/compare.service';
 import { TrendPipe } from 'shared/pipes/trend.pipe';
@@ -107,7 +107,7 @@ import { ScrollTopOnPagingDirective } from 'shared/directives/scroll-top-on-pagi
     CategoriesSelectorComponent,
     AutocompleteFilterComponent,
     DropdownFilterComponent,
-    KalturaPlayerComponent,
+    VidiunPlayerComponent,
     ImpressionsComponent,
     SyndicationComponent,
     CompareMetricComponent,

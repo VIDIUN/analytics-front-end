@@ -6,7 +6,7 @@ export interface AnalyticsConfig {
   permissions: {
     lazyLoadCategories?: boolean;
   };
-  kalturaServer?: {
+  vidiunServer?: {
       uri?: string,
     previewUIConf?: number
   };

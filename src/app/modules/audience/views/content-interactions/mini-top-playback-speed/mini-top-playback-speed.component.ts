@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaReportInterval, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunReportInterval, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { ErrorsManagerService, ReportConfig, ReportService } from 'shared/services';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { TranslateService } from '@ngx-translate/core';
 import { MiniTopPlaybackSpeedConfig } from './mini-top-playback-speed.config';
 import { FrameEventManagerService } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { InsightsBulletValue } from 'shared/components/insights-bullet/insights-bullet.component';
 import { InteractionsBaseReportComponent } from '../interactions-base-report/interactions-base-report.component';
 
@@ -15,7 +15,7 @@ import { InteractionsBaseReportComponent } from '../interactions-base-report/int
   templateUrl: './mini-top-playback-speed.component.html',
   styleUrls: ['./mini-top-playback-speed.component.scss'],
   providers: [
-    KalturaLogger.createLogger('MiniTopStatsComponent'),
+    VidiunLogger.createLogger('MiniTopStatsComponent'),
     MiniTopPlaybackSpeedConfig,
     ReportService
   ]
@@ -24,16 +24,16 @@ export class MiniTopPlaybackSpeedComponent extends InteractionsBaseReportCompone
   protected _componentId = 'mini-top-speed';
   
   private _dataConfig: ReportDataConfig;
-  private _reportType = KalturaReportType.playbackRate;
+  private _reportType = VidiunReportType.playbackRate;
   
   public _firstTimeLoading = true;
   public _isBusy: boolean;
   public _blockerMessage: AreaBlockerMessage = null;
   public _currentDates: string;
   public _topSpeedLabel = '';
-  public _reportInterval = KalturaReportInterval.days;
-  public _pager = new KalturaFilterPager();
-  public _filter = new KalturaEndUserReportInputFilter({ searchInTags: true, searchInAdminTags: false });
+  public _reportInterval = VidiunReportInterval.days;
+  public _pager = new VidiunFilterPager();
+  public _filter = new VidiunEndUserReportInputFilter({ searchInTags: true, searchInAdminTags: false });
   public _bulletValues: InsightsBulletValue[] = [];
   
   
@@ -91,7 +91,7 @@ export class MiniTopPlaybackSpeedComponent extends InteractionsBaseReportCompone
     this._refineFilterToServerValue(this._filter);
   }
   
-  private _handleTable(table: KalturaReportTable): void {
+  private _handleTable(table: VidiunReportTable): void {
     const { tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._topSpeedLabel = `X${tableData.reduce((prev, current) => (Number(prev['count_speed']) > Number(current['count_speed']) ? prev : current))['playback_rate']}`;
   

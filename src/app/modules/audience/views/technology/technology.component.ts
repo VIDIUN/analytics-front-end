@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DateChangeEvent, DateRanges } from 'shared/components/date-filter/date-filter.service';
 import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { DevicesOverviewComponent } from './devices-overview/devices-overview.component';
-import { KalturaReportType } from 'kaltura-ngx-client';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunReportType } from 'vidiun-ngx-client';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { TechnologyExportConfig } from './technology-export.config';
 import { ExportItem } from 'shared/components/export-csv/export-csv.component';
 
@@ -13,7 +13,7 @@ import { ExportItem } from 'shared/components/export-csv/export-csv.component';
   styleUrls: ['./technology.component.scss'],
   providers: [
     TechnologyExportConfig,
-    KalturaLogger.createLogger('TechnologyComponent')
+    VidiunLogger.createLogger('TechnologyComponent')
   ]
 })
 export class TechnologyComponent implements OnInit {
@@ -27,7 +27,7 @@ export class TechnologyComponent implements OnInit {
   public _filterEvent: DateChangeEvent = null;
   public _devicesFilter: string[] = [];
   public _devicesList: { value: string, label: string; }[] = [];
-  public _reportType = KalturaReportType.platforms;
+  public _reportType = VidiunReportType.platforms;
   public _exportConfig: ExportItem[] = [];
   
   constructor(private _exportConfigService: TechnologyExportConfig) {

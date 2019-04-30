@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ExportConfigService, ExportItem } from 'shared/components/export-csv/export-csv.component';
-import { KalturaReportExportItemType, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunReportExportItemType, VidiunReportType } from 'vidiun-ngx-client';
 
 @Injectable()
 export class EngagementExportConfig implements ExportConfigService {
@@ -12,32 +12,32 @@ export class EngagementExportConfig implements ExportConfigService {
     return [
       {
         label: this._translate.instant('app.engagement.exportLabels.highlights'),
-        reportType: KalturaReportType.userEngagementTimeline,
-        sections: [KalturaReportExportItemType.total],
+        reportType: VidiunReportType.userEngagementTimeline,
+        sections: [VidiunReportExportItemType.total],
         order: '-count_plays',
       },
       {
         label: this._translate.instant('app.engagement.exportLabels.topVideos'),
-        reportType: KalturaReportType.topContentCreator,
-        sections: [KalturaReportExportItemType.table],
+        reportType: VidiunReportType.topContentCreator,
+        sections: [VidiunReportExportItemType.table],
         order: '-engagement_ranking',
       },
       {
         label: this._translate.instant('app.engagement.exportLabels.general'),
-        reportType: KalturaReportType.userEngagementTimeline,
-        sections: [KalturaReportExportItemType.table],
+        reportType: VidiunReportType.userEngagementTimeline,
+        sections: [VidiunReportExportItemType.table],
         order: '-date_id',
       },
       {
         label: this._translate.instant('app.engagement.exportLabels.impressions'),
-        reportType: KalturaReportType.contentDropoff,
-        sections: [KalturaReportExportItemType.total],
+        reportType: VidiunReportType.contentDropoff,
+        sections: [VidiunReportExportItemType.total],
         order: '-count_plays',
       },
       {
         label: this._translate.instant('app.engagement.exportLabels.syndication'),
-        reportType: KalturaReportType.topSyndication,
-        sections: [KalturaReportExportItemType.table],
+        reportType: VidiunReportType.topSyndication,
+        sections: [VidiunReportExportItemType.table],
         order: '-count_plays',
       },
     ];

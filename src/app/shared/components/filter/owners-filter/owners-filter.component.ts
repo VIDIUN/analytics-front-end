@@ -23,7 +23,7 @@ import { DateChangeEvent } from 'shared/components/date-filter/date-filter.servi
 })
 export class OwnersFilterComponent implements OnDestroy {
   @Input() label: string;
-  @Input() selectedFilters: KalturaUser[] = [];
+  @Input() selectedFilters: VidiunUser[] = [];
   @Input() dateFilter: DateChangeEvent;
 
   @Output() itemSelected = new EventEmitter();

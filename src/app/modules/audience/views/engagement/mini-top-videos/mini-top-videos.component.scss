@@ -8,16 +8,16 @@
   font-weight: 700;
 }
 
-.kMini{
+.vMini{
   height: 100%;
-  .kFilters {
+  .vFilters {
     height: 93px !important;
-    .kTitle{
+    .vTitle{
       width: auto;
       padding-right: 0px;
     }
   }
-  .kDetails {
+  .vDetails {
     margin-left: auto;
     white-space: nowrap;
     margin-right: 24px;
@@ -163,8 +163,8 @@
         cursor: pointer;
       }
 
-      .kScore {
-        color: $kGrayscale3;
+      .vScore {
+        color: $vGrayscale3;
         margin-top: 8px;
       }
 

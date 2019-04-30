@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 @Component({
     selector: 'app-audience',
     templateUrl: './audience.component.html',
     styleUrls: ['./audience.component.scss'],
-    providers: [KalturaLogger.createLogger('AudienceComponent')]
+    providers: [VidiunLogger.createLogger('AudienceComponent')]
 })
 export class AudienceComponent  {
 

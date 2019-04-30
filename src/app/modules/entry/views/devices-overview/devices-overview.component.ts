@@ -1,15 +1,15 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
 import { TranslateService } from '@ngx-translate/core';
 import { ReportDataConfig, ReportDataSection } from 'shared/services/storage-data-base.config';
 import { DevicesOverviewConfig } from './devices-overview.config';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { TrendService } from 'shared/services/trend.service';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { EntryBase } from '../entry-base/entry-base';
 import { FrameEventManagerService } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { CompareService } from 'shared/services/compare.service';
@@ -40,7 +40,7 @@ export interface Summary {
   templateUrl: './devices-overview.component.html',
   styleUrls: ['./devices-overview.component.scss'],
   providers: [
-    KalturaLogger.createLogger('DevicesOverviewComponent'),
+    VidiunLogger.createLogger('DevicesOverviewComponent'),
     DevicesOverviewConfig,
     ReportService,
   ]
@@ -53,7 +53,7 @@ export class EntryDevicesOverviewComponent extends EntryBase implements OnDestro
   
   private readonly _allowedDevices = ['Computer', 'Mobile', 'Tablet', 'Game console', 'Digital media receiver'];
   private _fractions = 1;
-  private _reportType = KalturaReportType.platforms;
+  private _reportType = VidiunReportType.platforms;
   private _tabsData: Tab[] = [];
   private _compareTabsData: Tab[] = [];
   
@@ -63,12 +63,12 @@ export class EntryDevicesOverviewComponent extends EntryBase implements OnDestro
   public _summaryData: SummaryItem[] = [];
   public _summaryDataRight: SummaryItem[] = [];
   public _isBusy = false;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.months;
-  public _pager = new KalturaFilterPager({ pageSize: 25, pageIndex: 1 });
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.months;
+  public _pager = new VidiunFilterPager({ pageSize: 25, pageIndex: 1 });
   public _dataConfig: ReportDataConfig;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
   public _selectedMetric: string;
-  public _filter: KalturaEndUserReportInputFilter = new KalturaEndUserReportInputFilter(
+  public _filter: VidiunEndUserReportInputFilter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -112,7 +112,7 @@ export class EntryDevicesOverviewComponent extends EntryBase implements OnDestro
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {
@@ -193,7 +193,7 @@ export class EntryDevicesOverviewComponent extends EntryBase implements OnDestro
         });
   }
   
-  private _getOverviewData(table: KalturaReportTable, relevantFields: string[]): { data: { [key: string]: string }[], columns: string[] } {
+  private _getOverviewData(table: VidiunReportTable, relevantFields: string[]): { data: { [key: string]: string }[], columns: string[] } {
     const { tableData, columns } = this._reportService.parseTableData(table, this._dataConfig.table);
     const data = tableData.reduce((data, item) => {
       if (this._allowedDevices.indexOf(item.device) > -1) {
@@ -276,21 +276,21 @@ export class EntryDevicesOverviewComponent extends EntryBase implements OnDestro
       
       if (compare) {
         return `
-          <div class="kGraphTooltip">
+          <div class="vGraphTooltip">
             ${current.name}<br/>
-            <span class="kBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;
-            <span class="kValue kSeriesName">${current.seriesName}</span>&nbsp;${current.value}<br/>
-            <span class="kBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;
-            <span class="kValue kSeriesName">${compare.seriesName}</span>&nbsp;${compare.value}
+            <span class="vBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;
+            <span class="vValue vSeriesName">${current.seriesName}</span>&nbsp;${current.value}<br/>
+            <span class="vBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;
+            <span class="vValue vSeriesName">${compare.seriesName}</span>&nbsp;${compare.value}
           </div>
         `;
       }
       
       return `
-          <div class="kGraphTooltip">
+          <div class="vGraphTooltip">
             ${current.name}<br/>
-            <span class="kBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;
-            <span class="kValue kSeriesName">${current.seriesName}</span>&nbsp;${current.value}
+            <span class="vBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;
+            <span class="vValue vSeriesName">${current.seriesName}</span>&nbsp;${current.value}
           </div>
         `;
     };
@@ -425,7 +425,7 @@ export class EntryDevicesOverviewComponent extends EntryBase implements OnDestro
     }, {});
   }
   
-  private handleOverview(table: KalturaReportTable): void {
+  private handleOverview(table: VidiunReportTable): void {
     const relevantFields = Object.keys(this._dataConfig.totals.fields);
     const { data } = this._getOverviewData(table, relevantFields);
     
@@ -437,7 +437,7 @@ export class EntryDevicesOverviewComponent extends EntryBase implements OnDestro
     }
   }
   
-  private handleTotals(totals: KalturaReportTotal, compare?: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal, compare?: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetric);
     
     if (compare) {

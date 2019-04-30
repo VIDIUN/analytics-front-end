@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ExportConfigService, ExportItem } from 'shared/components/export-csv/export-csv.component';
-import { KalturaReportExportItemType, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunReportExportItemType, VidiunReportType } from 'vidiun-ngx-client';
 
 @Injectable()
 export class TechnologyExportConfig implements ExportConfigService {
@@ -12,19 +12,19 @@ export class TechnologyExportConfig implements ExportConfigService {
     return [
       {
         label: this._translate.instant('app.audience.technology.exportLabels.overview'),
-        reportType: KalturaReportType.platforms,
-        sections: [KalturaReportExportItemType.table],
+        reportType: VidiunReportType.platforms,
+        sections: [VidiunReportExportItemType.table],
       },
       {
         label: this._translate.instant('app.audience.technology.exportLabels.topOs'),
-        reportType: KalturaReportType.operatingSystemFamilies,
-        sections: [KalturaReportExportItemType.table],
+        reportType: VidiunReportType.operatingSystemFamilies,
+        sections: [VidiunReportExportItemType.table],
         order: '-count_plays',
       },
       {
         label: this._translate.instant('app.audience.technology.exportLabels.topBrowsers'),
-        reportType: KalturaReportType.browsersFamilies,
-        sections: [KalturaReportExportItemType.table],
+        reportType: VidiunReportType.browsersFamilies,
+        sections: [VidiunReportExportItemType.table],
         order: '-count_plays',
       },
     ];

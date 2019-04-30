@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { DateChangeEvent, DateRanges, DateRangeType } from 'shared/components/date-filter/date-filter.service';
 import { AuthService, ErrorDetails, ErrorsManagerService, ReportConfig, ReportHelper, ReportService } from 'shared/services';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { GeoLocationDataConfig } from './geo-location-data.config';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
@@ -15,7 +15,7 @@ import { EChartOption } from 'echarts';
 import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import { analyticsConfig } from 'configuration/analytics-config';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { refineFilterToServerValue } from 'shared/components/filter/filter-to-server-value.util';
 import { significantDigits } from 'shared/utils/significant-digits';
@@ -33,7 +33,7 @@ import { GeoExportConfig } from './geo-export.config';
   providers: [
     GeoExportConfig,
     GeoLocationDataConfig,
-    KalturaLogger.createLogger('GeoLocationComponent')
+    VidiunLogger.createLogger('GeoLocationComponent')
   ]
 })
 export class GeoLocationComponent implements OnInit, OnDestroy {
@@ -61,15 +61,15 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
   public _refineFilter: RefineFilter = [];
   public _exportConfig: ExportItem[] = [];
 
-  private pager: KalturaFilterPager = new KalturaFilterPager({pageSize: 500, pageIndex: 1});
-  public reportType: KalturaReportType = KalturaReportType.mapOverlayCountry;
-  public filter = new KalturaEndUserReportInputFilter(
+  private pager: VidiunFilterPager = new VidiunFilterPager({pageSize: 500, pageIndex: 1});
+  public reportType: VidiunReportType = VidiunReportType.mapOverlayCountry;
+  public filter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
     }
   );
-  private trendFilter = new KalturaEndUserReportInputFilter(
+  private trendFilter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -93,7 +93,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
               private _trendService: TrendService,
               private http: HttpClient,
               private _dataConfigService: GeoLocationDataConfig,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _exportConfigService: GeoExportConfig) {
     this._exportConfig = _exportConfigService.getConfig();
     this._dataConfig = _dataConfigService.getConfig();
@@ -191,7 +191,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
     } else if (this._drillDown.length === 2) {
       this._drillDown.pop();
     }
-    this.reportType = this._drillDown.length === 2 ?  KalturaReportType.mapOverlayCity : this._drillDown.length === 1 ? KalturaReportType.mapOverlayRegion : KalturaReportType.mapOverlayCountry;
+    this.reportType = this._drillDown.length === 2 ?  VidiunReportType.mapOverlayCity : this._drillDown.length === 1 ? VidiunReportType.mapOverlayRegion : VidiunReportType.mapOverlayCountry;
     this._mapZoom = this._drillDown.length === 0 || !this._canMapDrillDown ? 1.2 : this._mapZoom;
     this.pager.pageIndex = 1;
     
@@ -403,7 +403,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
     if (this._drillDown.length > 0) {
       reportConfig.filter.countryIn = this._drillDown[0];
     } else if (countriesFilterApplied) {
-      refineFilterToServerValue(this._refineFilter, reportConfig.filter as KalturaEndUserReportInputFilter);
+      refineFilterToServerValue(this._refineFilter, reportConfig.filter as VidiunEndUserReportInputFilter);
     }
 
     if (this._drillDown.length > 1) {

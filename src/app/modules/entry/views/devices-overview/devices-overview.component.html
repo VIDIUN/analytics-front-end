@@ -1,33 +1,33 @@
-<div data-aid="report-entry-details-overview" class="kReport kOverrideFAIcons">
-  <div class="kFilters">
-    <span class="kTitle">{{'app.audience.technology.devicesOverview' | translate}}</span>
+<div data-aid="report-entry-details-overview" class="vReport vOverrideFAIcons">
+  <div class="vFilters">
+    <span class="vTitle">{{'app.audience.technology.devicesOverview' | translate}}</span>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
 
-    <div class="kReportContent">
+    <div class="vReportContent">
       <ng-container *ngIf="_summaryData.length">
-        <div class="kOverview">
-          <div class="kSummaryWrapper"
+        <div class="vOverview">
+          <div class="vSummaryWrapper"
                [ngStyle]="{'width': _summaryDataRight.length ? 'calc(50% - 46px)' : 'calc(33% - 46px)'}">
-            <div class="kSummary">
-              <div class="kSummaryRow" *ngFor="let summary of _summaryData">
-                <div class="kSummaryCheckbox">
-                  <i class="kIcon" [ngClass]="summary.key | appDeviceIcon"></i>
-                  <span class="kLabel">{{summary.name}}</span>
+            <div class="vSummary">
+              <div class="vSummaryRow" *ngFor="let summary of _summaryData">
+                <div class="vSummaryCheckbox">
+                  <i class="vIcon" [ngClass]="summary.key | appDeviceIcon"></i>
+                  <span class="vLabel">{{summary.name}}</span>
                 </div>
-                <div class="kSummaryValue">
-                  <div *ngIf="!summary.compare" [kTooltip]="summary.tooltip" [escape]="false">
-                    <span class="kValue">{{summary.value}}</span>
-                    <span class="kUnits">{{summary.units}}</span>
+                <div class="vSummaryValue">
+                  <div *ngIf="!summary.compare" [vTooltip]="summary.tooltip" [escape]="false">
+                    <span class="vValue">{{summary.value}}</span>
+                    <span class="vUnits">{{summary.units}}</span>
                   </div>
 
-                  <div *ngIf="summary.compare" class="kTrend"
-                       [kTooltip]="summary.tooltip"
+                  <div *ngIf="summary.compare" class="vTrend"
+                       [vTooltip]="summary.tooltip"
                        [maxWidth]="500"
                        [escape]="false">
-                    <app-trend-value valueStyleClass="kValue"
-                                     unitsStyleClass="kUnits"
+                    <app-trend-value valueStyleClass="vValue"
+                                     unitsStyleClass="vUnits"
                                      [value]="summary.value"
                                      [units]="summary.units"
                                      [trend]="summary.trend"></app-trend-value>
@@ -35,24 +35,24 @@
                 </div>
               </div>
             </div>
-            <div class="kSummary" *ngIf="_summaryDataRight.length">
-              <div class="kSummaryRow" *ngFor="let summary of _summaryDataRight">
-                <div class="kSummaryCheckbox">
-                  <i class="kIcon" [ngClass]="summary.key | appDeviceIcon"></i>
-                  <span class="kLabel">{{summary.name}}</span>
+            <div class="vSummary" *ngIf="_summaryDataRight.length">
+              <div class="vSummaryRow" *ngFor="let summary of _summaryDataRight">
+                <div class="vSummaryCheckbox">
+                  <i class="vIcon" [ngClass]="summary.key | appDeviceIcon"></i>
+                  <span class="vLabel">{{summary.name}}</span>
                 </div>
-                <div class="kSummaryValue">
+                <div class="vSummaryValue">
                   <div *ngIf="!summary.compare">
-                    <span class="kValue">{{summary.value}}</span>
-                    <span class="kUnits">{{summary.units}}</span>
+                    <span class="vValue">{{summary.value}}</span>
+                    <span class="vUnits">{{summary.units}}</span>
                   </div>
 
-                  <div *ngIf="summary.compare" class="kTrend"
-                       [kTooltip]="summary.tooltip"
+                  <div *ngIf="summary.compare" class="vTrend"
+                       [vTooltip]="summary.tooltip"
                        [maxWidth]="500"
                        [escape]="false">
-                    <app-trend-value valueStyleClass="kValue"
-                                     unitsStyleClass="kUnits"
+                    <app-trend-value valueStyleClass="vValue"
+                                     unitsStyleClass="vUnits"
                                      [value]="summary.value"
                                      [units]="summary.units"
                                      [trend]="summary.trend"></app-trend-value>
@@ -62,18 +62,18 @@
             </div>
           </div>
 
-          <div class="kSummaryChart"
+          <div class="vSummaryChart"
                [ngStyle]="{'width': _summaryDataRight.length ? 'calc(50% - 46px)' : 'calc(66% - 46px)'}">
-            <div echarts class="kChart" [options]="_barChartData"></div>
+            <div echarts class="vChart" [options]="_barChartData"></div>
           </div>
 
         </div>
       </ng-container>
 
-      <div *ngIf="!_summaryData.length" class="kNoResults">
+      <div *ngIf="!_summaryData.length" class="vNoResults">
         <span *ngIf="!_isBusy">{{'app.common.noResults' | translate}}</span>
       </div>
     </div>
 
-  </k-area-blocker>
+  </v-area-blocker>
 </div>

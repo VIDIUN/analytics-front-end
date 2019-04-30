@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { Table } from 'primeng/table';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';

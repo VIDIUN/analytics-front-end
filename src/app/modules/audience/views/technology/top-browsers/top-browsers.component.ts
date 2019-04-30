@@ -3,21 +3,21 @@ import { ReportService } from 'shared/services';
 import { VidiunReportType } from 'vidiun-ngx-client';
 import { TopBrowsersConfig } from './top-browsers.config';
 import { BaseDevicesReportComponent, BaseDevicesReportConfig } from '../base-devices-report/base-devices-report.component';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 @Component({
   selector: 'app-top-browsers',
   templateUrl: '../base-devices-report/base-devices-report.component.html',
   styleUrls: ['../base-devices-report/base-devices-report.component.scss'],
   providers: [
-    KalturaLogger.createLogger('TopBrowsersComponent'),
+    VidiunLogger.createLogger('TopBrowsersComponent'),
     { provide: BaseDevicesReportConfig, useClass: TopBrowsersConfig },
     ReportService
   ]
 })
 export class TopBrowsersComponent extends BaseDevicesReportComponent {
-  protected _defaultReportType = KalturaReportType.browsersFamilies;
-  protected _drillDownReportType = KalturaReportType.browsers;
+  protected _defaultReportType = VidiunReportType.browsersFamilies;
+  protected _drillDownReportType = VidiunReportType.browsers;
   protected _iconType = 'browser';
   public _name = 'top-browsers';
 

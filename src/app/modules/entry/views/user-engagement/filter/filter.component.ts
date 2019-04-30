@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { FilterComponent } from 'shared/components/filter/filter.component';
 
 @Component({
   selector: 'app-user-engagement-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
-  providers: [KalturaLogger.createLogger('UserEngagementFilterComponent')],
+  providers: [VidiunLogger.createLogger('UserEngagementFilterComponent')],
 })
 export class UserEngagementFilterComponent extends FilterComponent {
   @Input() totalCount = 0;

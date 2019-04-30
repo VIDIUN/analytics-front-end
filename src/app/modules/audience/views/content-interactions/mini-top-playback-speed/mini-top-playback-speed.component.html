@@ -1,25 +1,25 @@
-<div data-aid="report-mini-top-playback-speed" class="kReport kMini kOverrideFAIcons">
-  <div class="kFilters">
-    <span class="kTitle">{{'app.contentInteractions.insights' | translate}}</span>
+<div data-aid="report-mini-top-playback-speed" class="vReport vMini vOverrideFAIcons">
+  <div class="vFilters">
+    <span class="vTitle">{{'app.contentInteractions.insights' | translate}}</span>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
-    <div class="kReportContent" *ngIf="!_firstTimeLoading">
-      <div class="kReportRow">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+    <div class="vReportContent" *ngIf="!_firstTimeLoading">
+      <div class="vReportRow">
         <span class="topSpeed">{{_topSpeedLabel}}</span>
       </div>
-      <div class="kReportRow">
-        <span class="kLabel">{{'app.contentInteractions.mostPopular' | translate}}</span>
+      <div class="vReportRow">
+        <span class="vLabel">{{'app.contentInteractions.mostPopular' | translate}}</span>
       </div>
-      <div class="kReportRow">
+      <div class="vReportRow">
         <app-insights-bullet [values]="_bulletValues"></app-insights-bullet>
       </div>
 
-      <div class="kReportRow kNoResults" *ngIf="!_isBusy && !_bulletValues.length">
+      <div class="vReportRow vNoResults" *ngIf="!_isBusy && !_bulletValues.length">
         {{'app.common.noResults' | translate}}
       </div>
     </div>
 
-  </k-area-blocker>
+  </v-area-blocker>
 </div>
 

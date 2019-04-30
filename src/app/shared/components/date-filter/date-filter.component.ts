@@ -19,7 +19,7 @@ import { BrowserService } from 'shared/services';
   styleUrls: ['./date-filter.component.scss']
 })
 export class DateFilterComponent implements OnInit, OnDestroy {
-  @Input() selectedTimeUnit = KalturaReportInterval.months;
+  @Input() selectedTimeUnit = VidiunReportInterval.months;
   @Input() name = 'default';
 
   @Input() set dateRangeType(value: DateRangeType) {

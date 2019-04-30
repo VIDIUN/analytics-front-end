@@ -1,5 +1,5 @@
-<div data-aid="filter-users" class="kSearch kOverrideFAIcons" [class.hideLabels]="hideLabels">
-  <kAutoComplete
+<div data-aid="filter-users" class="vSearch vOverrideFAIcons" [class.hideLabels]="hideLabels">
+  <vAutoComplete
     #autocomplete
     [disabled]="disabled"
     suggestionItemField="item"
@@ -15,5 +15,5 @@
     (completeMethod)="_searchUsers($event)"
     [tooltipResolver]="'__tooltip'"
     (onSelect)="_updateUsers($event)">
-  </kAutoComplete>
+  </vAutoComplete>
 </div>

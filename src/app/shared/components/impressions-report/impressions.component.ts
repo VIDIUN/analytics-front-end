@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportHelper, ReportService } from 'shared/services';
 import { CompareService } from 'shared/services/compare.service';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
 import { SelectItem } from 'primeng/api';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
@@ -14,7 +14,7 @@ import { EChartOption } from 'echarts';
 import * as moment from 'moment';
 import { getColorPercent } from 'shared/utils/colors';
 import { analyticsConfig } from 'configuration/analytics-config';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { refineFilterToServerValue } from 'shared/components/filter/filter-to-server-value.util';
@@ -35,7 +35,7 @@ export type funnelData = {
   templateUrl: './impressions.component.html',
   styleUrls: ['./impressions.component.scss'],
   providers: [
-    KalturaLogger.createLogger('ImpressionsComponent'),
+    VidiunLogger.createLogger('ImpressionsComponent'),
     ImpressionsDataConfig,
     ReportService,
   ],
@@ -79,8 +79,8 @@ export class ImpressionsComponent implements OnInit {
   
   private echartsIntance: any;
   private compareEchartsIntance: any;
-  private reportType: KalturaReportType = KalturaReportType.contentDropoff;
-  private pager: KalturaFilterPager = new KalturaFilterPager({ pageSize: 25, pageIndex: 1 });
+  private reportType: VidiunReportType = VidiunReportType.contentDropoff;
+  private pager: VidiunFilterPager = new VidiunFilterPager({ pageSize: 25, pageIndex: 1 });
   private order = 'count_plays';
   private filter = new VidiunEndUserReportInputFilter(
     {
@@ -258,7 +258,7 @@ export class ImpressionsComponent implements OnInit {
     this.compareEchartsIntance.setOption({ color: [getColorPercent(100), getColorPercent(parseFloat(plays)), getColorPercent(parseFloat(playThrough))] });
   }
   
-  private handleTotals(totals: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal): void {
     this.echartsIntance.setOption({ series: [{ width: '30%' }] }, false);
     this.echartsIntance.setOption({ series: [{ left: '65%' }] }, false);
     const data = totals.data.split(analyticsConfig.valueSeparator);
@@ -316,7 +316,7 @@ export class ImpressionsComponent implements OnInit {
     this.pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this.compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this.filter), this.filter);
+      this.compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this.filter), this.filter);
       this.compareFilter.fromDate = compare.startDate;
       this.compareFilter.toDate = compare.endDate;
     } else {

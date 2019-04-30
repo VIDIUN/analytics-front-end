@@ -1,15 +1,15 @@
 import { Component, Input, OnDestroy, ViewChild } from '@angular/core';
 import { BrowserService, ReportService } from 'shared/services';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
-import { KalturaClient, KalturaPager, KalturaReportExportItem, KalturaReportExportItemType, KalturaReportExportParams, KalturaReportInputFilter, KalturaReportResponseOptions, KalturaReportType, ReportExportToCsvAction } from 'kaltura-ngx-client';
+import { VidiunClient, VidiunPager, VidiunReportExportItem, VidiunReportExportItemType, VidiunReportExportParams, VidiunReportInputFilter, VidiunReportResponseOptions, VidiunReportType, ReportExportToCsvAction } from 'vidiun-ngx-client';
 import { TreeNode } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
-import { PopupWidgetComponent } from '@kaltura-ng/kaltura-ui';
+import { PopupWidgetComponent } from '@vidiun-ng/vidiun-ui';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { refineFilterToServerValue } from 'shared/components/filter/filter-to-server-value.util';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { finalize } from 'rxjs/operators';
 
 export interface ExportConfigService {
@@ -18,8 +18,8 @@ export interface ExportConfigService {
 
 export interface ExportItem {
   label: string;
-  reportType: KalturaReportType;
-  sections: KalturaReportExportItemType[];
+  reportType: VidiunReportType;
+  sections: VidiunReportExportItemType[];
   order?: string;
 }
 
@@ -32,7 +32,7 @@ export class ExportCsvComponent implements OnDestroy {
   @Input() name = 'default';
   @Input() dateFilter: DateChangeEvent = null;
   @Input() refineFilter: RefineFilter = [];
-  @Input() pager: KalturaPager = null;
+  @Input() pager: VidiunPager = null;
   @Input() entryId: string = null;
   @Input() width = 240;
   
@@ -67,14 +67,14 @@ export class ExportCsvComponent implements OnDestroy {
   constructor(private _reportService: ReportService,
               private _translate: TranslateService,
               private _browserService: BrowserService,
-              private _kalturaClient: KalturaClient) {
+              private _vidiunClient: VidiunClient) {
   }
   
   ngOnDestroy(): void {
   }
   
-  private _getFilter(): KalturaReportInputFilter {
-    let filter = new KalturaReportInputFilter();
+  private _getFilter(): VidiunReportInputFilter {
+    let filter = new VidiunReportInputFilter();
     
     if (this.dateFilter) {
       filter.timeZoneOffset = this.dateFilter.timeZoneOffset;
@@ -123,7 +123,7 @@ export class ExportCsvComponent implements OnDestroy {
     const timeZoneOffset = DateFilterUtils.getTimeZoneOffset();
     const reportItems = [];
     const filter = this._getFilter();
-    const responseOptions = new KalturaReportResponseOptions({
+    const responseOptions = new VidiunReportResponseOptions({
       delimiter: analyticsConfig.valueSeparator,
       skipEmptyDates: analyticsConfig.skipEmptyBuckets
     });
@@ -133,7 +133,7 @@ export class ExportCsvComponent implements OnDestroy {
     
     selection.forEach(item => {
       item.sections.forEach(section => {
-        const reportItem = new KalturaReportExportItem({
+        const reportItem = new VidiunReportExportItem({
           reportTitle: item.label,
           action: section,
           reportType: item.reportType,
@@ -148,11 +148,11 @@ export class ExportCsvComponent implements OnDestroy {
       });
     });
     
-    const exportAction = new ReportExportToCsvAction({ params: new KalturaReportExportParams({ timeZoneOffset, reportItems }) });
+    const exportAction = new ReportExportToCsvAction({ params: new VidiunReportExportParams({ timeZoneOffset, reportItems }) });
     
     this._exportingCsv = true;
     
-    this._kalturaClient.request(exportAction)
+    this._vidiunClient.request(exportAction)
       .pipe(
         cancelOnDestroy(this),
         finalize(() => {

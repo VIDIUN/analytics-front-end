@@ -14,7 +14,7 @@ import { analyticsConfig } from 'configuration/analytics-config';
 import { isArrayEquals } from 'shared/utils/is-array-equals';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 
 export const BaseDevicesReportConfig = new InjectionToken('BaseDevicesReportConfigService');
@@ -84,8 +84,8 @@ export abstract class BaseDevicesReportComponent implements OnDestroy {
   private _paginationChanged = new Subject<void>();
   
   public abstract _name: string;
-  protected abstract _defaultReportType: KalturaReportType;
-  protected abstract _drillDownReportType: KalturaReportType;
+  protected abstract _defaultReportType: VidiunReportType;
+  protected abstract _drillDownReportType: VidiunReportType;
 
   protected _iconType: string = null;
   protected _order = '-count_plays';
@@ -130,7 +130,7 @@ export abstract class BaseDevicesReportComponent implements OnDestroy {
               private _translate: TranslateService,
               private _authService: AuthService,
               private _errorsManager: ErrorsManagerService,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               @Inject(BaseDevicesReportConfig) _configService: ReportDataBaseConfig) {
     this._dataConfig = _configService.getConfig();
     
@@ -244,7 +244,7 @@ export abstract class BaseDevicesReportComponent implements OnDestroy {
     const currentPeriodTitle = `${DateFilterUtils.formatMonthDayString(this._filter.fromDate, analyticsConfig.locale)} – ${DateFilterUtils.formatMonthDayString(this._filter.toDate, analyticsConfig.locale)}`;
     const comparePeriodTitle = `${DateFilterUtils.formatMonthDayString(startDate, analyticsConfig.locale)} – ${DateFilterUtils.formatMonthDayString(endDate, analyticsConfig.locale)}`;
     
-    const compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+    const compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
     compareFilter.fromDate = startDate;
     compareFilter.toDate = endDate;
     

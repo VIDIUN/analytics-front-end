@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BarRowTooltip, BarRowValue } from 'shared/components/horizontal-bar-row/horizontal-bar-row.component';
-import { KalturaPager } from 'kaltura-ngx-client';
+import { VidiunPager } from 'vidiun-ngx-client';
 import { getPrimaryColor, getSecondaryColor } from 'shared/utils/colors';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import { analyticsConfig } from 'configuration/analytics-config';
@@ -21,7 +21,7 @@ export class HorizontalBarChartComponent {
   @Input() data: BarChartRow[] = [];
   @Input() firstTimeLoading = false;
   @Input() isBusy = false;
-  @Input() pager: KalturaPager;
+  @Input() pager: VidiunPager;
   @Input() totalCount: number;
   @Input() isCompareMode = false;
   @Input() set currentPeriod(value: { from: number, to: number }) {

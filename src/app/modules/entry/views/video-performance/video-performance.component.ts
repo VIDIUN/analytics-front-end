@@ -34,7 +34,7 @@ export class VideoPerformanceComponent extends EntryBase {
   @Input() dateFilterComponent: DateFilterComponent;
   
   private _order = '-date_id';
-  private _reportType = KalturaReportType.userTopContent;
+  private _reportType = VidiunReportType.userTopContent;
   private _dataConfig: ReportDataConfig;
   private _rawGraphData: KalturaReportGraph[] = [];
   private _ignoreFirstSortEvent = false;
@@ -232,10 +232,10 @@ export class VideoPerformanceComponent extends EntryBase {
     this._filter.toDate = this._dateFilter.endDate;
     this._filter.interval = this._dateFilter.timeUnits;
     this._reportInterval = this._dateFilter.timeUnits;
-    this._order = this._reportInterval === KalturaReportInterval.days ? '-date_id' : '-month_id';
+    this._order = this._reportInterval === VidiunReportInterval.days ? '-date_id' : '-month_id';
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {
