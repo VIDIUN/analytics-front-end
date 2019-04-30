@@ -129,7 +129,7 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
   public _onDrillDown(user: string): void {
     this._logger.trace('Handle drill down to a user details action by user, reset page index to 1', { user });
     this._drillDown = user.length ? user : '';
-    this.reportType = user.length ? KalturaReportType.specificUserUsage : KalturaReportType.userUsage;
+    this.reportType = user.length ? VidiunReportType.specificUserUsage : VidiunReportType.userUsage;
     this.pager.pageIndex = 1;
 
     this.order = user.length ? '+month_id' : '-total_storage_mb';

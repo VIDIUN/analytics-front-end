@@ -8,9 +8,9 @@ export class TableModeIconPipe implements PipeTransform {
   transform(value: TableModes): string {
     switch (value) {
       case TableModes.users:
-        return 'kIconuser';
+        return 'vIconuser';
       case TableModes.dates:
-        return 'kIconcalendar';
+        return 'vIconcalendar';
       default:
         return '';
     }

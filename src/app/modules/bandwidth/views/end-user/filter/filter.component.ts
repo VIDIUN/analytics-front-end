@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LocationsFilterService } from 'shared/components/filter/location-filter/locations-filter.service';
 import { DomainsFilterService } from 'shared/components/domain-filter/domains-filter.service';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { animate, group, state, style, transition, trigger } from '@angular/animations';
 import { FilterComponent } from 'shared/components/filter/filter.component';
 import { ReportService } from 'shared/services';
@@ -10,7 +10,7 @@ import { ReportService } from 'shared/services';
   selector: 'app-end-user-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
-  providers: [ReportService, LocationsFilterService, DomainsFilterService, KalturaLogger.createLogger('EntryFilterComponent')],
+  providers: [ReportService, LocationsFilterService, DomainsFilterService, VidiunLogger.createLogger('EntryFilterComponent')],
   animations: [
     trigger('state', [
       state('visible', style({ height: '*', opacity: 1 })),

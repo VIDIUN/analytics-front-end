@@ -4,11 +4,11 @@
     <app-export-csv name="end-user"
                     [reports]="_exportConfig"
                     [dateFilter]="_dateFilter"></app-export-csv>
-    <div class="kFilter kOverrideFAIcons">
-      <div class="kDropDown" (click)="_refineFilterOpened = !_refineFilterOpened">
+    <div class="vFilter vOverrideFAIcons">
+      <div class="vDropDown" (click)="_refineFilterOpened = !_refineFilterOpened">
         <span>{{'app.filters.filter' | translate}}</span>
-        <i *ngIf="!_refineFilterOpened" class="kIcondropdown_arrow_bottom"></i>
-        <i *ngIf="_refineFilterOpened" class="kIcondropdown_arrow_top"></i>
+        <i *ngIf="!_refineFilterOpened" class="vIcondropdown_arrow_bottom"></i>
+        <i *ngIf="_refineFilterOpened" class="vIcondropdown_arrow_top"></i>
       </div>
     </div>
     <app-date-filter #dateFilter
@@ -18,7 +18,7 @@
                      (filterChange)="_onDateFilterChange($event)"></app-date-filter>
   </div>
 
-  <div class="kReportContainer kNoPadding">
+  <div class="vReportContainer vNoPadding">
     <app-end-user-filter [opened]="_refineFilterOpened"
                          [dateFilter]="_dateFilter"
                          [selectedFilters]="_selectedRefineFilters"
@@ -26,11 +26,11 @@
                          (filterChange)="_onRefineFilterChange($event)"></app-end-user-filter>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
-    <div class="kReportContent">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+    <div class="vReportContent">
 
-      <div class="kFilters">
-        <span class="kTitle" *ngIf="!_drillDown.length">{{'app.bandwidth.allUsers' | translate}}</span>
+      <div class="vFilters">
+        <span class="vTitle" *ngIf="!_drillDown.length">{{'app.bandwidth.allUsers' | translate}}</span>
         <div class="kBreadcrumbs" *ngIf="_drillDown.length">
           <a (click)="_onDrillDown('')">{{'app.bandwidth.allUsers' | translate}}</a>
           <span class="separator">/</span>

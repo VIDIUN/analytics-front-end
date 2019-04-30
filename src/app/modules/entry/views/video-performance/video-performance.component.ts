@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
@@ -36,7 +36,7 @@ export class VideoPerformanceComponent extends EntryBase {
   private _order = '-date_id';
   private _reportType = VidiunReportType.userTopContent;
   private _dataConfig: ReportDataConfig;
-  private _rawGraphData: KalturaReportGraph[] = [];
+  private _rawGraphData: VidiunReportGraph[] = [];
   private _ignoreFirstSortEvent = false;
 
   public _metricsCompareTo: string = null;
@@ -64,11 +64,11 @@ export class VideoPerformanceComponent extends EntryBase {
   public _metricsColors: { [key: string]: string; } = {};
   public _showTable = false;
   public _customPaginator = false;
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
   public _pageSize = analyticsConfig.defaultPageSize;
-  public _pager = new KalturaFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _pager = new VidiunFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -322,7 +322,7 @@ export class VideoPerformanceComponent extends EntryBase {
     }
   }
   
-  private _handleDatesTable(graphs: KalturaReportGraph[]): void {
+  private _handleDatesTable(graphs: VidiunReportGraph[]): void {
     const { columns, tableData, totalCount } = this._reportService.tableFromGraph(
       graphs,
       this._dataConfig.table,
@@ -335,7 +335,7 @@ export class VideoPerformanceComponent extends EntryBase {
     this._tableData = [...this._datesTableData];
   }
   
-  private _handleUsersTable(table: KalturaReportTable): void {
+  private _handleUsersTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._usersColumns = columns;

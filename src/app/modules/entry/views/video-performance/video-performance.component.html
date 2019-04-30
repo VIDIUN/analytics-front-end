@@ -48,21 +48,21 @@
             {{(_showTable ? 'app.common.hideDetails' : 'app.common.viewDetails') | translate}}
           </a>
         </div>
-        <div class="kTableContainer" [class.kOpen]="_showTable" [class.kClose]="!_showTable">
-          <div class="kTableModeSelector">
+        <div class="vTableContainer" [class.vOpen]="_showTable" [class.vClose]="!_showTable">
+          <div class="vTableModeSelector">
             <p-dropdown [style]="{'width': '172px'}"
                         [options]="_tableModes"
                         (onChange)="_onTableModeChange($event.value)"
                         [(ngModel)]="_tableMode">
               <ng-template let-option pTemplate="selectedItem">
-                <div class="kOptionsLabelWrapper">
-                  <i class="kIcon" [ngClass]="option.value | tableModeIcon"></i>
+                <div class="vOptionsLabelWrapper">
+                  <i class="vIcon" [ngClass]="option.value | tableModeIcon"></i>
                   <span>{{option.label}}</span>
                 </div>
               </ng-template>
               <ng-template let-option pTemplate="item">
-                <div class="kOptionsLabelWrapper">
-                  <i class="kIcon" [ngClass]="option.value | tableModeIcon"></i>
+                <div class="vOptionsLabelWrapper">
+                  <i class="vIcon" [ngClass]="option.value | tableModeIcon"></i>
                   <span>{{option.label}}</span>
                 </div>
               </ng-template>
@@ -90,10 +90,10 @@
             </ng-template>
             <ng-template pTemplate="body" let-data>
               <tr>
-                <td *ngFor="let col of _columns; let i = index" [class.kHighlight]="i === 0">
+                <td *ngFor="let col of _columns; let i = index" [class.vHighlight]="i === 0">
                   <span *ngIf="_isCompareMode && data[col]?.value && col !== 'month_id' && col !== 'date_id' && col !== 'name'"
-                        class="kTrend">
-                    <span [kTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
+                        class="vTrend">
+                    <span [vTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
                       <app-trend-value [value]="data[col].value"
                                        [units]="data[col].units"
                                        [trend]="data[col].trend"></app-trend-value>

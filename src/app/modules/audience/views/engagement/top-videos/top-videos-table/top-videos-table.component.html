@@ -7,7 +7,7 @@
              [class.vCompareMode]="isCompareMode"
              [value]="_tableData">
       <ng-template pTemplate="header">
-        <tr class="kTopVideoHeader">
+        <tr class="vTopVideoHeader">
           <th [ngStyle]="{'width': '60px', 'text-align': 'center'}"></th>
           <th [ngStyle]="{'width': '155px', 'padding-left': '10px'}"></th>
           <th [ngStyle]="{'width': '100%', 'padding-left': 0}">
@@ -24,9 +24,9 @@
           </ng-container>
           <th [ngStyle]="{'width': '110px', 'overflow': 'visible'}">
             {{'app.engagement.topVideosReport.score' | translate}}
-            <!--<kInputHelper>-->
+            <!--<vInputHelper>-->
               <!--<span>Scoring formula</span>-->
-            <!--</kInputHelper>-->
+            <!--</vInputHelper>-->
           </th>
         </tr>
       </ng-template>
@@ -54,9 +54,9 @@
                  (click)="_drillDown(data)"
                  (mouseleave)="_hideOverlay()"
                  (mouseenter)="_showOverlay($event, data['object_id'])">
-              <span class="kTableColumn kEntryName">{{data['entry_name']}}</span>
-              <div class="kEntryDetails">
-                <span class="kTableColumn">
+              <span class="vTableColumn vEntryName">{{data['entry_name']}}</span>
+              <div class="vEntryDetails">
+                <span class="vTableColumn">
                   {{'app.engagement.topVideosReport.by' | translate}} {{data['creator_name']}}
                 </span>
               </div>
@@ -66,28 +66,28 @@
             <td [ngStyle]="{'width': '170px'}">
               <div class="vTableCell">
                 <i class="icon-small-play"></i>
-                <span class="kCellValue">{{data['count_plays']}}</span>&nbsp;
+                <span class="vCellValue">{{data['count_plays']}}</span>&nbsp;
               </div>
             </td>
             <td [ngStyle]="{'width': '220px'}">
               <div class="vTableCell">
                 <i class="icon-viewer-contributor"></i>
-                <span class="kCellValue">{{data['unique_known_users']}}</span>&nbsp;
+                <span class="vCellValue">{{data['unique_known_users']}}</span>&nbsp;
               </div>
             </td>
             <td [ngStyle]="{'width': '220px'}">
               <div class="vTableCell">
                 <i class="icon-small-time"></i>
-                <span class="kCellValue">{{data['avg_view_drop_off']}}</span>&nbsp;
+                <span class="vCellValue">{{data['avg_view_drop_off']}}</span>&nbsp;
               </div>
             </td>
           </ng-container>
           <td class="vScore" [ngStyle]="{'width': '110px', 'overflow': 'visible', 'height': '80px'}">
             <div *ngIf="data['status']?.length">
-              <span class="kEntryStatus">{{data['status']}}</span>
-              <span>{{data['engagement_ranking']}}<span class="kTop">/10</span></span>
+              <span class="vEntryStatus">{{data['status']}}</span>
+              <span>{{data['engagement_ranking']}}<span class="vTop">/10</span></span>
             </div>
-            <span *ngIf="!data['status']?.length">{{data['engagement_ranking']}}<span class="kTop">/10</span></span>
+            <span *ngIf="!data['status']?.length">{{data['engagement_ranking']}}<span class="vTop">/10</span></span>
           </td>
         </tr>
       </ng-template>

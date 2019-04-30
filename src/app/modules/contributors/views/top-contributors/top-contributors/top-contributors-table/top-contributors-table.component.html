@@ -7,7 +7,7 @@
              [class.vCompareMode]="isCompareMode"
              [value]="_tableData">
       <ng-template pTemplate="header">
-        <tr class="kTopVideoHeader">
+        <tr class="vTopVideoHeader">
           <th [ngStyle]="{'width': '60px', 'text-align': 'center'}"></th>
           <th [ngStyle]="{'width': '155px', 'padding-left': '10px'}"></th>
           <th [ngStyle]="{'width': '100%', 'padding-left': 0}">
@@ -24,9 +24,9 @@
           </ng-container>
           <th [ngStyle]="{'width': '130px', 'overflow': 'visible'}">
             {{'app.contributors.score' | translate}}
-            <!--<kInputHelper>-->
+            <!--<vInputHelper>-->
               <!--<span>Scoring formula</span>-->
-            <!--</kInputHelper>-->
+            <!--</vInputHelper>-->
           </th>
         </tr>
       </ng-template>
@@ -61,24 +61,24 @@
             <td [ngStyle]="{'width': '220px'}">
               <div class="vTableCell">
                 <i class="icon-small-play"></i>
-                <span class="kCellValue">{{data['count_plays']}}</span>&nbsp;
+                <span class="vCellValue">{{data['count_plays']}}</span>&nbsp;
               </div>
             </td>
             <td [ngStyle]="{'width': '220px'}">
               <div class="vTableCell">
                 <i class="icon-small-contribution"></i>
-                <span class="kCellValue">{{data['added_entries']}}</span>
+                <span class="vCellValue">{{data['added_entries']}}</span>
               </div>
             </td>
             <td [ngStyle]="{'width': '220px'}">
               <div class="vTableCell">
                 <i class="icon-small-time"></i>
-                <span class="kCellValue">{{data['added_msecs']}}</span>
+                <span class="vCellValue">{{data['added_msecs']}}</span>
               </div>
             </td>
           </ng-container>
-          <td class="kScore" [ngStyle]="{'width': '130px', 'text-align': 'center'}">
-            <span *ngIf="data['contributor_ranking'] !== undefined">{{data['contributor_ranking']}}<span class="kTop">/10</span></span>
+          <td class="vScore" [ngStyle]="{'width': '130px', 'text-align': 'center'}">
+            <span *ngIf="data['contributor_ranking'] !== undefined">{{data['contributor_ranking']}}<span class="vTop">/10</span></span>
             <div *ngIf="data['contributor_ranking'] === undefined" [ngStyle]="{display: 'inline-block'}">
               {{'app.common.na' | translate}}
               <i class="vIconhelp_full" [vTooltip]="'app.contributors.noRanking' | translate"></i>
