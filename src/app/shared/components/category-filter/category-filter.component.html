@@ -1,8 +1,8 @@
-<div class="kColumn">
-  <div class="kColumnLabel">{{label}}</div>
-  <div class="kColumnContent">
+<div class="vColumn">
+  <div class="vColumnLabel">{{label}}</div>
+  <div class="vColumnContent">
     <a *ngIf="!_selectedValue.length" (click)="_openCategoriesBrowser()">{{linkLabel}}</a>
-    <span class="kSelected" *ngIf="_selectedValue.length">
+    <span class="vSelected" *ngIf="_selectedValue.length">
       {{'app.categories.selected' | translate:{'0': _selectedValue.length} }}
       <a (click)="_openCategoriesBrowser()">{{'app.categories.change' | translate}}</a>
       <a (click)="_updateCategories([])">{{'app.common.clearAll' | translate}}</a>
@@ -24,4 +24,4 @@
                              [value]="_selectedValue"
                              (valueChange)="_updateCategories($event)"></app-categories-selector>
   </ng-template>
-</kPopupWidget>
+</vPopupWidget>

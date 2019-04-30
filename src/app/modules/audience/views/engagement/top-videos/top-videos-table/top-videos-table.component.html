@@ -7,13 +7,13 @@
              [class.kCompareMode]="isCompareMode"
              [value]="_tableData">
       <ng-template pTemplate="body" let-data>
-        <tr class="kTopVideoRow">
+        <tr class="vTopVideoRow">
           <td [ngStyle]="{'width': '60px', 'text-align': 'center'}">
-            <div class="kReportRowIndex kFirst" *ngIf="data.index === 1">
+            <div class="vReportRowIndex vFirst" *ngIf="data.index === 1">
               <img src="assets/images/ribbon_large.svg">
               <span>{{data.index}}</span>
             </div>
-            <div class="kReportRowIndex" *ngIf="data.index !== 1">
+            <div class="vReportRowIndex" *ngIf="data.index !== 1">
               <span>{{data.index}}</span>
             </div>
           </td>
@@ -30,9 +30,9 @@
                  (click)="_drillDown(data)"
                  (mouseleave)="_hideOverlay()"
                  (mouseenter)="_showOverlay($event, data['object_id'])">
-              <span class="kTableColumn kEntryName">{{data['entry_name']}}</span>
-              <div class="kEntryDetails">
-                <span class="kTableColumn">{{'app.engagement.topVideosReport.by' | translate}} {{data['creator_name']}} • {{data['created_at']}}</span>
+              <span class="vTableColumn vEntryName">{{data['entry_name']}}</span>
+              <div class="vEntryDetails">
+                <span class="vTableColumn">{{'app.engagement.topVideosReport.by' | translate}} {{data['creator_name']}} • {{data['created_at']}}</span>
               </div>
             </div>
           </td>
@@ -40,9 +40,9 @@
             <td [ngStyle]="{'width': '170px'}">
               <div class="kTableCell">
                 <i class="icon-small-play"></i>
-                <span class="kCellValue">{{data['count_plays']}}</span>&nbsp;
-                <span class="kTableColumn"
-                      [kTooltip]="'app.engagement.topVideosReport.count_plays' | translate"
+                <span class="vCellValue">{{data['count_plays']}}</span>&nbsp;
+                <span class="vTableColumn"
+                      [vTooltip]="'app.engagement.topVideosReport.count_plays' | translate"
                       [showOnEllipsis]="true">
               {{'app.engagement.topVideosReport.count_plays' | translate}}
             </span>
@@ -51,9 +51,9 @@
             <td [ngStyle]="{'width': '220px'}">
               <div class="kTableCell">
                 <i class="icon-viewer-contributor"></i>
-                <span class="kCellValue">{{data['unique_known_users']}}</span>&nbsp;
-                <span class="kTableColumn"
-                      [kTooltip]="'app.engagement.topVideosReport.unique_known_users' | translate"
+                <span class="vCellValue">{{data['unique_known_users']}}</span>&nbsp;
+                <span class="vTableColumn"
+                      [vTooltip]="'app.engagement.topVideosReport.unique_known_users' | translate"
                       [showOnEllipsis]="true">
             {{'app.engagement.topVideosReport.unique_known_users' | translate}}
             </span>
@@ -62,9 +62,9 @@
             <td [ngStyle]="{'width': '220px'}">
               <div class="kTableCell">
                 <i class="icon-small-time"></i>
-                <span class="kCellValue">{{data['avg_view_drop_off']}}</span>&nbsp;
-                <span class="kTableColumn"
-                      [kTooltip]="'app.engagement.topVideosReport.avg_view_drop_off' | translate"
+                <span class="vCellValue">{{data['avg_view_drop_off']}}</span>&nbsp;
+                <span class="vTableColumn"
+                      [vTooltip]="'app.engagement.topVideosReport.avg_view_drop_off' | translate"
                       [showOnEllipsis]="true">
               {{'app.engagement.topVideosReport.avg_view_drop_off' | translate}}
             </span>
@@ -82,8 +82,8 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <div class="emptymessage">
-          <div class="kEmptyMessage" *ngIf="!firstTimeLoading">{{'app.common.noResults' | translate}}</div>
-          <div class="kEmptyMessage" *ngIf="firstTimeLoading">&nbsp;</div>
+          <div class="vEmptyMessage" *ngIf="!firstTimeLoading">{{'app.common.noResults' | translate}}</div>
+          <div class="vEmptyMessage" *ngIf="firstTimeLoading">&nbsp;</div>
         </div>
       </ng-template>
     </p-table>

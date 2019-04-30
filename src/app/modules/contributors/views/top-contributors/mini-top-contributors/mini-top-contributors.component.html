@@ -7,15 +7,15 @@
     <a (click)="_scrollTo('#top-contributors')" class="kDetails">{{'app.common.details' | translate}}</a>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
-    <div class="kReportContent" *ngIf="!_isCompareMode">
-      <div class="kReportRow" *ngFor="let item of _tableData">
-        <div class="kReportRowIndex kFirst" *ngIf="item.index === 1">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+    <div class="vReportContent" *ngIf="!_isCompareMode">
+      <div class="vReportRow" *ngFor="let item of _tableData">
+        <div class="vReportRowIndex vFirst" *ngIf="item.index === 1">
           <img src="assets/images/ribbon_small.svg">
           <span>{{item.index}}</span>
         </div>
-        <div class="kReportRowIndex" *ngIf="item.index !== 1">{{item.index}}</div>
-        <div class="kUser">
+        <div class="vReportRowIndex" *ngIf="item.index !== 1">{{item.index}}</div>
+        <div class="vUser">
           <i class="icon-small-viewer-contributor"></i>
         </div>
         <div class="kReportRowDetails">
@@ -32,18 +32,18 @@
       </div>
     </div>
 
-    <div class="kReportContent" *ngIf="_isCompareMode">
-      <span class="kDates">{{_currentDates}}</span>
-      <div class="kReportRow" *ngIf="_tableData[0]">
-        <div class="kReportRowIndex kFirst">
+    <div class="vReportContent" *ngIf="_isCompareMode">
+      <span class="vDates">{{_currentDates}}</span>
+      <div class="vReportRow" *ngIf="_tableData[0]">
+        <div class="vReportRowIndex vFirst">
           <img src="assets/images/ribbon_small.svg">
           <span>{{_tableData[0].index}}</span>
         </div>
         <div class="kUser">
           <i class="icon-small-viewer-contributor"></i>
         </div>
-        <div class="kReportRowDetails">
-          <span class="kTitle" [kTooltip]="_tableData[0].creator_name" [showOnEllipsis]="true">
+        <div class="vReportRowDetails">
+          <span class="vTitle" [vTooltip]="_tableData[0].creator_name" [showOnEllipsis]="true">
             {{_tableData[0].creator_name}}
           </span>
           <span class="kScore" *ngIf="_tableData[0]['contributor_ranking'] !== undefined">
@@ -55,20 +55,20 @@
           </div>
         </div>
       </div>
-      <div class="kReportRow kNoResults" *ngIf="!_isBusy && !_tableData[0]">
+      <div class="vReportRow vNoResults" *ngIf="!_isBusy && !_tableData[0]">
         {{'app.common.noResults' | translate}}
       </div>
-      <span class="kDates">{{_compareDates}}</span>
-      <div class="kReportRow" *ngIf="_compareTableData[0]">
-        <div class="kReportRowIndex kFirst">
+      <span class="vDates">{{_compareDates}}</span>
+      <div class="vReportRow" *ngIf="_compareTableData[0]">
+        <div class="vReportRowIndex vFirst">
           <img src="assets/images/ribbon_small.svg">
           <span>{{_compareTableData[0].index}}</span>
         </div>
         <div class="kUser">
           <i class="icon-small-viewer-contributor"></i>
         </div>
-        <div class="kReportRowDetails">
-          <span class="kTitle" [kTooltip]="_compareTableData[0].creator_name" [showOnEllipsis]="true">
+        <div class="vReportRowDetails">
+          <span class="vTitle" [vTooltip]="_compareTableData[0].creator_name" [showOnEllipsis]="true">
             {{_compareTableData[0].creator_name}}
           </span>
           <span class="kScore" *ngIf="_compareTableData[0]['contributor_ranking'] !== undefined">
@@ -80,10 +80,10 @@
           </div>
         </div>
       </div>
-      <div class="kReportRow kNoResults" *ngIf="!_isBusy && !_compareTableData[0]">
+      <div class="vReportRow vNoResults" *ngIf="!_isBusy && !_compareTableData[0]">
         {{'app.common.noResults' | translate}}
       </div>
     </div>
-  </k-area-blocker>
+  </v-area-blocker>
 </div>
 

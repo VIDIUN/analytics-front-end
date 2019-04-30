@@ -23,7 +23,7 @@ export class EntryTotalsComponent extends EntryBase {
   @Input() entryId = '';
 
   private _order = '-month_id';
-  private _reportType = KalturaReportType.userTopContent;
+  private _reportType = VidiunReportType.userTopContent;
   private _dataConfig: ReportDataConfig;
   
   public _dateFilter: DateChangeEvent;
@@ -140,7 +140,7 @@ export class EntryTotalsComponent extends EntryBase {
     }
   }
 
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals);
   }
 

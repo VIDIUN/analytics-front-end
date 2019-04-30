@@ -1,16 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
-import { KalturaReportInterval } from 'kaltura-ngx-client';
+import { VidiunReportInterval } from 'vidiun-ngx-client';
 import { DateFilterComponent } from 'shared/components/date-filter/date-filter.component';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 @Component({
   selector: 'app-time-units',
   templateUrl: './time-units.component.html',
   styleUrls: ['./time-units.component.scss']
 })
 export class TimeUnitsComponent implements OnInit {
-  @Input() set selectedTimeUnit(value: KalturaReportInterval) {
+  @Input() set selectedTimeUnit(value: VidiunReportInterval) {
     if (value) {
       this._selectedTimeUnit = value;
     }
@@ -20,13 +20,13 @@ export class TimeUnitsComponent implements OnInit {
 
   @Input() dateFilter: DateFilterComponent;
   
-  public _selectedTimeUnit = KalturaReportInterval.months;
+  public _selectedTimeUnit = VidiunReportInterval.months;
 
   public _timeUnitsItems: SelectItem[] = [
-    {label: this._translate.instant('app.dateFilter.monthly'), value: KalturaReportInterval.months},
-    {label: this._translate.instant('app.dateFilter.daily'), value: KalturaReportInterval.days},
+    {label: this._translate.instant('app.dateFilter.monthly'), value: VidiunReportInterval.months},
+    {label: this._translate.instant('app.dateFilter.daily'), value: VidiunReportInterval.days},
   ];
-  constructor(private _translate: TranslateService, private _logger: KalturaLogger) {
+  constructor(private _translate: TranslateService, private _logger: VidiunLogger) {
   }
   ngOnInit() {
     if (typeof this.dateFilter === 'undefined') {

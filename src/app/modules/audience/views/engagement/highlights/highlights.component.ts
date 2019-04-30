@@ -46,8 +46,8 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
   public _tabsData: Tab[] = [];
   public _tableData: TableRow[] = [];
   public _selectedMetrics: string;
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
   public _lineChartData = {};
   public _showTable = false;
   public _totalCount = 0;
@@ -202,11 +202,11 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
     this._tableData = tableData;
   }
   
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
   }
   
-  private _handleGraphs(graphs: KalturaReportGraph[]): void {
+  private _handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,

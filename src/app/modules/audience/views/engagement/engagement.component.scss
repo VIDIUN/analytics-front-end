@@ -1,16 +1,16 @@
 @import '../../../../../styles/variables';
 
-.kReport {
+.vReport {
   height: 100%;
 }
 
-.kReportContainer{
+.vReportContainer{
  padding-bottom: 24px;
   background-color: $appBkgColor;
   display: flex;
   flex-wrap: wrap;
 
-  .kSmallReportContainer{
+  .vSmallReportContainer{
     width: 60%;
     height: 444px;
     &:nth-child(even){
@@ -18,7 +18,7 @@
       padding-left: 24px;
     }
   }
-  .kMiniReportContainer{
+  .vMiniReportContainer{
     height: 280px;
     width: 30%;
     flex: 1 1 auto;
@@ -29,15 +29,15 @@
   }
 }
 
-.kFilter {
+.vFilter {
   display: flex;
   align-items: center;
 
-  .kDropDown {
+  .vDropDown {
     background-color: white;
     width: 100px;
     height: 34px;
-    border: 1px solid $kGrayscale4;
+    border: 1px solid $vGrayscale4;
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@
     margin-right: 16px;
 
     &:hover {
-      border-color: $kPrimary;
+      border-color: $vPrimary;
     }
 
     &:active {
@@ -64,7 +64,7 @@
     i {
       margin-left: auto;
       font-size: 12px;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
     }
   }
 }

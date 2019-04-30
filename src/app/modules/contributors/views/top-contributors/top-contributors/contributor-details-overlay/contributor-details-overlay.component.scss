@@ -1,23 +1,23 @@
 @import '../../../../../../../styles/variables';
 
-.kContributorDetailsOverlay {
+.vContributorDetailsOverlay {
   width: 280px;
   height: 151px;
 
-  k-area-blocker {
+  v-area-blocker {
     display: block;
   }
 
-  .kContributorName {
+  .vContributorName {
     padding: 19px 16px;
     font-weight: bold;
-    border-bottom: 1px solid $kGrayscale4;
+    border-bottom: 1px solid $vGrayscale4;
   }
 
-  .kContributorDetails {
+  .vContributorDetails {
     padding: 12px 16px 16px 16px;
 
-    .kDetailsRow {
+    .vDetailsRow {
       display: flex;
       margin-bottom: 8px;
       font-size: 14px;
@@ -28,8 +28,8 @@
         margin-bottom: 0;
       }
 
-      .kLabel {
-        color: $kGrayscale3;
+      .vLabel {
+        color: $vGrayscale3;
         margin-right: 4px;
       }
 
@@ -43,7 +43,7 @@
   }
 }
 
-.kErrorMessage {
+.vErrorMessage {
   display: flex;
   align-items: center;
   justify-content: center;

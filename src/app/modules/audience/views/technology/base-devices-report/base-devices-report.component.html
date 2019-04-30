@@ -6,7 +6,7 @@
       <span class="separator">/</span>
       <span>{{_drillDown}}</span>
     </div>
-    <p-multiSelect class="kDevicesFilter"
+    <p-multiSelect class="vDevicesFilter"
                    [disabled]="!_devicesSelectActive"
                    [options]="devicesList"
                    [maxSelectedLabels]="0"
@@ -17,18 +17,18 @@
                    (onChange)="_onDeviceFilterChange()"
                    [(ngModel)]="_selectedDevices">
       <ng-template let-device pTemplate="item">
-            <span class="kDevicesListItem">
-              <i class="kIcon" [ngClass]="device.value | appDeviceIcon"></i>
-              <span class="kLabel">{{device.label}}</span>
+            <span class="vDevicesListItem">
+              <i class="vIcon" [ngClass]="device.value | appDeviceIcon"></i>
+              <span class="vLabel">{{device.label}}</span>
             </span>
       </ng-template>
     </p-multiSelect>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
 
-    <div class="kReportContent">
-      <kTags *ngIf="_tags.length"
+    <div class="vReportContent">
+      <vTags *ngIf="_tags.length"
              [title]="''"
              [data]="_tags"
              [labelField]="'label'"
@@ -36,7 +36,7 @@
              [clearAllLabel]="'app.common.clearAll' | translate"
              (onTagRemove)="_onRemoveTag($event)"
              (onRemoveAll)="_onRemoveAllTags()">
-      </kTags>
+      </vTags>
 
       <div class="kTable">
         <div class="kTableContainer">
@@ -57,8 +57,8 @@
                 <th *ngFor="let col of _columns"
                     [pSortableColumn]="col !== 'plays_trend' && col !== 'plays_distribution' && col !== 'os_family' && col !== 'os' && col !== 'browser' && col !== 'browser_family' ? col : null"
                     [ngStyle]="{'width': col === 'plays_distribution' ? '300px' : 'auto'}">
-                  <div class="kColumnHeader">
-                    <span [kTooltip]="'app.audience.technology.' + col | translate" [showOnEllipsis]="true">
+                  <div class="vColumnHeader">
+                    <span [vTooltip]="'app.audience.technology.' + col | translate" [showOnEllipsis]="true">
                       {{'app.audience.technology.' + col | translate}}
                     </span>
                     <p-sortIcon [field]="col" *ngIf="col !== 'plays_trend' && col !== 'plays_distribution' && col !== 'os_family' && col !== 'os' && col !== 'browser' && col !== 'browser_family'"></p-sortIcon>
@@ -92,7 +92,7 @@
                   </span>
                   <span *ngIf="col === 'plays_trend'">
                     <h5 class="mini-loader" *ngIf="!data[col]"><span></span><span></span></h5>
-                    <span *ngIf="data[col]" class="kTrend" [kTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
+                    <span *ngIf="data[col]" class="vTrend" [vTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
                       <app-trend-value [value]="data[col].trend"
                                        [units]="data[col].units"
                                        [trend]="data[col].trendDirection"></app-trend-value>
@@ -109,8 +109,8 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
               <div class="emptymessage">
-                <div class="kEmptyMessage" *ngIf="!_firstTimeLoading">{{'app.common.noResults' | translate}}</div>
-                <div class="kEmptyMessage" *ngIf="_firstTimeLoading">&nbsp;</div>
+                <div class="vEmptyMessage" *ngIf="!_firstTimeLoading">{{'app.common.noResults' | translate}}</div>
+                <div class="vEmptyMessage" *ngIf="_firstTimeLoading">&nbsp;</div>
               </div>
             </ng-template>
           </p-table>
@@ -120,5 +120,5 @@
       </div>
     </div>
 
-  </k-area-blocker>
+  </v-area-blocker>
 </div>

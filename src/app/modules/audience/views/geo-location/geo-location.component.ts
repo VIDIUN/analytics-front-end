@@ -12,7 +12,7 @@ import { TrendService } from 'shared/services/trend.service';
 import { SelectItem, SortEvent } from 'primeng/api';
 import * as echarts from 'echarts';
 import { EChartOption } from 'echarts';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
@@ -43,7 +43,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
 
   public _dateRangeType: DateRangeType = DateRangeType.LongTerm;
   public _selectedMetrics: string;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.days;
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.days;
   public _dateRange = DateRanges.Last30D;
 
   public _tableData: TableRow<any>[] = [];
@@ -239,7 +239,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
         });
   }
 
-  private handleTable(table: KalturaReportTable): void {
+  private handleTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._columns = columns;
@@ -270,7 +270,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
     });
   }
 
-  private handleTotals(totals: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
     this.selectedTab = this._tabsData[0];
   }

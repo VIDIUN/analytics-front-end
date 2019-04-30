@@ -2,24 +2,24 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { KalturaClient, KalturaUserFilter, KalturaFilterPager, UserListAction, KalturaUser } from 'kaltura-ngx-client';
 import { Observable } from 'rxjs/Observable';
 import { ISubscription } from 'rxjs/Subscription';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 
 @Injectable()
 export class UsersFilterService implements OnDestroy {
 
-  constructor(private _kalturaClient: KalturaClient) {
+  constructor(private _vidiunClient: VidiunClient) {
   }
 
   public searchUsers(text: string): Observable<KalturaUser[]> {
     return Observable.create(
       observer => {
-        const requestSubscription: ISubscription = this._kalturaClient.request(
+        const requestSubscription: ISubscription = this._vidiunClient.request(
           new UserListAction(
             {
-              filter: new KalturaUserFilter({
+              filter: new VidiunUserFilter({
                 idOrScreenNameStartsWith : text
               }),
-              pager: new KalturaFilterPager({
+              pager: new VidiunFilterPager({
                 pageIndex : 0,
                 pageSize : 30
               })

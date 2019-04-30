@@ -1,9 +1,9 @@
 @import '../../../../../../styles/variables';
-:host /deep/ .kValue{
+:host /deep/ .vValue{
   font-size: 24px;
   font-weight: 700;
 }
-:host /deep/ .kUnits{
+:host /deep/ .vUnits{
   font-size: 13px;
   font-weight: 700;
 }
@@ -22,13 +22,13 @@
     white-space: nowrap;
     margin-right: 24px;
   }
-  .kVal{
+  .vVal{
     display: flex;
     align-items: center;
     margin-left: 24px;
     margin-top: 24px;
     margin-bottom: 24px;
-    .kMiniIcon{
+    .vMiniIcon{
       width: 30px;
       height: 30px;
       border-radius: 15px;
@@ -55,46 +55,46 @@
       font-size: 24px;
       line-height: 24px;
       font-weight: 700;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
     .title{
       font-size: 18px;
       line-height: 18px;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
       margin-left: 14px;
     }
   }
 
-  .kDates {
+  .vDates {
     font-size: 15px;
     margin-left: 24px;
     margin-bottom: 16px;
     display: inline-block;
   }
 
-  .kReportRow {
+  .vReportRow {
     display: flex;
     align-items: center;
     padding: 0 24px;
     margin-bottom: 20px;
 
-    &.kNoResults {
+    &.vNoResults {
       height: 100%;
       font-size: 28px;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
     }
 
     &:last-child {
       margin-bottom: 0;
     }
 
-    .kReportRowIndex {
+    .vReportRowIndex {
       font-size: 18px;
       font-weight: bold;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
       margin-right: 18px;
 
-      &.kFirst {
+      &.vFirst {
         position: relative;
         margin-right: 28px;
 
@@ -110,19 +110,19 @@
           position: absolute;
           top: -10px;
           left: -1px;
-          color: $kGrayscale1
+          color: $vGrayscale1
         }
 
       }
     }
 
-    .kReportRowThumbnail {
+    .vReportRowThumbnail {
       overflow: hidden;
       position: relative;
       width: 86px;
       height: 48px;
       flex: 0 0 auto;
-      background-color: $kGrayscale6;
+      background-color: $vGrayscale6;
       white-space: nowrap;
       text-align: center;
       border-radius: 3px;
@@ -130,7 +130,7 @@
       cursor: pointer;
 
       &.error{
-        border: 1px solid $kGrayscale4;
+        border: 1px solid $vGrayscale4;
       }
       img {
         position: absolute;
@@ -145,7 +145,7 @@
       }
     }
 
-    .kReportRowDetails {
+    .vReportRowDetails {
       display: flex;
       flex-direction: column;
       white-space: nowrap;
@@ -153,8 +153,8 @@
       width: 100%;
       min-width: 0;
 
-      .kTitle {
-        color: $kGrayscale1;
+      .vTitle {
+        color: $vGrayscale1;
         font-weight: bold;
         line-height: 22px;
         overflow: hidden;

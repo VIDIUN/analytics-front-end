@@ -82,14 +82,14 @@ export class ImpressionsComponent implements OnInit {
   private reportType: KalturaReportType = KalturaReportType.contentDropoff;
   private pager: KalturaFilterPager = new KalturaFilterPager({ pageSize: 25, pageIndex: 1 });
   private order = 'count_plays';
-  private filter = new KalturaEndUserReportInputFilter(
+  private filter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
     }
   );
-  private compareFilter: KalturaEndUserReportInputFilter = null;
-  private _reportInterval: KalturaReportInterval = KalturaReportInterval.months;
+  private compareFilter: VidiunEndUserReportInputFilter = null;
+  private _reportInterval: VidiunReportInterval = VidiunReportInterval.months;
   private _dataConfig: ReportDataConfig;
   
   public get isCompareMode(): boolean {

@@ -1,6 +1,6 @@
 @import '../../styles/variables';
 
-.kMenu{
+.vMenu{
   height: 50px;
   background: $menuBkgColor; /* Old browsers */
   background: -moz-linear-gradient(left, #1b4a97 0%, #2364c3 100%); /* FF3.6-15 */
@@ -23,7 +23,7 @@
     letter-spacing: 0.5px;
     text-decoration: none;
     &.disabled{
-      color: $kGrayscale4;
+      color: $vGrayscale4;
       border: 0px solid $menuBkgColor;
       pointer-events: none;
     }
@@ -39,7 +39,7 @@
     }
   }
 }
-.kSubMenu {
+.vSubMenu {
   height: 40px;
   background-color: white;
   border-bottom: 1px solid #fafafa;
@@ -59,7 +59,7 @@
     text-decoration: none;
     margin-right: 20px;
     &.disabled {
-      color: $kGrayscale4;
+      color: $vGrayscale4;
       border: 0px solid white;
       pointer-events: none;
     }

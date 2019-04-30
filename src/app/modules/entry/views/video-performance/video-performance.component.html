@@ -2,8 +2,8 @@
   <div class="kFilters">
     <span class="kTitle">{{'app.entry.videoPerformance' | translate}}</span>
   </div>
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
-    <div class="kReportContent">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+    <div class="vReportContent">
       <app-report-tabs [tabs]="_tabsData" [showValue]="false" (tabChange)="_onTabChange($event)"></app-report-tabs>
       <div class="kDimensions">
         <app-compare-metric [metric]="_selectedMetricsLabel"
@@ -41,9 +41,9 @@
         </div>
       </div>
 
-      <div class="kTable">
-        <div class="kToggle">
-          <i [class.kIcondropdown_arrow_bottom]="!_showTable" [class.kIcondropdown_arrow_top]="_showTable"></i>
+      <div class="vTable">
+        <div class="vToggle">
+          <i [class.vIcondropdown_arrow_bottom]="!_showTable" [class.vIcondropdown_arrow_top]="_showTable"></i>
           <a (click)="_toggleTable()">
             {{(_showTable ? 'app.common.hideDetails' : 'app.common.viewDetails') | translate}}
           </a>
@@ -86,14 +86,14 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
               <div class="emptymessage">
-                <div class="kEmptyMessage" *ngIf="!_firstTimeLoading">{{'app.common.noResults' | translate}}</div>
-                <div class="kEmptyMessage" *ngIf="_firstTimeLoading">&nbsp;</div>
+                <div class="vEmptyMessage" *ngIf="!_firstTimeLoading">{{'app.common.noResults' | translate}}</div>
+                <div class="vEmptyMessage" *ngIf="_firstTimeLoading">&nbsp;</div>
               </div>
             </ng-template>
           </p-table>
         </div>
       </div>
     </div>
-  </k-area-blocker>
+  </v-area-blocker>
 </div>
 

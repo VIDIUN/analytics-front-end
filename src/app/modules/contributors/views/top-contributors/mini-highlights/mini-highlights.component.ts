@@ -2,14 +2,14 @@ import { Component, Input } from '@angular/core';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
 import {
-  KalturaEndUserReportInputFilter,
-  KalturaFilterPager, KalturaObjectBaseFactory,
-  KalturaReportInterval,
-  KalturaReportTable,
-  KalturaReportTotal,
-  KalturaReportType
-} from 'kaltura-ngx-client';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+  VidiunEndUserReportInputFilter,
+  VidiunFilterPager, VidiunObjectBaseFactory,
+  VidiunReportInterval,
+  VidiunReportTable,
+  VidiunReportTotal,
+  VidiunReportType
+} from 'vidiun-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
@@ -38,7 +38,7 @@ export class ContributorsMiniHighlightsComponent extends TopContributorsBaseRepo
   @Input() dateFilterComponent: DateFilterComponent;
   
   private _order = '-month_id';
-  private _reportType = KalturaReportType.topContentContributors;
+  private _reportType = VidiunReportType.topContentContributors;
   private _dataConfig: ReportDataConfig;
   
   protected _componentId = 'mini-highlights';
@@ -46,10 +46,10 @@ export class ContributorsMiniHighlightsComponent extends TopContributorsBaseRepo
   public _isBusy: boolean;
   public _blockerMessage: AreaBlockerMessage = null;
   public _tabsData: Tab[] = [];
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
-  public _pager = new KalturaFilterPager({ pageSize: 25, pageIndex: 1 });
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
+  public _pager = new VidiunFilterPager({ pageSize: 25, pageIndex: 1 });
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -151,7 +151,7 @@ export class ContributorsMiniHighlightsComponent extends TopContributorsBaseRepo
     }
   }
   
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals);
   }
   

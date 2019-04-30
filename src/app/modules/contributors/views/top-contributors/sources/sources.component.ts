@@ -27,8 +27,8 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
   private _compareFilter: KalturaEndUserReportInputFilter = null;
   private _pager = new KalturaFilterPager();
   private _dataConfig: ReportDataConfig;
-  private _reportInterval = KalturaReportInterval.months;
-  private _filter = new KalturaEndUserReportInputFilter({
+  private _reportInterval = VidiunReportInterval.months;
+  private _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false,
     interval: this._reportInterval,
@@ -42,7 +42,7 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
   public _isCompareMode: boolean;
   public _columns: string[] = [];
   public _compareFirstTimeLoading = true;
-  public _reportType = KalturaReportType.topSources;
+  public _reportType = VidiunReportType.topSources;
   public _barChartData: any = {};
   public _selectedMetrics: string;
   public _tabsData: Tab[] = [];
@@ -138,7 +138,7 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
     this._selectedMetrics = tab.key;
   }
 
-  private _handleTable(table: KalturaReportTable, compare?: Report): void {
+  private _handleTable(table: VidiunReportTable, compare?: Report): void {
     this._tabsData = this._reportService.parseTotals(table, this._dataConfig.totals, this._selectedMetrics);
   
     const columnsCount = table.data ? table.data.split(';').length : 0;

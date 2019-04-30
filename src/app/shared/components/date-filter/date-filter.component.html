@@ -1,11 +1,11 @@
-<div class="kDateFilter kOverrideFAIcons">
+<div class="vDateFilter vOverrideFAIcons">
 
   <div #datesBtn class="datesRangeDropDown" [class.comparing]="comparing" (click)="openPopup()">
     <i *ngIf="comparing" class="compareIcon icon-bolt"></i>
     <span>{{_dateRangeLabel}}</span>
-    <i class="kIcondropdown_arrow_bottom"></i>
+    <i class="vIcondropdown_arrow_bottom"></i>
   </div>
-  <a *ngIf="comparing" class="kExitCompare" (click)="exitCompare()">{{'app.dateFilter.exit' | translate}}</a>
+  <a *ngIf="comparing" class="vExitCompare" (click)="exitCompare()">{{'app.dateFilter.exit' | translate}}</a>
 
 </div>
 
@@ -13,35 +13,35 @@
 <kPopupWidget #datesPopup [attr.data-aid]="'date-filter-' + name"
               [popupWidth]="420" [closeBtn]="false" [targetRef]="datesBtn" [targetOffset]="{'x':-210, 'y': 42}">
   <ng-template>
-    <div class="kDateFilterPopup kOverrideFAIcons">
+    <div class="vDateFilterPopup vOverrideFAIcons">
 
-      <div class="kViews">
+      <div class="vViews">
         <p-selectButton [options]="viewItems" [(ngModel)]="selectedView" (ngModelChange)="resetCompare()"></p-selectButton>
       </div>
-      <div class="kFilters kPreset" *ngIf="selectedView==='preset'">
+      <div class="vFilters vPreset" *ngIf="selectedView==='preset'">
         <div class="col">
-          <span class="kTitle">{{'app.dateFilter.last' | translate | uppercase}}</span>
-          <p-radioButton *ngFor="let _dateRangeLast of lastDateRangeItems" name="dates" [label]="_dateRangeLast.label" [value]="_dateRangeLast.value.val" [kTooltip]="_dateRangeLast.value.tooltip" [placement]="'left'" [(ngModel)]="selectedDateRange" (onClick)="updateCompareMax(); resetCompare()"></p-radioButton>
+          <span class="vTitle">{{'app.dateFilter.last' | translate | uppercase}}</span>
+          <p-radioButton *ngFor="let _dateRangeLast of lastDateRangeItems" name="dates" [label]="_dateRangeLast.label" [value]="_dateRangeLast.value.val" [vTooltip]="_dateRangeLast.value.tooltip" [placement]="'left'" [(ngModel)]="selectedDateRange" (onClick)="updateCompareMax(); resetCompare()"></p-radioButton>
         </div>
         <div class="col">
-          <span class="kTitle">{{'app.dateFilter.current' | translate | uppercase}}</span>
-          <p-radioButton *ngFor="let _dateRangeCurrent of currDateRangeItems" name="dates" [label]="_dateRangeCurrent.label" [value]="_dateRangeCurrent.value.val" [kTooltip]="_dateRangeCurrent.value.tooltip" [placement]="'right'" [(ngModel)]="selectedDateRange" (onClick)="updateCompareMax(); resetCompare()"></p-radioButton>
+          <span class="vTitle">{{'app.dateFilter.current' | translate | uppercase}}</span>
+          <p-radioButton *ngFor="let _dateRangeCurrent of currDateRangeItems" name="dates" [label]="_dateRangeCurrent.label" [value]="_dateRangeCurrent.value.val" [vTooltip]="_dateRangeCurrent.value.tooltip" [placement]="'right'" [(ngModel)]="selectedDateRange" (onClick)="updateCompareMax(); resetCompare()"></p-radioButton>
         </div>
       </div>
-      <div class="kFilters kSpecific" *ngIf="selectedView==='specific'">
+      <div class="vFilters vSpecific" *ngIf="selectedView==='specific'">
         <p-calendar [(ngModel)]="specificDateRange" [inline]="true" selectionMode="range" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="'2010:2050'" (ngModelChange)="updateCompareMax()"></p-calendar>
       </div>
       <hr>
-      <div class="kCompare" *ngIf="showCompare">
+      <div class="vCompare" *ngIf="showCompare">
         <p-checkbox [label]="'app.dateFilter.compare' | translate" [(ngModel)]="compare" binary="true"></p-checkbox>
-        <p-radioButton name="compare" value="lastYear" [class.kHidden]="!compare" [(ngModel)]="selectedComparePeriod" [label]="'app.dateFilter.comparelastyear' | translate"></p-radioButton>
-        <p-radioButton name="compare" value="specific" [class.kHidden]="!compare" [(ngModel)]="selectedComparePeriod" (ngModelChange)="updateSpecificCompareStartDate()" [label]="'app.dateFilter.comparespecific' | translate"></p-radioButton>
-        <p-calendar [showIcon]="true" icon="kIconcalendar" [class.kHidden]="!compare || selectedComparePeriod!=='specific'" [(ngModel)]="specificCompareStartDate" [maxDate]="compareMaxDate" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="'2010:2050'"></p-calendar>
+        <p-radioButton name="compare" value="lastYear" [class.vHidden]="!compare" [(ngModel)]="selectedComparePeriod" [label]="'app.dateFilter.comparelastyear' | translate"></p-radioButton>
+        <p-radioButton name="compare" value="specific" [class.vHidden]="!compare" [(ngModel)]="selectedComparePeriod" (ngModelChange)="updateSpecificCompareStartDate()" [label]="'app.dateFilter.comparespecific' | translate"></p-radioButton>
+        <p-calendar [showIcon]="true" icon="vIconcalendar" [class.vHidden]="!compare || selectedComparePeriod!=='specific'" [(ngModel)]="specificCompareStartDate" [maxDate]="compareMaxDate" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="'2010:2050'"></p-calendar>
       </div>
-      <button pButton class="kButtonBranded"
+      <button pButton class="vButtonBranded"
               [disabled]="_applyDisabled"
               [label]="'app.common.apply' | translate"
               (click)="updateDataRanges();datesPopup.close()"></button>
     </div>
   </ng-template>
-</kPopupWidget>
+</vPopupWidget>

@@ -36,7 +36,7 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
 
   public _dateRangeType: DateRangeType = DateRangeType.LongTerm;
   public _selectedMetrics: string;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.months;
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.months;
   public _chartDataLoaded = false;
   public _tableData: TableRow<string>[] = [];
   public _tabsData: Tab[] = [];
@@ -143,7 +143,7 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
   public _onDrillDown(user: string): void {
     this._logger.trace('Handle drill down to a user details action by user, reset page index to 1', { user });
     this._drillDown = user.length ? user : '';
-    this.reportType = user.length ? KalturaReportType.specificUserUsage : KalturaReportType.userUsage;
+    this.reportType = user.length ? VidiunReportType.specificUserUsage : VidiunReportType.userUsage;
     this.filter.userIds = user.length ? user : this.selectedUsers;
     this.pager.pageIndex = 1;
     if (this.compareFilter) {
@@ -250,7 +250,7 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
     const currentPeriod = { from: this.filter.fromDate, to: this.filter.toDate };
     const comparePeriod = { from: this.compareFilter.fromDate, to: this.compareFilter.toDate };
 
-    const dataKey = this._drillDown.length ? '' : 'kuser_id';
+    const dataKey = this._drillDown.length ? '' : 'vuser_id';
     if (current.table && compare.table) {
       const { columns, tableData } = this._compareService.compareTableData(
         currentPeriod,
@@ -292,18 +292,18 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
     }
   }
 
-  private handleTable(table: KalturaReportTable): void {
+  private handleTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._columns = columns;
     this._tableData = tableData;
   }
 
-  private handleTotals(totals: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
   }
 
-  private handleGraphs(graphs: KalturaReportGraph[]): void {
+  private handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData, barChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,
@@ -316,6 +316,6 @@ export class EndUserStorageComponent implements OnInit, OnDestroy {
   }
 
   private updateChartType(): void {
-    this._chartType = ((this._selectedMetrics === 'added_storage_mb' || this._selectedMetrics === 'deleted_storage_mb') && this._reportInterval === KalturaReportInterval.months) ? 'bar' : 'line';
+    this._chartType = ((this._selectedMetrics === 'added_storage_mb' || this._selectedMetrics === 'deleted_storage_mb') && this._reportInterval === VidiunReportInterval.months) ? 'bar' : 'line';
   }
 }

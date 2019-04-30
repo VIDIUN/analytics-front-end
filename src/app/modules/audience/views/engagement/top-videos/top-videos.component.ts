@@ -34,8 +34,8 @@ export class EngagementTopVideosComponent extends EngagementBaseReportComponent 
   private _order = '-engagement_ranking';
   private _compareFilter: KalturaEndUserReportInputFilter = null;
   private _dataConfig: ReportDataConfig;
-  private _reportInterval = KalturaReportInterval.months;
-  private _filter = new KalturaEndUserReportInputFilter({
+  private _reportInterval = VidiunReportInterval.months;
+  private _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -51,12 +51,12 @@ export class EngagementTopVideosComponent extends EngagementBaseReportComponent 
   public _entryDetails: EntryDetailsOverlayData[] = [];
   public _isCompareMode: boolean;
   public _columns: string[] = [];
-  public _pager = new KalturaFilterPager({ pageSize: 50, pageIndex: 1 });
+  public _pager = new VidiunFilterPager({ pageSize: 50, pageIndex: 1 });
   public _firstTimeLoading = true;
   public _compareFirstTimeLoading = true;
   public _currentDates: string;
   public _compareDates: string;
-  public _reportType = KalturaReportType.topContentCreator;
+  public _reportType = VidiunReportType.topContentCreator;
 
   constructor(private _errorsManager: ErrorsManagerService,
               private _reportService: ReportService,
@@ -148,7 +148,7 @@ export class EngagementTopVideosComponent extends EngagementBaseReportComponent 
     }
   }
   
-  private _handleTable(table: KalturaReportTable, compare?: Report): void {
+  private _handleTable(table: VidiunReportTable, compare?: Report): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     const extendTableRow = (item, index) => {
       (<any>item)['index'] = index + 1;

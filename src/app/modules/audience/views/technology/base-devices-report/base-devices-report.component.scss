@@ -1,6 +1,6 @@
 @import '../../../../../../styles/variables';
 
-.kDevicesFilter {
+.vDevicesFilter {
   margin-right: 24px;
 
   /deep/ {
@@ -18,7 +18,7 @@
   }
 }
 
-.kDevicesListItem {
+.vDevicesListItem {
   vertical-align: middle;
   display: inline-flex;
   width: 170px;
@@ -26,13 +26,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  .kIcon {
+  .vIcon {
     font-size: 22px;
-    color: $kGrayscale3;
+    color: $vGrayscale3;
     margin: 0 17px 0 11px;
   }
 
-  .kLabel {
+  .vLabel {
     line-height: 22px;
   }
 }

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { KalturaClient, KalturaFilterPager, KalturaUser, KalturaUserFilter, UserListAction } from 'kaltura-ngx-client';
+import { VidiunClient, VidiunFilterPager, VidiunUser, VidiunUserFilter, UserListAction } from 'vidiun-ngx-client';
 import { Observable, Subject, Unsubscribable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { TranslateService } from '@ngx-translate/core';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
 
@@ -33,7 +33,7 @@ export class OwnersFilterComponent implements OnDestroy {
   
   public _usersProvider = new Subject();
   
-  constructor(private _kalturaServerClient: KalturaClient,
+  constructor(private _vidiunServerClient: VidiunClient,
               private _translate: TranslateService) {
   }
   
@@ -52,7 +52,7 @@ export class OwnersFilterComponent implements OnDestroy {
     
     this._searchUsersSubscription = this._searchUsersRequest(event.query).subscribe(data => {
         const suggestions = [];
-        (data || []).forEach((suggestedUser: KalturaUser) => {
+        (data || []).forEach((suggestedUser: VidiunUser) => {
           suggestedUser['__tooltip'] = suggestedUser.id;
           let isSelectable = true;
           if (formControl) {
@@ -72,14 +72,14 @@ export class OwnersFilterComponent implements OnDestroy {
       });
   }
   
-  private _searchUsersRequest(text: string): Observable<KalturaUser[]> {
-    return this._kalturaServerClient
+  private _searchUsersRequest(text: string): Observable<VidiunUser[]> {
+    return this._vidiunServerClient
       .request(
         new UserListAction({
-          filter: new KalturaUserFilter({
+          filter: new VidiunUserFilter({
             idOrScreenNameStartsWith: text
           }),
-          pager: new KalturaFilterPager({
+          pager: new VidiunFilterPager({
             pageIndex: 0,
             pageSize: 30
           })

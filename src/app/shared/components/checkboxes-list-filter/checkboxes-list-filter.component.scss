@@ -5,33 +5,33 @@
   margin-right: 24px;
 }
 
-.kColumn {
+.vColumn {
   display: flex;
   flex-direction: column;
   margin-bottom: 8px;
 
-  .kColumnLabel {
+  .vColumnLabel {
     font-weight: bold;
   }
 
-  .kColumnLabel {
+  .vColumnLabel {
     margin-bottom: 16px;
   }
 
-  .kCheckboxGroup {
+  .vCheckboxGroup {
     display: flex;
     align-items: center;
     margin-bottom: 12px;
 
-    .kLabel {
+    .vLabel {
       font-size: 15px;
       line-height: 22px;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
 
-    .kIcon {
+    .vIcon {
       font-size: 22px;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
       margin: 0 17px 0 11px;
     }
 

@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <i [class]="trend | appTrend"></i>
     <span [ngClass]="valueStyleClass" *ngIf="value !== '–'">{{value}}&nbsp;<span [ngClass]="unitsStyleClass">{{units}}</span></span>
-    <i class="kValue icon-minus" *ngIf="value === '–'"></i>
+    <i class="vValue icon-minus" *ngIf="value === '–'"></i>
   `
 })
 export class TrendValueComponent {

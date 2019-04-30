@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
 import { TranslateService } from '@ngx-translate/core';
 import { CategoryData } from 'shared/services/categories-search.service';
 import { animate, AnimationEvent, group, state, style, transition, trigger } from '@angular/animations';
-import { KalturaUser } from 'kaltura-ngx-client';
+import { VidiunUser } from 'vidiun-ngx-client';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
 import { LocationsFilterService } from './location-filter/locations-filter.service';
 import { LocationsFilterValue } from './location-filter/location-filter.component';
@@ -144,7 +144,7 @@ export class FilterComponent {
   public _entrySources: OptionItem[] = [ // TODO determine valid values
     { value: 'Upload', label: 'app.filters.entrySources.Upload' },
     { value: 'Webcasting', label: 'app.filters.entrySources.Webcasting' },
-    { value: 'Kaltura Capture', label: 'app.filters.entrySources.Kaltura Capture' },
+    { value: 'Vidiun Capture', label: 'app.filters.entrySources.Vidiun Capture' },
     { value: 'Classroom Capture', label: 'app.filters.entrySources.Classroom Capture' },
   ];
   

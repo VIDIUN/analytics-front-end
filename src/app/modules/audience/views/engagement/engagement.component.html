@@ -8,8 +8,8 @@
     <div class="kFilter kOverrideFAIcons">
       <div class="kDropDown" (click)="_refineFilterOpened = !_refineFilterOpened">
         <span>{{'app.filters.filter' | translate}}</span>
-        <i *ngIf="!_refineFilterOpened" class="kIcondropdown_arrow_bottom"></i>
-        <i *ngIf="_refineFilterOpened" class="kIcondropdown_arrow_top"></i>
+        <i *ngIf="!_refineFilterOpened" class="vIcondropdown_arrow_bottom"></i>
+        <i *ngIf="_refineFilterOpened" class="vIcondropdown_arrow_top"></i>
       </div>
     </div>
     <app-date-filter #dateFilter
@@ -40,14 +40,14 @@
                                       [refineFilter]="_refineFilter"></app-engagement-mini-top-videos>
     </div>
 
-    <div class="kMiniReportContainer">
+    <div class="vMiniReportContainer">
       <app-engagement-mini-peak-day [dateFilter]="_dateFilter"
                                       [refineFilter]="_refineFilter"></app-engagement-mini-peak-day>
     </div>
 
     <!-- Example -->
     <!-- IMPORTANT: set infinite and autoPlay to false in case there's only ONE item -->
-    <!--<div class="kMiniReportContainer">-->
+    <!--<div class="vMiniReportContainer">-->
     <!--<ui-carousel [infinite]="false"-->
     <!--[autoPlay]="false"-->
     <!--[autoPlaySpeed]="5000"-->
@@ -56,7 +56,7 @@
     <!--[speed]="200"-->
     <!--height="280px">-->
     <!--<ui-carousel-item>-->
-    <!--<div class="kInsights">Some stuff</div>-->
+    <!--<div class="vInsights">Some stuff</div>-->
     <!--</ui-carousel-item>-->
     <!--</ui-carousel>-->
     <!--</div>-->
@@ -75,7 +75,7 @@
                                [refineFilter]="_refineFilter"></app-engagement-top-videos>
   </div>
 
-  <!--div class="kReportContainer">
+  <!--div class="vReportContainer">
     <app-engagement-duration [dateFilter]="_dateFilter"
                              [refineFilter]="_refineFilter"></app-engagement-duration>
   </div-->
@@ -85,7 +85,7 @@
       <app-impressions [dateFilter]="_dateFilter"
                        [refineFilter]="_refineFilter"></app-impressions>
     <!--/div-->
-    <!--div class="kSmallReportContainer">
+    <!--div class="vSmallReportContainer">
       <app-engagement-users [dateFilter]="_dateFilter"
                             [refineFilter]="_refineFilter"></app-engagement-users>
     </div-->

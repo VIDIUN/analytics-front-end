@@ -33,7 +33,7 @@ export class PublisherStorageComponent implements OnInit {
 
   public _dateRangeType: DateRangeType = DateRangeType.LongTerm;
   public _selectedMetrics: string;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.months;
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.months;
   public _chartDataLoaded = false;
   public _tableData: TableRow<string>[] = [];
   public _tabsData: Tab[] = [];
@@ -244,12 +244,12 @@ export class PublisherStorageComponent implements OnInit {
     this._tableData = tableData;
   }
 
-  private handleTotals(totals: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
     this._accumulativeStorage = this._reportService.parseTotals(totals, this._dataConfig.accumulative);
   }
 
-  private handleGraphs(graphs: KalturaReportGraph[]): void {
+  private handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData, barChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,
@@ -262,6 +262,6 @@ export class PublisherStorageComponent implements OnInit {
   }
 
   private updateChartType(): void {
-    this._chartType = ((this._selectedMetrics === 'added_storage' || this._selectedMetrics === 'deleted_storage') && this._reportInterval === KalturaReportInterval.months) ? 'bar' : 'line';
+    this._chartType = ((this._selectedMetrics === 'added_storage' || this._selectedMetrics === 'deleted_storage') && this._reportInterval === VidiunReportInterval.months) ? 'bar' : 'line';
   }
 }

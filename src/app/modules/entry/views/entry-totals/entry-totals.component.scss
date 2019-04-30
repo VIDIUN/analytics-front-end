@@ -1,12 +1,12 @@
 @import '../../../../../styles/variables';
-.kTotals {
+.vTotals {
   margin-bottom: 0px !important;
 }
-.kTotalsContainer{
+.vTotalsContainer{
   width: 100%;
   height: 100px;
   display: flex;
-  .kTotalContainer{
+  .vTotalContainer{
     background-color: #ffffff;
     width: 28%;
     height: 100%;
@@ -16,26 +16,26 @@
     padding-top: 24px;
     box-sizing: border-box;
     &:not(:last-child){
-      border-right: 1px solid $kGrayscale6;
+      border-right: 1px solid $vGrayscale6;
       width: 24%;
     }
-    .kTotal{
+    .vTotal{
       display: flex;
       flex-direction: column;
-      .kValue{
+      .vValue{
         font-size: 24px;
         font-weight: bold;
-        color: $kGrayscale1;
+        color: $vGrayscale1;
       }
-      .kLable{
+      .vLable{
         margin-top: 4px;
         margin-bottom: 8px;
         font-size: 18px;
-        color: $kGrayscale1;
+        color: $vGrayscale1;
         white-space: nowrap;
       }
     }
-    .kMiniIcon{
+    .vMiniIcon{
       width: 30px;
       height: 30px;
       border-radius: 15px;

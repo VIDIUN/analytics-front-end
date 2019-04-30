@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { CategoriesTreeNode } from './categories-tree-node';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { CategoriesTreePropagationDirective } from './categories-tree-propagation.directive';
 import { CategoriesTreeService } from './categories-tree.service';
 import { TranslateService } from '@ngx-translate/core';

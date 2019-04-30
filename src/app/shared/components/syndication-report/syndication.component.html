@@ -14,22 +14,22 @@
     </div>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
-    <div class="kReportContent">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+    <div class="vReportContent">
       <ng-container *ngIf="_drillDown && !_isBusy">
         <app-report-tabs [tabs]="_tabsData" [compareMode]="_isCompareMode"
                          (tabChange)="_onTabChange($event)"></app-report-tabs>
-        <div class="kDimensions">
+        <div class="vDimensions">
           <app-time-units applyIn="syndication"
                           [dateFilter]="dateFilterComponent"
                           [selectedTimeUnit]="_reportInterval"></app-time-units>
         </div>
-        <div class="kChart">
-          <div echarts class="kChart" [options]="_lineChartData[_selectedMetrics]"></div>
+        <div class="vChart">
+          <div echarts class="vChart" [options]="_lineChartData[_selectedMetrics]"></div>
         </div>
       </ng-container>
 
-      <span *ngIf="_totalCount !== undefined" class="kTotalCount">
+      <span *ngIf="_totalCount !== undefined" class="vTotalCount">
         <ng-container *ngIf="!_drillDown">
           {{'app.engagement.topDomainsReport.domains' | translate: { '0': _totalCount } }}
         </ng-container>
@@ -38,8 +38,8 @@
         </ng-container>
       </span>
 
-      <div class="kTable">
-        <div class="kTableContainer">
+      <div class="vTable">
+        <div class="vTableContainer">
           <p-table [value]="_tableData" (sortFunction)="_onSortChanged($event)" [customSort]="true"
                    sortField="count_plays" [sortOrder]="-1" [defaultSortOrder]="-1">
             <ng-template pTemplate="header">
@@ -54,8 +54,8 @@
                         ? '20%'
                         : 'auto'
                 }">
-                  <div class="kColumnHeader">
-                    <span [kTooltip]="'app.engagement.topDomainsReport.' + col | translate" [showOnEllipsis]="true">
+                  <div class="vColumnHeader">
+                    <span [vTooltip]="'app.engagement.topDomainsReport.' + col | translate" [showOnEllipsis]="true">
                       {{'app.engagement.topDomainsReport.' + col | translate}}
                     </span>
                     <p-sortIcon [field]="col" *ngIf="!_isCompareMode && col !== 'plays_distribution'"></p-sortIcon>
@@ -67,20 +67,20 @@
               <tr>
                 <td><span>{{data['index']}}</span></td>
                 <td [ngStyle]="{'padding': 0}">
-                  <div *ngIf="!_drillDown" class="kDomainIcon" #holder>
+                  <div *ngIf="!_drillDown" class="vDomainIcon" #holder>
                     <img [src]="'http://' + data['domain_name'] + '/favicon.ico'"
                          onError="this.onerror=null;this.style.display='none'"
-                         (error)="holder.classList.add('kIconfile-small')">
+                         (error)="holder.classList.add('vIconfile-small')">
                   </div>
                   <i *ngIf="_drillDown" class="kIconexternal_link kOpenLink" (click)="_openLink(data)" [kTooltip]="'app.engagement.topDomainsReport.openLink' | translate"></i>
                 </td>
                 <td *ngFor="let col of _columns; let i = index"
-                    [class.kHighlight]="i===0"
-                    [kTooltip]="data[col]"
+                    [class.vHighlight]="i===0"
+                    [vTooltip]="data[col]"
                     [showOnEllipsis]="col !== 'referrer'">
                   <span *ngIf="_isCompareMode && data[col]?.value !== undefined"
-                        class="kTrend"
-                        [kTooltip]="data[col].tooltip" [maxWidth]="500" [escape]="false">
+                        class="vTrend"
+                        [vTooltip]="data[col].tooltip" [maxWidth]="500" [escape]="false">
                     <app-trend-value [value]="data[col].value"
                                      [units]="data[col].units"
                                      [trend]="data[col].trend"></app-trend-value>
@@ -107,8 +107,8 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
               <div class="emptymessage">
-                <div class="kEmptyMessage" *ngIf="!_isBusy">{{'app.common.noResults' | translate}}</div>
-                <div class="kEmptyMessage" *ngIf="_isBusy">&nbsp;</div>
+                <div class="vEmptyMessage" *ngIf="!_isBusy">{{'app.common.noResults' | translate}}</div>
+                <div class="vEmptyMessage" *ngIf="_isBusy">&nbsp;</div>
               </div>
             </ng-template>
           </p-table>
@@ -120,7 +120,7 @@
       </div>
     </div>
 
-  </k-area-blocker>
+  </v-area-blocker>
 
 </div>
 

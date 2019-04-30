@@ -30,14 +30,14 @@
         "title": "Entry Source",
         "Upload": "Upload",
         "Webcasting": "Webcasting",
-        "Kaltura Capture": "Capture",
+        "Vidiun Capture": "Capture",
         "Classroom Capture": "Classroom"
       },
       "selectCategories": "Select Categories",
       "tags": "Tags",
       "users": "Users",
       "owners": "Owners",
-      "userNotFoundTooltip": "User is not listed in Kaltura. {{0}} will be considered as user's identifier.",
+      "userNotFoundTooltip": "User is not listed in Vidiun. {{0}} will be considered as user's identifier.",
       "country": "Country",
       "region": "Region",
       "city": "City",
@@ -136,7 +136,7 @@
     },
     "usersFilter":{
       "prompt": "Search Users",
-      "userTooltip": "User is not listed in Kaltura. {{0}} will be considered as user's identifier."
+      "userTooltip": "User is not listed in Vidiun. {{0}} will be considered as user's identifier."
     },
     "contributors": {
       "title": "Contributors",

@@ -3,13 +3,13 @@ import { SelectItem } from 'primeng/api';
 import { DateChangeEvent, DateFilterQueryParams, DateFilterService, DateRanges, DateRangeType } from './date-filter.service';
 import { DateFilterUtils } from './date-filter-utils';
 import { TranslateService } from '@ngx-translate/core';
-import { KalturaReportInterval } from 'kaltura-ngx-client';
+import { VidiunReportInterval } from 'vidiun-ngx-client';
 import * as moment from 'moment';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { filter } from 'rxjs/operators';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { isEmptyObject } from 'shared/utils/is-empty-object';
 import { BrowserService } from 'shared/services';
 
@@ -227,7 +227,7 @@ export class DateFilterComponent implements OnInit, OnDestroy {
     this.triggerChangeEvent();
   }
 
-  public timeUnitsChange(timeUnit: KalturaReportInterval, applyIn?: string): void {
+  public timeUnitsChange(timeUnit: VidiunReportInterval, applyIn?: string): void {
     this.selectedTimeUnit = timeUnit;
     this.triggerChangeEvent(applyIn, 'timeUnits');
   }

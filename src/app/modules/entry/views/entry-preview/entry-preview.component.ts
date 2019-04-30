@@ -8,9 +8,9 @@ import { ReportDataConfig, ReportDataSection } from 'shared/services/storage-dat
 import { TranslateService } from '@ngx-translate/core';
 import { EntryPreviewConfig } from './entry-preview.config';
 import { FrameEventManagerService } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { analyticsConfig, getKalturaServerUri } from 'configuration/analytics-config';
+import { analyticsConfig, getVidiunServerUri } from 'configuration/analytics-config';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
-import { KalturaPlayerComponent } from 'shared/player';
+import { VidiunPlayerComponent } from 'shared/player';
 import { EntryBase } from '../entry-base/entry-base';
 import {getPrimaryColor, getSecondaryColor} from 'shared/utils/colors';
 import {map, switchMap} from "rxjs/operators";
@@ -46,7 +46,7 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
     searchInAdminTags: false
   });
   public _playerConfig: any = {};
-  public serverUri = getKalturaServerUri();
+  public serverUri = getVidiunServerUri();
   public _playerPlayed = false;
   public _playProgress = 0;
   public _duration = 0;
@@ -54,7 +54,7 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
 
   public _chartOptions = {};
 
-  @ViewChild('player') player: KalturaPlayerComponent;
+  @ViewChild('player') player: VidiunPlayerComponent;
 
   public get _isCompareMode(): boolean {
     return this._compareFilter !== null;
@@ -306,7 +306,7 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
     if (!this.playerInitialized) {
       this.playerInitialized = true;
       this._playerConfig = {
-        uiconfid: analyticsConfig.kalturaServer.previewUIConf,  // serverConfig.kalturaServer.previewUIConf,
+        uiconfid: analyticsConfig.vidiunServer.previewUIConf,  // serverConfig.vidiunServer.previewUIConf,
         pid: analyticsConfig.pid,
         entryid: this.entryId,
         flashvars: {
@@ -374,13 +374,13 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
     }, 0);
 
     // register to playhead update event to update our scrubber
-    this.playerInstance.kBind('playerUpdatePlayhead', (event) => {
+    this.playerInstance.vBind('playerUpdatePlayhead', (event) => {
       this.zone.run(() => {
         this._playProgress =  parseFloat((event / this.playerInstance.evaluate('{duration}')).toFixed(10)) * 100;
         this._currentTime = parseFloat(event) * 1000;
       });
     });
-    this.playerInstance.kBind('playerPlayEnd', (event) => {
+    this.playerInstance.vBind('playerPlayEnd', (event) => {
       this.zone.run(() => {
         this._playProgress = 100;
       });

@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
 import { AuthService, ErrorDetails, ErrorsManagerService, ReportConfig, ReportHelper, ReportService } from 'shared/services';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
 import { TranslateService } from '@ngx-translate/core';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { DevicesOverviewConfig } from './devices-overview.config';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { TrendService } from 'shared/services/trend.service';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import { analyticsConfig } from 'configuration/analytics-config';
@@ -70,12 +70,12 @@ export class DevicesOverviewComponent implements OnDestroy {
   public _mergeChartData: { [key: string]: any; } = {};
   public _summaryData: Summary = {};
   public _isBusy = false;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.months;
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.months;
   public _chartDataLoaded = false;
   public _tabsData: Tab[] = [];
-  public _pager: KalturaFilterPager = new KalturaFilterPager({ pageSize: 25, pageIndex: 1 });
+  public _pager: VidiunFilterPager = new VidiunFilterPager({ pageSize: 25, pageIndex: 1 });
   public _dataConfig: ReportDataConfig;
-  public _filter: KalturaEndUserReportInputFilter = new KalturaEndUserReportInputFilter(
+  public _filter: VidiunEndUserReportInputFilter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -103,7 +103,7 @@ export class DevicesOverviewComponent implements OnDestroy {
     this._blockerMessage = null;
     
     const reportConfig: ReportConfig = {
-      reportType: KalturaReportType.platforms,
+      reportType: VidiunReportType.platforms,
       filter: this._filter,
       pager: this._pager,
       order: null
@@ -165,7 +165,7 @@ export class DevicesOverviewComponent implements OnDestroy {
     compareFilter.toDate = endDate;
 
     const reportConfig: ReportConfig = {
-      reportType: KalturaReportType.platforms,
+      reportType: VidiunReportType.platforms,
       filter: compareFilter,
       pager: this._pager,
       order: null
@@ -230,7 +230,7 @@ export class DevicesOverviewComponent implements OnDestroy {
         });
   }
   
-  private _getOverviewData(table: KalturaReportTable, relevantFields: string[]): { data: { [key: string]: string }[], columns: string[] } {
+  private _getOverviewData(table: VidiunReportTable, relevantFields: string[]): { data: { [key: string]: string }[], columns: string[] } {
     const { tableData, columns } = this._reportService.parseTableData(table, this._dataConfig.table);
     const data = tableData.reduce((data, item) => {
       if (this.allowedDevices.indexOf(item.device) > -1) {
@@ -407,7 +407,7 @@ export class DevicesOverviewComponent implements OnDestroy {
     }, {});
   }
   
-  private handleOverview(table: KalturaReportTable): void {
+  private handleOverview(table: VidiunReportTable): void {
     const relevantFields = Object.keys(this._dataConfig.totals.fields);
     const { data, columns } = this._getOverviewData(table, relevantFields);
     
@@ -418,7 +418,7 @@ export class DevicesOverviewComponent implements OnDestroy {
     this._handleDevicesListChange(data);
   }
   
-  private handleTotals(totals: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
   }
   

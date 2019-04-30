@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { EngagementBaseReportComponent } from '../engagement-base-report/engagement-base-report.component';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
@@ -28,17 +28,17 @@ export class MiniPeakDayComponent extends EngagementBaseReportComponent {
   @Input() dateFilterComponent: DateFilterComponent;
 
   private _order = '-count_plays';
-  private _reportType = KalturaReportType.userEngagementTimeline;
+  private _reportType = VidiunReportType.userEngagementTimeline;
   private _dataConfig: ReportDataConfig;
   
   protected _componentId = 'mini-peak-day';
   
   public _isBusy: boolean;
   public _blockerMessage: AreaBlockerMessage = null;
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
-  public _pager = new KalturaFilterPager({ pageSize: 1, pageIndex: 1 });
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
+  public _pager = new VidiunFilterPager({ pageSize: 1, pageIndex: 1 });
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -72,7 +72,7 @@ export class MiniPeakDayComponent extends EngagementBaseReportComponent {
           return ObservableOf({ report, compare: null });
         }
         
-        const pager = new KalturaFilterPager({ pageSize: 1, pageIndex: 1 });
+        const pager = new VidiunFilterPager({ pageSize: 1, pageIndex: 1 });
         const compareReportConfig = { reportType: this._reportType, filter: this._compareFilter, pager: pager, order: this._order };
         return this._reportService.getReport(compareReportConfig, sections)
           .pipe(map(compare => ({ report, compare })));
@@ -124,7 +124,7 @@ export class MiniPeakDayComponent extends EngagementBaseReportComponent {
     }
   }
   
-  private _handleTable(table: KalturaReportTable, compare?: Report): void {
+  private _handleTable(table: VidiunReportTable, compare?: Report): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     if (tableData.length) {
       this._peakDayData = tableData[0];

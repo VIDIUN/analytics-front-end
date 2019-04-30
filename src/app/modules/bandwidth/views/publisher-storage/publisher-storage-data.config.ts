@@ -24,37 +24,37 @@ export class PublisherStorageDataConfig extends ReportDataBaseConfig {
           },
           'bandwidth_consumption': {
             format: value => value,
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
             units: value => 'MB',
           },
           'average_storage': {
             format: value => value,
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
             units: value => 'MB',
           },
           'peak_storage': {
             format: value => value,
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
             units: value => 'MB',
           },
           'added_storage': {
             format: value => value,
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
             units: value => 'MB',
           },
           'deleted_storage': {
             format: value => value,
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
             units: value => 'MB',
           },
           'combined_bandwidth_storage': {
             format: value => value,
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
             units: value => 'MB',
           },
           'transcoding_consumption': {
             format: value => value,
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
             units: value => 'MB',
           }
         }
