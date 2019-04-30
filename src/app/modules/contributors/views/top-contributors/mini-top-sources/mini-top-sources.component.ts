@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TopContributorsBaseReportComponent } from '../top-contributors-base-report/top-contributors-base-report.component';
 import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
-import { KalturaAPIException, KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaReportInterval, KalturaReportTable } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunAPIException, VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunReportInterval, VidiunReportTable } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { ErrorsManagerService, ReportService } from 'shared/services';
 import { BehaviorSubject } from 'rxjs';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
@@ -11,8 +11,8 @@ import { MiniTopSourcesConfig } from './mini-top-sources.config';
 import { DateFilterComponent } from 'shared/components/date-filter/date-filter.component';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { analyticsConfig } from 'configuration/analytics-config';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { InsightsBulletValue } from 'shared/components/insights-bullet/insights-bullet.component';
 
 @Component({
@@ -20,14 +20,14 @@ import { InsightsBulletValue } from 'shared/components/insights-bullet/insights-
   templateUrl: './mini-top-sources.component.html',
   styleUrls: ['./mini-top-sources.component.scss'],
   providers: [
-    KalturaLogger.createLogger('MiniTopSourcesComponent'),
+    VidiunLogger.createLogger('MiniTopSourcesComponent'),
     MiniTopSourcesConfig,
     ReportService
   ]
 })
 export class MiniTopSourcesComponent extends TopContributorsBaseReportComponent implements OnDestroy, OnInit {
   @Input() dateFilterComponent: DateFilterComponent;
-  @Input() topSources$: BehaviorSubject<{ table: KalturaReportTable, compare: KalturaReportTable, busy: boolean, error: KalturaAPIException }>;
+  @Input() topSources$: BehaviorSubject<{ table: VidiunReportTable, compare: VidiunReportTable, busy: boolean, error: VidiunAPIException }>;
   
   protected _componentId = 'mini-top-sources';
   private _dataConfig: ReportDataConfig;
@@ -37,9 +37,9 @@ export class MiniTopSourcesComponent extends TopContributorsBaseReportComponent 
   public _tableData: any[] = [];
   public _currentDates: string;
   public _topSourceLabel = '';
-  public _reportInterval = KalturaReportInterval.days;
-  public _pager = new KalturaFilterPager({ pageSize: 3, pageIndex: 1 });
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _reportInterval = VidiunReportInterval.days;
+  public _pager = new VidiunFilterPager({ pageSize: 3, pageIndex: 1 });
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -52,7 +52,7 @@ export class MiniTopSourcesComponent extends TopContributorsBaseReportComponent 
               private _errorsManager: ErrorsManagerService,
               private _dataConfigService: MiniTopSourcesConfig,
               private pageScrollService: PageScrollService,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     super();
     this._dataConfig = _dataConfigService.getConfig();
   }
@@ -61,7 +61,7 @@ export class MiniTopSourcesComponent extends TopContributorsBaseReportComponent 
     if (this.topSources$) {
       this.topSources$
         .pipe(cancelOnDestroy(this))
-        .subscribe((data: { table: KalturaReportTable, compare: KalturaReportTable, busy: boolean, error: KalturaAPIException }) => {
+        .subscribe((data: { table: VidiunReportTable, compare: VidiunReportTable, busy: boolean, error: VidiunAPIException }) => {
           this._isBusy = data.busy;
           this._blockerMessage = this._errorsManager.getErrorMessage(data.error, { 'close': () => { this._blockerMessage = null; } });
           this._tableData = [];
@@ -90,7 +90,7 @@ export class MiniTopSourcesComponent extends TopContributorsBaseReportComponent 
     this._refineFilterToServerValue(this._filter);
   }
 
-  private _handleTable(table: KalturaReportTable, compare?: KalturaReportTable): void {
+  private _handleTable(table: VidiunReportTable, compare?: VidiunReportTable): void {
     const { tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._tableData = tableData;
     if (this._tableData.length) {

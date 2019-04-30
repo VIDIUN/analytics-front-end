@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ExportConfigService, ExportItem } from 'shared/components/export-csv/export-csv.component';
-import { KalturaReportExportItemType, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunReportExportItemType, VidiunReportType } from 'vidiun-ngx-client';
 
 @Injectable()
 export class GeoExportConfig implements ExportConfigService {
@@ -12,8 +12,8 @@ export class GeoExportConfig implements ExportConfigService {
     return [
       {
         label: this._translate.instant('app.audience.geo.exportLabels.geo'),
-        reportType: KalturaReportType.mapOverlayCountry,
-        sections: [KalturaReportExportItemType.table],
+        reportType: VidiunReportType.mapOverlayCountry,
+        sections: [VidiunReportExportItemType.table],
         order: '-count_plays',
       },
     ];

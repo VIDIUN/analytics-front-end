@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
-import { KalturaAPIException, KalturaEndUserReportInputFilter, KalturaEntryStatus, KalturaFilterPager, KalturaObjectBaseFactory, KalturaPager, KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunAPIException, VidiunEndUserReportInputFilter, VidiunEntryStatus, VidiunFilterPager, VidiunObjectBaseFactory, VidiunPager, VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { AuthService, BrowserService, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, of as ObservableOf, Subject } from 'rxjs';
@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DateFilterComponent } from 'shared/components/date-filter/date-filter.component';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { isEmptyObject } from 'shared/utils/is-empty-object';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 import { InteractionsBaseReportComponent } from '../interactions-base-report/interactions-base-report.component';
@@ -20,14 +20,14 @@ import { SortEvent } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import * as moment from 'moment';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 
 @Component({
   selector: 'app-interactions',
   templateUrl: './interactions.component.html',
   styleUrls: ['./interactions.component.scss'],
   providers: [
-    KalturaLogger.createLogger('InteractionsComponent'),
+    VidiunLogger.createLogger('InteractionsComponent'),
     InteractionsConfig,
     ReportService
   ],
@@ -37,16 +37,16 @@ export class InteractionsComponent extends InteractionsBaseReportComponent imple
   
   private _updateTableHeight = new Subject<void>();
   private _order = '-count_viral';
-  private _reportType = KalturaReportType.playerRelatedInteractions;
+  private _reportType = VidiunReportType.playerRelatedInteractions;
   private _dataConfig: ReportDataConfig;
   private _partnerId = analyticsConfig.pid;
-  private _apiUrl = analyticsConfig.kalturaServer.uri.startsWith('http')
-    ? analyticsConfig.kalturaServer.uri
-    : `${location.protocol}//${analyticsConfig.kalturaServer.uri}`;
+  private _apiUrl = analyticsConfig.vidiunServer.uri.startsWith('http')
+    ? analyticsConfig.vidiunServer.uri
+    : `${location.protocol}//${analyticsConfig.vidiunServer.uri}`;
   
   protected _componentId = 'interactions';
   
-  public interactions$ = new BehaviorSubject<{ current: Report, compare: Report, busy: boolean, error: KalturaAPIException }>({ current: null, compare: null, busy: false, error: null });
+  public interactions$ = new BehaviorSubject<{ current: Report, compare: Report, busy: boolean, error: VidiunAPIException }>({ current: null, compare: null, busy: false, error: null });
   public _updateTableHeight$ = this._updateTableHeight.asObservable();
   
   public _columns: string[] = [];
@@ -58,21 +58,21 @@ export class InteractionsComponent extends InteractionsBaseReportComponent imple
   public _tableData: TableRow[] = [];
   public _compareTableData: TableRow[] = [];
   public _selectedMetrics: string;
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
   public _lineChartData = {};
   public _showTable = false;
   public _totalCount = 0;
   public _compareTotalCount = 0;
   public _currentDates: string;
   public _compareDates: string;
-  public _pager = new KalturaFilterPager({ pageSize: 10, pageIndex: 1 });
-  public _comparePager = new KalturaFilterPager({ pageSize: 10, pageIndex: 1 });
+  public _pager = new VidiunFilterPager({ pageSize: 10, pageIndex: 1 });
+  public _comparePager = new VidiunFilterPager({ pageSize: 10, pageIndex: 1 });
   public _currentTableBusy = false;
   public _compareTableBusy = false;
   public _currentTableBlockerMessage: AreaBlockerMessage = null;
   public _compareTableBlockerMessage: AreaBlockerMessage = null;
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -88,7 +88,7 @@ export class InteractionsComponent extends InteractionsBaseReportComponent imple
               private _errorsManager: ErrorsManagerService,
               private _authService: AuthService,
               private _dataConfigService: InteractionsConfig,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _router: Router,
               private _activatedRoute: ActivatedRoute,
               private _browserService: BrowserService) {
@@ -252,7 +252,7 @@ export class InteractionsComponent extends InteractionsBaseReportComponent imple
     this._comparePager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
       this._compareFirstTimeLoading = true;
@@ -296,13 +296,13 @@ export class InteractionsComponent extends InteractionsBaseReportComponent imple
     }
   }
   
-  private _extendTableRow (item: TableRow<string>, index: number, pager: KalturaPager): TableRow<string> {
+  private _extendTableRow (item: TableRow<string>, index: number, pager: VidiunPager): TableRow<string> {
     item['index'] = String(pager.pageSize * (pager.pageIndex - 1) + (index + 1));
     item['thumbnailUrl'] = `${this._apiUrl}/p/${this._partnerId}/sp/${this._partnerId}00/thumbnail/entry_id/${item['object_id']}/width/256/height/144?rnd=${Math.random()}`;
     return item;
   }
   
-  private _handleTable(table: KalturaReportTable, compare?: Report): void {
+  private _handleTable(table: VidiunReportTable, compare?: Report): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._columns = columns;
@@ -317,11 +317,11 @@ export class InteractionsComponent extends InteractionsBaseReportComponent imple
     }
   }
   
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
   }
   
-  private _handleGraphs(graphs: KalturaReportGraph[]): void {
+  private _handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,
@@ -351,7 +351,7 @@ export class InteractionsComponent extends InteractionsBaseReportComponent imple
     }
   }
   
-  public _onPaginationChanged(isCompareTable: boolean, pager: KalturaPager, event: { page: number, pageCount: number, rows: TableRow<string>, first: number }): void {
+  public _onPaginationChanged(isCompareTable: boolean, pager: VidiunPager, event: { page: number, pageCount: number, rows: TableRow<string>, first: number }): void {
     if (event.page !== (pager.pageIndex - 1)) {
       this._logger.trace('Handle pagination changed action by user', { newPage: event.page + 1 });
       pager.pageIndex = event.page + 1;
@@ -374,7 +374,7 @@ export class InteractionsComponent extends InteractionsBaseReportComponent imple
   public _drillDown(row: TableRow<string>): void {
     const { object_id: entryId, status } = row;
 
-    if (status === KalturaEntryStatus.ready) {
+    if (status === VidiunEntryStatus.ready) {
       if (analyticsConfig.isHosted) {
         const params = this._browserService.getCurrentQueryParams('string');
         this._frameEventManager.publish(FrameEvents.NavigateTo, `/analytics/entry?id=${entryId}&${params}`);

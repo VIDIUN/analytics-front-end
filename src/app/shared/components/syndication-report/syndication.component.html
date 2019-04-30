@@ -1,15 +1,15 @@
-<div class="kReport kOverrideFAIcons">
-  <div class="kFilters">
-    <span class="kTitle" *ngIf="!_drillDown">{{'app.engagement.topDomainsReport.topDomains' | translate}}</span>
-    <kInputHelper *ngIf="!_drillDown">
+<div class="vReport vOverrideFAIcons">
+  <div class="vFilters">
+    <span class="vTitle" *ngIf="!_drillDown">{{'app.engagement.topDomainsReport.topDomains' | translate}}</span>
+    <vInputHelper *ngIf="!_drillDown">
       <span>{{'app.engagement.topDomainsReport.topDomains_tt' | translate}}</span>
-    </kInputHelper>
+    </vInputHelper>
     <div class="kBreadcrumbs" *ngIf="_drillDown">
       <a (click)="_onDrillDown(null)">{{'app.engagement.topDomainsReport.topDomains' | translate}}</a>
       <span class="separator">/</span>
       <span>{{_drillDown}}</span>
-      <i class="kIconexternal_link kOpenLink"
-         [kTooltip]="'app.engagement.topDomainsReport.openLink' | translate"
+      <i class="vIconexternal_link vOpenLink"
+         [vTooltip]="'app.engagement.topDomainsReport.openLink' | translate"
          (click)="_openLink({ referrer: _drillDown })"></i>
     </div>
   </div>
@@ -72,7 +72,7 @@
                          onError="this.onerror=null;this.style.display='none'"
                          (error)="holder.classList.add('vIconfile-small')">
                   </div>
-                  <i *ngIf="_drillDown" class="kIconexternal_link kOpenLink" (click)="_openLink(data)" [kTooltip]="'app.engagement.topDomainsReport.openLink' | translate"></i>
+                  <i *ngIf="_drillDown" class="vIconexternal_link vOpenLink" (click)="_openLink(data)" [vTooltip]="'app.engagement.topDomainsReport.openLink' | translate"></i>
                 </td>
                 <td *ngFor="let col of _columns; let i = index"
                     [class.vHighlight]="i===0"

@@ -1,7 +1,7 @@
 import { Input } from '@angular/core';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
 import { RefineFilter } from 'shared/components/filter/filter.component';
-import { KalturaReportInputFilter } from 'kaltura-ngx-client';
+import { VidiunReportInputFilter } from 'vidiun-ngx-client';
 import { refineFilterToServerValue } from 'shared/components/filter/filter-to-server-value.util';
 
 export abstract class InteractionsBaseReportComponent {
@@ -35,7 +35,7 @@ export abstract class InteractionsBaseReportComponent {
   
   protected abstract _updateRefineFilter(): void;
   
-  protected _refineFilterToServerValue(filter: KalturaReportInputFilter): void {
+  protected _refineFilterToServerValue(filter: VidiunReportInputFilter): void {
     refineFilterToServerValue(this._refineFilter, filter);
   }
 }

@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 import { SortEvent } from 'primeng/api';
 import { Subject } from 'rxjs';
-import { KalturaPager } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunPager } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 
 @Component({
   selector: 'app-interactions-table',
@@ -19,7 +19,7 @@ export class InteractionsTableComponent {
   @Input() firstTimeLoading = true;
   @Input() totalCount = 0;
   @Input() name = 'default';
-  @Input() pager: KalturaPager;
+  @Input() pager: VidiunPager;
   @Input() areaBlockerMessage: AreaBlockerMessage;
   @Input() isBusy: boolean;
   

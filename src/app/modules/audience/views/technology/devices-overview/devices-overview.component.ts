@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorDetails, ErrorsManagerService, ReportConfig, ReportHelper, ReportService } from 'shared/services';
 import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils
 import { analyticsConfig } from 'configuration/analytics-config';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 export interface SummaryItem {
   key: string;
@@ -33,7 +33,7 @@ export interface Summary {
   templateUrl: './devices-overview.component.html',
   styleUrls: ['./devices-overview.component.scss'],
   providers: [
-    KalturaLogger.createLogger('DevicesOverviewComponent'),
+    VidiunLogger.createLogger('DevicesOverviewComponent'),
     DevicesOverviewConfig,
     ReportService,
   ]
@@ -88,7 +88,7 @@ export class DevicesOverviewComponent implements OnDestroy {
               private _authService: AuthService,
               private _errorsManager: ErrorsManagerService,
               private _platformsConfigService: DevicesOverviewConfig,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     this._dataConfig = _platformsConfigService.getConfig();
     this._selectedMetrics = this._dataConfig.totals.preSelected;
     this.metricChanged.emit(this._selectedMetrics);
@@ -160,7 +160,7 @@ export class DevicesOverviewComponent implements OnDestroy {
     const currentPeriodTitle = `${DateFilterUtils.formatMonthDayString(this._filter.fromDate, analyticsConfig.locale)} – ${DateFilterUtils.formatMonthDayString(this._filter.toDate, analyticsConfig.locale)}`;
     const comparePeriodTitle = `${DateFilterUtils.formatMonthDayString(startDate, analyticsConfig.locale)} – ${DateFilterUtils.formatMonthDayString(endDate, analyticsConfig.locale)}`;
   
-    const compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+    const compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
     compareFilter.fromDate = startDate;
     compareFilter.toDate = endDate;
 
@@ -339,9 +339,9 @@ export class DevicesOverviewComponent implements OnDestroy {
               ? config[key].graphTooltip(value)
               : value;
             return `
-              <div class="kDevicesGraphTooltip">
-                <div class="kTitle">${name}</div>
-                <div class="kValue">
+              <div class="vDevicesGraphTooltip">
+                <div class="vTitle">${name}</div>
+                <div class="vValue">
                   ${this._translate.instant('app.audience.technology.graphTooltip.' + key, [formattedValue])}
                 </div>
               </div>

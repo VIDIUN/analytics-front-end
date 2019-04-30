@@ -1,5 +1,5 @@
 export function getCountryName(country: string, toServerName = false): string {
-  // map kaltura server country names to gep map county names
+  // map vidiun server country names to gep map county names
   const serveCountryNames = [
     'Aland Islands',
     'Antigua and Barbuda',

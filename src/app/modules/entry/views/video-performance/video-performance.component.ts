@@ -30,7 +30,7 @@ export class VideoPerformanceComponent extends EntryBase {
   @Input() dateFilterComponent: DateFilterComponent;
   
   private _order = '-date_id';
-  private _reportType = KalturaReportType.userTopContent;
+  private _reportType = VidiunReportType.userTopContent;
   private _dataConfig: ReportDataConfig;
   public _metricsCompareTo: string = null;
   
@@ -51,10 +51,10 @@ export class VideoPerformanceComponent extends EntryBase {
   public _metricsOptions: SelectItem[] = [];
   public _metricsColors: { [key: string]: string; } = {};
   public _showTable = false;
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
   public _pageSize = analyticsConfig.defaultPageSize;
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -160,10 +160,10 @@ export class VideoPerformanceComponent extends EntryBase {
     this._filter.toDate = this._dateFilter.endDate;
     this._filter.interval = this._dateFilter.timeUnits;
     this._reportInterval = this._dateFilter.timeUnits;
-    this._order = this._reportInterval === KalturaReportInterval.days ? '-date_id' : '-month_id';
+    this._order = this._reportInterval === VidiunReportInterval.days ? '-date_id' : '-month_id';
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {
@@ -229,7 +229,7 @@ export class VideoPerformanceComponent extends EntryBase {
     }
   }
   
-  private _handleTable(graphs: KalturaReportGraph[]): void {
+  private _handleTable(graphs: VidiunReportGraph[]): void {
     const { columns, tableData, totalCount } = this._reportService.tableFromGraph(
       graphs,
       this._dataConfig.table,

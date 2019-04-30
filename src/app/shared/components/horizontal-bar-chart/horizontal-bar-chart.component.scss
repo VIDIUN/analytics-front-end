@@ -1,18 +1,18 @@
 @import '../../../../styles/variables';
 
-.kChartContainer {
+.vChartContainer {
   padding: 0 24px;
 
-  .kTable {
+  .vTable {
     min-height: 200px;
 
-    .kTableRow {
+    .vTableRow {
       display: flex;
       align-items: center;
 
-      .kRowIndex {
+      .vRowIndex {
         width: 40px;
-        color: $kGrayscale3;
+        color: $vGrayscale3;
       }
     }
   }
@@ -20,32 +20,32 @@
   .emptymessage {
     line-height: 200px;
     font-size: 28px;
-    color: $kGrayscale3;
+    color: $vGrayscale3;
 
-    .kEmptyMessage {
+    .vEmptyMessage {
       text-align: center;
       border-bottom: none;
     }
   }
 }
 
-.kCustomLegend {
+.vCustomLegend {
   display: flex;
   margin-bottom: 24px;
 
-  .kLegendItemContainer {
+  .vLegendItemContainer {
     display: flex;
     align-items: center;
     height: 20px;
     margin-right: 24px;
 
-    .kLegendItem {
+    .vLegendItem {
       font-size: 12px;
       font-weight: bold;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
 
-    .kCircle {
+    .vCircle {
       width: 10px;
       height: 10px;
       border-radius: 5px;

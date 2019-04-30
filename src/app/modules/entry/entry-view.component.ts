@@ -3,28 +3,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
 import {
   BaseEntryGetAction,
-  KalturaClient,
-  KalturaDetachedResponseProfile,
-  KalturaMediaEntry,
-  KalturaMediaType,
-  KalturaMultiRequest,
-  KalturaMultiResponse,
-  KalturaReportInputFilter,
-  KalturaReportInterval,
-  KalturaReportType,
-  KalturaRequestOptions,
-  KalturaResponseProfileType,
-  KalturaUser,
+  VidiunClient,
+  VidiunDetachedResponseProfile,
+  VidiunMediaEntry,
+  VidiunMediaType,
+  VidiunMultiRequest,
+  VidiunMultiResponse,
+  VidiunReportInputFilter,
+  VidiunReportInterval,
+  VidiunReportType,
+  VidiunRequestOptions,
+  VidiunResponseProfileType,
+  VidiunUser,
   UserGetAction
-} from 'kaltura-ngx-client';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+} from 'vidiun-ngx-client';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { DateChangeEvent, DateRanges } from 'shared/components/date-filter/date-filter.service';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { ErrorsManagerService } from 'shared/services';
 import { TranslateService } from '@ngx-translate/core';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
@@ -44,7 +44,7 @@ export class EntryViewComponent implements OnInit, OnDestroy {
   public _creationDate: moment.Moment = null;
   public _selectedRefineFilters: RefineFilter = null;
   public _dateRange = DateRanges.Last30D;
-  public _timeUnit = KalturaReportInterval.days;
+  public _timeUnit = VidiunReportInterval.days;
   public _totalCount: number;
   public _reportType: VidiunReportType = VidiunReportType.userUsage;
   public _selectedMetrics: string;
@@ -53,7 +53,7 @@ export class EntryViewComponent implements OnInit, OnDestroy {
   public _refineFilterOpened = false;
   public _blockerMessage: AreaBlockerMessage = null;
   public _exportConfig: ExportItem[] = [];
-  public _filter: KalturaReportInputFilter = new KalturaReportInputFilter(
+  public _filter: VidiunReportInputFilter = new VidiunReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -73,7 +73,7 @@ export class EntryViewComponent implements OnInit, OnDestroy {
   constructor(private _router: Router,
               private _route: ActivatedRoute,
               private _translate: TranslateService,
-              private _kalturaClient: KalturaClient,
+              private _vidiunClient: VidiunClient,
               private _errorsManager: ErrorsManagerService,
               private _frameEventManager: FrameEventManagerService,
               private _exportConfigService: EntryExportConfig) {
@@ -126,11 +126,11 @@ export class EntryViewComponent implements OnInit, OnDestroy {
     this._loadingEntry = true;
     this._blockerMessage = null;
 
-    const request = new KalturaMultiRequest(
+    const request = new VidiunMultiRequest(
       new BaseEntryGetAction({ entryId: this._entryId })
         .setRequestOptions({
-          responseProfile: new KalturaDetachedResponseProfile({
-            type: KalturaResponseProfileType.includeFields,
+          responseProfile: new VidiunDetachedResponseProfile({
+            type: VidiunResponseProfileType.includeFields,
             fields: 'name,mediaType,createdAt,msDuration,userId'
           })
         }),

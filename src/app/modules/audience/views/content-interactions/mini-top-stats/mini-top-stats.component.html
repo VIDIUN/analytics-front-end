@@ -1,23 +1,23 @@
-<div data-aid="report-mini-top-stats" class="kReport kMini kOverrideFAIcons">
-  <div class="kFilters">
-    <span class="kTitle">{{'app.contentInteractions.insights' | translate}}</span>
+<div data-aid="report-mini-top-stats" class="vReport vMini vOverrideFAIcons">
+  <div class="vFilters">
+    <span class="vTitle">{{'app.contentInteractions.insights' | translate}}</span>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
-    <div class="kReportContent">
-      <div *ngFor="let stat of _stats" class="kReportRow">
-        <div class="kValue">{{stat.value}}</div>
-        <div class="kInfo">
-          <span class="kLabel">{{stat.label}}</span>
-          <span class="kDesc">{{stat.desc}}</span>
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+    <div class="vReportContent">
+      <div *ngFor="let stat of _stats" class="vReportRow">
+        <div class="vValue">{{stat.value}}</div>
+        <div class="vInfo">
+          <span class="vLabel">{{stat.label}}</span>
+          <span class="vDesc">{{stat.desc}}</span>
         </div>
       </div>
 
-      <div class="kReportRow kNoResults" *ngIf="!_isBusy && !_stats.length">
+      <div class="vReportRow vNoResults" *ngIf="!_isBusy && !_stats.length">
         {{'app.common.noResults' | translate}}
       </div>
     </div>
 
-  </k-area-blocker>
+  </v-area-blocker>
 </div>
 

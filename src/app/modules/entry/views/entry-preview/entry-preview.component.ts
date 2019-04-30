@@ -1,7 +1,7 @@
 import { Component, Input, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportHelper, ReportService } from 'shared/services';
 import { CompareService } from 'shared/services/compare.service';
 import { ReportDataConfig, ReportDataSection } from 'shared/services/storage-data-base.config';
@@ -28,10 +28,10 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
   @Input() entryId = '';
 
   private _dataConfig: ReportDataConfig;
-  private _pager = new KalturaFilterPager({ pageSize: 500, pageIndex: 1 });
+  private _pager = new VidiunFilterPager({ pageSize: 500, pageIndex: 1 });
   private playerInstance: any = null;
   private playerInitialized = false;
-  private _reportType = KalturaReportType.percentiles;
+  private _reportType = VidiunReportType.percentiles;
 
   public _dateFilter: DateChangeEvent;
   protected _componentId = 'preview';
@@ -39,9 +39,9 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
   public _isBusy: boolean;
   public _blockerMessage: AreaBlockerMessage = null;
   public _tabsData: Tab[] = [];
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -97,10 +97,10 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
           const { value, dataIndex } = Array.isArray(params) ? params[0] : params;
           const progressValue = ReportHelper.time(String(dataIndex / 99 * this._duration)); // empirically found formula, closest result to expected so far
           let tooltip =  `
-            <div class="kEntryGraphTooltip">
-              <div class="kCurrentTime">${progressValue}</div>
-              <div class="kValue">
-                <span class="kBullet" style="color: ${getPrimaryColor()}">&bull;</span>
+            <div class="vEntryGraphTooltip">
+              <div class="vCurrentTime">${progressValue}</div>
+              <div class="vValue">
+                <span class="vBullet" style="color: ${getPrimaryColor()}">&bull;</span>
                 ${this._translate.instant('app.entry.views')}:&nbsp;${value}
               </div>
             </div>
@@ -112,13 +112,13 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
 
             tooltip = `
               <div style="font-weight: normal; color: #999999">${progressValue}</div>
-              <div class="kEntryCompareGraphTooltip" style="padding-bottom: 0px">
-                <span class="kBullet" style="color: ${getPrimaryColor()}">&bull;</span>
+              <div class="vEntryCompareGraphTooltip" style="padding-bottom: 0px">
+                <span class="vBullet" style="color: ${getPrimaryColor()}">&bull;</span>
                 <span>${currentDatePeriod}</span>
                 <span style="margin-left: 24px">${this._translate.instant('app.entry.views')}:&nbsp;${value}</span>
               </div>
-              <div class="kEntryCompareGraphTooltip" style="padding-top: 0px">
-                <span class="kBullet" style="color: ${getSecondaryColor()}">&bull;</span>
+              <div class="vEntryCompareGraphTooltip" style="padding-top: 0px">
+                <span class="vBullet" style="color: ${getSecondaryColor()}">&bull;</span>
                 <span>${compareDatePeriod}</span>
                 <span style="margin-left: 24px">${this._translate.instant('app.entry.views')}:&nbsp;${compareValue}</span>
               </div>
@@ -287,7 +287,7 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
     this._reportInterval = this._dateFilter.timeUnits;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {
@@ -310,7 +310,7 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
         pid: analyticsConfig.pid,
         entryid: this.entryId,
         flashvars: {
-          'ks': analyticsConfig.ks,
+          'vs': analyticsConfig.vs,
           "EmbedPlayer.LiveCuepoints": true,
           // "IframeCustomPluginCss1" : environment.production ? "assets/player.css" : "../assets/player.css",
           "controlBarContainer": {
@@ -385,12 +385,12 @@ export class EntryPreviewComponent extends EntryBase implements OnInit {
         this._playProgress = 100;
       });
     });
-    this.playerInstance.kBind('firstPlay', (event) => {
+    this.playerInstance.vBind('firstPlay', (event) => {
       this.zone.run(() => {
         this._playerPlayed = true;
       });
     });
-    this.playerInstance.kBind('seeked', (event) => {
+    this.playerInstance.vBind('seeked', (event) => {
       this.zone.run(() => {
         this._playProgress =  parseFloat((event / this.playerInstance.evaluate('{duration}')).toFixed(10)) * 100;
         this._currentTime = parseFloat(event) * 1000;

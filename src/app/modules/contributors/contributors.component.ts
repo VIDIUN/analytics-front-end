@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 @Component({
     selector: 'app-contributors',
     templateUrl: './contributors.component.html',
     styleUrls: ['./contributors.component.scss'],
     providers: [
-      KalturaLogger.createLogger('ContributorsComponent'),
+      VidiunLogger.createLogger('ContributorsComponent'),
     ]
 })
 export class ContributorsComponent  {

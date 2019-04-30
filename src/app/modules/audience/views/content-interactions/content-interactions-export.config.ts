@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ExportConfigService, ExportItem } from 'shared/components/export-csv/export-csv.component';
-import { KalturaReportExportItemType, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunReportExportItemType, VidiunReportType } from 'vidiun-ngx-client';
 
 @Injectable()
 export class ContentInteractionsExportConfig implements ExportConfigService {
@@ -12,24 +12,24 @@ export class ContentInteractionsExportConfig implements ExportConfigService {
     return [
       {
         label: this._translate.instant('app.contentInteractions.exportLabels.interactions'),
-        reportType: KalturaReportType.playerRelatedInteractions,
-        sections: [KalturaReportExportItemType.graph, KalturaReportExportItemType.table],
+        reportType: VidiunReportType.playerRelatedInteractions,
+        sections: [VidiunReportExportItemType.graph, VidiunReportExportItemType.table],
         order: '-count_viral',
       },
       {
         label: this._translate.instant('app.contentInteractions.exportLabels.moderation'),
-        reportType: KalturaReportType.contentReportReasons,
-        sections: [KalturaReportExportItemType.table],
+        reportType: VidiunReportType.contentReportReasons,
+        sections: [VidiunReportExportItemType.table],
       },
       {
         label: this._translate.instant('app.contentInteractions.exportLabels.playback'),
-        reportType: KalturaReportType.playbackRate,
-        sections: [KalturaReportExportItemType.total],
+        reportType: VidiunReportType.playbackRate,
+        sections: [VidiunReportExportItemType.total],
       },
       {
         label: this._translate.instant('app.contentInteractions.exportLabels.highlights'),
-        reportType: KalturaReportType.playerRelatedInteractions,
-        sections: [KalturaReportExportItemType.total],
+        reportType: VidiunReportType.playerRelatedInteractions,
+        sections: [VidiunReportExportItemType.total],
         order: '-count_viral',
       },
     ];

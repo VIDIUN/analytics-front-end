@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
-import { KalturaClient, KalturaFilterPager, KalturaUser, KalturaUserFilter, UserListAction } from 'kaltura-ngx-client';
+import { VidiunClient, VidiunFilterPager, VidiunUser, VidiunUserFilter, UserListAction } from 'vidiun-ngx-client';
 import { Observable, Subject, Unsubscribable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
-import { AutoComplete, SuggestionsProviderData } from '@kaltura-ng/kaltura-primeng-ui';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
+import { AutoComplete, SuggestionsProviderData } from '@vidiun-ng/vidiun-primeng-ui';
 
 @Component({
   selector: 'app-engagement-users-filter',
   template: `
-    <kAutoComplete #searchUsers
+    <vAutoComplete #searchUsers
                    appendTo="body"
                    suggestionItemField="item"
                    suggestionLabelField="name"
@@ -17,11 +17,11 @@ import { AutoComplete, SuggestionsProviderData } from '@kaltura-ng/kaltura-prime
                    [minLength]="3"
                    [suggestionsProvider]="_usersProvider"
                    (onSelect)="_onSuggestionSelected()"
-                   (completeMethod)="_searchUsers($event, true)"></kAutoComplete>
+                   (completeMethod)="_searchUsers($event, true)"></vAutoComplete>
   `,
 })
 export class UsersFilterComponent implements OnDestroy {
-  @Input() set selectedUsers(value: KalturaUser[]) {
+  @Input() set selectedUsers(value: VidiunUser[]) {
     if (Array.isArray(value)) {
       this._selectedUsers = value;
     }
@@ -30,12 +30,12 @@ export class UsersFilterComponent implements OnDestroy {
   
   @ViewChild('searchUsers') _autoComplete: AutoComplete = null;
   
-  private _selectedUsers: KalturaUser[] = [];
+  private _selectedUsers: VidiunUser[] = [];
   private _searchUsersSubscription: Unsubscribable;
   
   public _usersProvider = new Subject<SuggestionsProviderData>();
   
-  constructor(private _kalturaServerClient: KalturaClient) {
+  constructor(private _vidiunServerClient: VidiunClient) {
   }
   
   ngOnDestroy() {
@@ -53,7 +53,7 @@ export class UsersFilterComponent implements OnDestroy {
     
     this._searchUsersSubscription = this._searchUsersRequest(event.query).subscribe(data => {
         const suggestions = [];
-        (data || []).forEach((suggestedUser: KalturaUser) => {
+        (data || []).forEach((suggestedUser: VidiunUser) => {
           suggestedUser['__tooltip'] = suggestedUser.id;
           let isSelectable = true;
           if (formControl) {
@@ -74,7 +74,7 @@ export class UsersFilterComponent implements OnDestroy {
   
   public _onSuggestionSelected(): void {
     
-    const selectedItem = this._autoComplete.getValue() as KalturaUser;
+    const selectedItem = this._autoComplete.getValue() as VidiunUser;
     // clear user text from component
     this._autoComplete.clearValue();
     
@@ -84,14 +84,14 @@ export class UsersFilterComponent implements OnDestroy {
     }
   }
   
-  private _searchUsersRequest(text: string): Observable<KalturaUser[]> {
-    return this._kalturaServerClient
+  private _searchUsersRequest(text: string): Observable<VidiunUser[]> {
+    return this._vidiunServerClient
       .request(
         new UserListAction({
-          filter: new KalturaUserFilter({
+          filter: new VidiunUserFilter({
             idOrScreenNameStartsWith: text
           }),
-          pager: new KalturaFilterPager({
+          pager: new VidiunFilterPager({
             pageIndex: 0,
             pageSize: 30
           })

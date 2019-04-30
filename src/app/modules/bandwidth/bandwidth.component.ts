@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 @Component({
     selector: 'app-bandwidth',
     templateUrl: './bandwidth.component.html',
     styleUrls: ['./bandwidth.component.scss'],
     providers: [
-      KalturaLogger.createLogger('BandwidthComponent'),
+      VidiunLogger.createLogger('BandwidthComponent'),
     ]
 })
 export class BandwidthComponent  {

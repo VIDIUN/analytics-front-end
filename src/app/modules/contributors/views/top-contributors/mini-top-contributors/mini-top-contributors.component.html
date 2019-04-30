@@ -1,10 +1,10 @@
-<div data-aid="report-mini-top-contributors" class="kReport kMini kOverrideFAIcons">
-  <div class="kFilters">
-    <span class="kTitle">{{'app.contributors.top-contributors' | translate}}</span>
-    <kInputHelper>
+<div data-aid="report-mini-top-contributors" class="vReport vMini vOverrideFAIcons">
+  <div class="vFilters">
+    <span class="vTitle">{{'app.contributors.top-contributors' | translate}}</span>
+    <vInputHelper>
       <span>{{'app.contributors.top-contributors_tt' | translate}}</span>
-    </kInputHelper>
-    <a (click)="_scrollTo('#top-contributors')" class="kDetails">{{'app.common.details' | translate}}</a>
+    </vInputHelper>
+    <a (click)="_scrollTo('#top-contributors')" class="vDetails">{{'app.common.details' | translate}}</a>
   </div>
 
   <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
@@ -18,16 +18,16 @@
         <div class="vUser">
           <i class="icon-small-viewer-contributor"></i>
         </div>
-        <div class="kReportRowDetails">
-          <span class="kTitle" [kTooltip]="item.creator_name" [showOnEllipsis]="true">{{item.creator_name}}</span>
-          <span class="kScore" *ngIf="item['contributor_ranking'] !== undefined">{{item['contributor_ranking']}}/10</span>
-          <div class="kScore" *ngIf="item['contributor_ranking'] === undefined" [ngStyle]="{display: 'inline-block'}">
+        <div class="vReportRowDetails">
+          <span class="vTitle" [vTooltip]="item.creator_name" [showOnEllipsis]="true">{{item.creator_name}}</span>
+          <span class="vScore" *ngIf="item['contributor_ranking'] !== undefined">{{item['contributor_ranking']}}/10</span>
+          <div class="vScore" *ngIf="item['contributor_ranking'] === undefined" [ngStyle]="{display: 'inline-block'}">
             {{'app.common.na' | translate}}
-            <i class="kIconhelp_full" [kTooltip]="'app.contributors.noRanking' | translate"></i>
+            <i class="vIconhelp_full" [vTooltip]="'app.contributors.noRanking' | translate"></i>
           </div>
         </div>
       </div>
-      <div class="kReportRow kNoResults" *ngIf="!_isBusy && !_tableData[0]">
+      <div class="vReportRow vNoResults" *ngIf="!_isBusy && !_tableData[0]">
         {{'app.common.noResults' | translate}}
       </div>
     </div>
@@ -39,19 +39,19 @@
           <img src="assets/images/ribbon_small.svg">
           <span>{{_tableData[0].index}}</span>
         </div>
-        <div class="kUser">
+        <div class="vUser">
           <i class="icon-small-viewer-contributor"></i>
         </div>
         <div class="vReportRowDetails">
           <span class="vTitle" [vTooltip]="_tableData[0].creator_name" [showOnEllipsis]="true">
             {{_tableData[0].creator_name}}
           </span>
-          <span class="kScore" *ngIf="_tableData[0]['contributor_ranking'] !== undefined">
+          <span class="vScore" *ngIf="_tableData[0]['contributor_ranking'] !== undefined">
             {{_tableData[0]['contributor_ranking']}}/10
           </span>
-          <div class="kScore" *ngIf="_tableData[0]['contributor_ranking'] === undefined" [ngStyle]="{display: 'inline-block'}">
+          <div class="vScore" *ngIf="_tableData[0]['contributor_ranking'] === undefined" [ngStyle]="{display: 'inline-block'}">
             {{'app.common.na' | translate}}
-            <i class="kIconhelp_full" [kTooltip]="'app.contributors.noRanking' | translate"></i>
+            <i class="vIconhelp_full" [vTooltip]="'app.contributors.noRanking' | translate"></i>
           </div>
         </div>
       </div>
@@ -64,19 +64,19 @@
           <img src="assets/images/ribbon_small.svg">
           <span>{{_compareTableData[0].index}}</span>
         </div>
-        <div class="kUser">
+        <div class="vUser">
           <i class="icon-small-viewer-contributor"></i>
         </div>
         <div class="vReportRowDetails">
           <span class="vTitle" [vTooltip]="_compareTableData[0].creator_name" [showOnEllipsis]="true">
             {{_compareTableData[0].creator_name}}
           </span>
-          <span class="kScore" *ngIf="_compareTableData[0]['contributor_ranking'] !== undefined">
+          <span class="vScore" *ngIf="_compareTableData[0]['contributor_ranking'] !== undefined">
             {{_compareTableData[0]['contributor_ranking']}}/10
           </span>
-          <div class="kScore" *ngIf="_compareTableData[0]['contributor_ranking'] === undefined" [ngStyle]="{display: 'inline-block'}">
+          <div class="vScore" *ngIf="_compareTableData[0]['contributor_ranking'] === undefined" [ngStyle]="{display: 'inline-block'}">
             {{'app.common.na' | translate}}
-            <i class="kIconhelp_full" [kTooltip]="'app.contributors.noRanking' | translate"></i>
+            <i class="vIconhelp_full" [vTooltip]="'app.contributors.noRanking' | translate"></i>
           </div>
         </div>
       </div>

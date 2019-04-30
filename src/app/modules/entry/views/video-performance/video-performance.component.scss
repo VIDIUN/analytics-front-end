@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-.kNoResults {
+.vNoResults {
   display: flex;
   width: 100%;
   height: 280px;
@@ -17,30 +17,30 @@
     color: $vGrayscale3;
   }
 }
-.kChart{
+.vChart{
   margin-top: 12px;
 }
-.kCustomLegend{
+.vCustomLegend{
   width: 100%;
   height: 50px;
   position: absolute;
   top: 360px;
   padding-left: 24px;
-  .kLegendItemContainer{
+  .vLegendItemContainer{
     display: flex;
     align-items: center;
     height: 20px;
-    .kPeriod{
+    .vPeriod{
       font-size: 12px;
       font-weight: normal;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
-    .kLegendItem{
+    .vLegendItem{
       font-size: 12px;
       font-weight: bold;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
-    .kCircle{
+    .vCircle{
       width: 10px;
       height: 10px;
       border-radius: 5px;

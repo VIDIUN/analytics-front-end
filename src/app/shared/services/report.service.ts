@@ -1,18 +1,18 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import {
-  KalturaClient,
-  KalturaFilterPager,
-  KalturaMultiResponse,
-  KalturaReportBaseTotal,
-  KalturaReportGraph,
-  KalturaReportInputFilter,
-  KalturaReportInterval,
-  KalturaReportResponseOptions,
-  KalturaReportTable,
-  KalturaReportTotal,
-  KalturaReportType,
-  KalturaRequest,
-  KalturaResponse,
+  VidiunClient,
+  VidiunFilterPager,
+  VidiunMultiResponse,
+  VidiunReportBaseTotal,
+  VidiunReportGraph,
+  VidiunReportInputFilter,
+  VidiunReportInterval,
+  VidiunReportResponseOptions,
+  VidiunReportTable,
+  VidiunReportTotal,
+  VidiunReportType,
+  VidiunRequest,
+  VidiunResponse,
   ReportGetGraphsAction,
   ReportGetTableAction,
   ReportGetTotalAction,
@@ -29,14 +29,14 @@ import { ReportDataConfig, ReportDataItemConfig } from 'shared/services/storage-
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { getPrimaryColor } from 'shared/utils/colors';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 
 export type ReportConfig = {
-  reportType: KalturaReportType,
-  filter: KalturaReportInputFilter,
+  reportType: VidiunReportType,
+  filter: VidiunReportInputFilter,
   order: string,
-  pager?: KalturaFilterPager,
+  pager?: VidiunFilterPager,
   objectIds?: string
 };
 
@@ -66,8 +66,8 @@ export class ReportService implements OnDestroy {
   
   constructor(private _frameEventManager: FrameEventManagerService,
               private _translate: TranslateService,
-              private _kalturaClient: KalturaClient,
-              private _logger: KalturaLogger) {
+              private _vidiunClient: VidiunClient,
+              private _logger: VidiunLogger) {
     this._logger = _logger.subLogger('ReportService');
   }
   
@@ -81,7 +81,7 @@ export class ReportService implements OnDestroy {
     const logger = this._logger.subLogger(`Report #${config.reportType}`);
     logger.info('Request report from the server', { reportType: config.reportType, sections: Object.keys(sections) });
 
-    const responseOptions: KalturaReportResponseOptions = new KalturaReportResponseOptions({
+    const responseOptions: VidiunReportResponseOptions = new VidiunReportResponseOptions({
       delimiter: analyticsConfig.valueSeparator,
       skipEmptyDates: analyticsConfig.skipEmptyBuckets
     });
@@ -105,7 +105,7 @@ export class ReportService implements OnDestroy {
         const getTable = new ReportGetTableAction({
           reportType: config.reportType,
           reportInputFilter: config.filter,
-          pager: config.pager || new KalturaFilterPager({ pageSize: analyticsConfig.defaultPageSize }),
+          pager: config.pager || new VidiunFilterPager({ pageSize: analyticsConfig.defaultPageSize }),
           order: config.order,
           objectIds: config.objectIds ? config.objectIds : null,
           responseOptions
@@ -117,7 +117,7 @@ export class ReportService implements OnDestroy {
           this._querySubscription = null;
         }
         
-        let request: KalturaRequest<any>[] = [];
+        let request: VidiunRequest<any>[] = [];
         
         if (sections.table) {
           request.push(getTable);
@@ -269,10 +269,10 @@ export class ReportService implements OnDestroy {
     });
   }
   
-  public parseGraphs(graphs: KalturaReportGraph[],
+  public parseGraphs(graphs: VidiunReportGraph[],
                      config: ReportDataItemConfig,
                      period: { from: number, to: number },
-                     reportInterval: KalturaReportInterval,
+                     reportInterval: VidiunReportInterval,
                      dataLoadedCb?: Function,
                      graphOptions?: { xAxisLabelRotation?: number, yAxisLabelRotation?: number }): GraphsData {
     this._logger.trace(
@@ -505,7 +505,7 @@ export class ReportService implements OnDestroy {
   public getGraphDataFromTable(table: VidiunReportTable,
                                dataConfig: ReportDataConfig,
                                period: { from: number, to: number },
-                               reportInterval: KalturaReportInterval,
+                               reportInterval: VidiunReportInterval,
                                graphOptions?: { xAxisLabelRotation?: number, yAxisLabelRotation?: number }) {
     this._logger.trace('Parse graph data from table data', { headers: table.header, period });
 
@@ -515,17 +515,17 @@ export class ReportService implements OnDestroy {
   }
   
   
-  public convertTableDataToGraphData(data: { [key: string]: string }[], dataConfig: ReportDataConfig): KalturaReportGraph[] {
+  public convertTableDataToGraphData(data: { [key: string]: string }[], dataConfig: ReportDataConfig): VidiunReportGraph[] {
     this._logger.trace('Convert table data to graph data', { graphIds: Object.keys(dataConfig.graph.fields) });
     return Object.keys(dataConfig.graph.fields).map(
-      field => new KalturaReportGraph({ id: field, data: data.reduce((acc, val) => (acc += `${val.source}${analyticsConfig.valueSeparator}${val[field]};`, acc), '') })
+      field => new VidiunReportGraph({ id: field, data: data.reduce((acc, val) => (acc += `${val.source}${analyticsConfig.valueSeparator}${val[field]};`, acc), '') })
     );
   }
   
-  public tableFromGraph(graphs: KalturaReportGraph[],
+  public tableFromGraph(graphs: VidiunReportGraph[],
                         config: ReportDataItemConfig,
-                        reportInterval: KalturaReportInterval): { columns: string[], tableData: TableRow[], totalCount: number } {
-    const firstColumn = reportInterval === KalturaReportInterval.days ? 'date_id' : 'month_id';
+                        reportInterval: VidiunReportInterval): { columns: string[], tableData: TableRow[], totalCount: number } {
+    const firstColumn = reportInterval === VidiunReportInterval.days ? 'date_id' : 'month_id';
     let columns = [];
     const data = [];
     

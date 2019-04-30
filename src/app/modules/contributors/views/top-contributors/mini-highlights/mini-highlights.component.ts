@@ -21,7 +21,7 @@ import { DateFilterComponent } from 'shared/components/date-filter/date-filter.c
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { TopContributorsBaseReportComponent } from '../top-contributors-base-report/top-contributors-base-report.component';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 
 @Component({
@@ -29,7 +29,7 @@ import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils
   templateUrl: './mini-highlights.component.html',
   styleUrls: ['./mini-highlights.component.scss'],
   providers: [
-    KalturaLogger.createLogger('ContributorsMiniHighlightsComponent'),
+    VidiunLogger.createLogger('ContributorsMiniHighlightsComponent'),
     MiniHighlightsConfig,
     ReportService,
   ]
@@ -66,7 +66,7 @@ export class ContributorsMiniHighlightsComponent extends TopContributorsBaseRepo
               private _authService: AuthService,
               private pageScrollService: PageScrollService,
               private _dataConfigService: MiniHighlightsConfig,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     super();
     
     this._dataConfig = _dataConfigService.getConfig();
@@ -128,7 +128,7 @@ export class ContributorsMiniHighlightsComponent extends TopContributorsBaseRepo
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {

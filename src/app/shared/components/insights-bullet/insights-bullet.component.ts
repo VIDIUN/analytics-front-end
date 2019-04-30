@@ -24,7 +24,7 @@ export class InsightsBulletComponent {
         .map((item, index) => {
           const result = sum ? parseFloat((item.value / sum * 100).toFixed(2)) : 0;
           const color = colors[index];
-          const tooltip = `<div class="kDefaultTooltip"><span class="kBullet" style="color: ${color}">&bull;</span><span style="margin-right: 8px">${item.label}</span><span>${result}%</span></div>`;
+          const tooltip = `<div class="vDefaultTooltip"><span class="vBullet" style="color: ${color}">&bull;</span><span style="margin-right: 8px">${item.label}</span><span>${result}%</span></div>`;
           return {
             value: result,
             label: item.label,

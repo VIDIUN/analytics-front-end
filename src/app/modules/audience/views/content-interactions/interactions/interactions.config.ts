@@ -17,22 +17,22 @@ export class InteractionsConfig extends ReportDataBaseConfig {
           'count_plays': {
             format: value => value,
             colors: [getPrimaryColor(), getSecondaryColor()],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.contentInteractions.count_plays`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.contentInteractions.count_plays`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'count_viral': {
             format: value => value,
             colors: [getPrimaryColor('entries'), getSecondaryColor('entries')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.contentInteractions.count_viral`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.contentInteractions.count_viral`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'count_download': {
             format: value => value,
             colors: [getPrimaryColor('entries'), getSecondaryColor('entries')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.contentInteractions.count_download`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.contentInteractions.count_download`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'count_report_submitted': {
             format: value => value,
             colors: [getPrimaryColor('entries'), getSecondaryColor('entries')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.contentInteractions.count_report_submitted`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.contentInteractions.count_report_submitted`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
         }
       },

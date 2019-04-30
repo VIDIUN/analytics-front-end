@@ -9,25 +9,25 @@ import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { TrendService } from 'shared/services/trend.service';
 import { getPrimaryColor, getSecondaryColor } from 'shared/utils/colors';
 import * as moment from 'moment';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 
 @Injectable()
 export class CompareService implements OnDestroy {
   constructor(private _translate: TranslateService,
               private _trendService: TrendService,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     this._logger = _logger.subLogger('CompareService');
   }
   
   ngOnDestroy() {
   }
   
-  private _getCompareValue(compareData: string[], date: moment.Moment, datesDiff: number, reportInterval: KalturaReportInterval): [string, string] {
+  private _getCompareValue(compareData: string[], date: moment.Moment, datesDiff: number, reportInterval: VidiunReportInterval): [string, string] {
     let relevantLabelString = '';
     let relevantDate = null;
     
-    if (reportInterval === KalturaReportInterval.days) {
+    if (reportInterval === VidiunReportInterval.days) {
       relevantDate = DateFilterUtils.getMomentDate(date).subtract(datesDiff);
       relevantLabelString = relevantDate.format('YYYYMMDD');
     } else {
@@ -43,21 +43,21 @@ export class CompareService implements OnDestroy {
 
   public compareGraphData(currentPeriod: { from: number, to: number },
                           comparePeriod: { from: number, to: number },
-                          current: KalturaReportGraph[],
-                          compare: KalturaReportGraph[],
+                          current: VidiunReportGraph[],
+                          compare: VidiunReportGraph[],
                           config: ReportDataItemConfig,
                           reportInterval: VidiunReportInterval,
                           dataLoadedCb?: Function,
                           graphOptions?: { xAxisLabelRotation?: number, yAxisLabelRotation?: number }): GraphsData {
     const lineChartData = {};
     const barChartData = {};
-    const datesDiff = reportInterval === KalturaReportInterval.months
+    const datesDiff = reportInterval === VidiunReportInterval.months
       ? DateFilterUtils.getMomentDate(currentPeriod.from).diff(DateFilterUtils.getMomentDate(comparePeriod.from), 'months')
       : DateFilterUtils.getMomentDate(currentPeriod.from).diff(DateFilterUtils.getMomentDate(comparePeriod.from));
 
     let currentPeriodTitle = '';
     let comparePeriodTitle = '';
-    if (reportInterval === KalturaReportInterval.months) {
+    if (reportInterval === VidiunReportInterval.months) {
       currentPeriodTitle = `${DateFilterUtils.formatMonthDayString(currentPeriod.from, analyticsConfig.locale)} – ${DateFilterUtils.formatMonthDayString(currentPeriod.to, analyticsConfig.locale)}`;
       comparePeriodTitle = `${DateFilterUtils.formatMonthDayString(comparePeriod.from, analyticsConfig.locale)} – ${DateFilterUtils.formatMonthDayString(comparePeriod.to, analyticsConfig.locale)}`;
     } else {
@@ -158,7 +158,7 @@ export class CompareService implements OnDestroy {
           let currentPeriod: string | Date = DateFilterUtils.parseDateString(currentPeriodDate).toDate();
           let comparePeriod: string | Date = DateFilterUtils.parseDateString(comparePeriodDate).toDate();
   
-          if (reportInterval === KalturaReportInterval.months) {
+          if (reportInterval === VidiunReportInterval.months) {
             currentPeriod = DateFilterUtils.formatMonthString(currentPeriod);
             comparePeriod = DateFilterUtils.formatMonthString(comparePeriod);
           } else {
@@ -167,11 +167,11 @@ export class CompareService implements OnDestroy {
           }
   
           return `
-          <div class="kGraphTooltip">
+          <div class="vGraphTooltip">
             ${comparePeriod}<br/>
-            <span class="kBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;${compareValue}<br/>
+            <span class="vBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;${compareValue}<br/>
             ${currentPeriod}<br/>
-            <span class="kBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;${currentValue}
+            <span class="vBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;${currentValue}
           </div>
         `;
         }
@@ -179,10 +179,10 @@ export class CompareService implements OnDestroy {
         return `
           <div class="vGraphTooltip">
             ${current.name}<br/>
-            <span class="kBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;
-            <span class="kValue kSeriesName">${compare.seriesName}</span>&nbsp;${compareValue}<br/>
-            <span class="kBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;
-            <span class="kValue kSeriesName">${current.seriesName}</span>&nbsp;${currentValue}
+            <span class="vBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;
+            <span class="vValue vSeriesName">${compare.seriesName}</span>&nbsp;${compareValue}<br/>
+            <span class="vBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;
+            <span class="vValue vSeriesName">${current.seriesName}</span>&nbsp;${currentValue}
           </div>
         `;
       };
@@ -208,7 +208,7 @@ export class CompareService implements OnDestroy {
             rotate: xAxisLabelRotation ? xAxisLabelRotation : 0,
             formatter: value => {
               const [label] = value.split(analyticsConfig.valueSeparator);
-              return reportInterval === KalturaReportInterval.months
+              return reportInterval === VidiunReportInterval.months
                 ? DateFilterUtils.formatMonthString(label)
                 : DateFilterUtils.formatShortDateString(label);
             }
@@ -312,7 +312,7 @@ export class CompareService implements OnDestroy {
           data: xAxisData,
           formatter: value => {
             const [label] = value.split(analyticsConfig.valueSeparator);
-            return reportInterval === KalturaReportInterval.months
+            return reportInterval === VidiunReportInterval.months
               ? DateFilterUtils.formatMonthOnlyString(label)
               : DateFilterUtils.formatShortDateString(label);
           },
@@ -412,10 +412,10 @@ export class CompareService implements OnDestroy {
 
   public compareTableData(currentPeriod: { from: number, to: number },
                           comparePeriod: { from: number, to: number },
-                          current: KalturaReportTable,
-                          compare: KalturaReportTable,
+                          current: VidiunReportTable,
+                          compare: VidiunReportTable,
                           config: ReportDataItemConfig,
-                          reportInterval: KalturaReportInterval,
+                          reportInterval: VidiunReportInterval,
                           dataKey: string = ''): { columns: string[], tableData: { [key: string]: string }[] } {
     if (!current.header || !current.data) {
       return { columns: [], tableData: [] };
@@ -447,11 +447,11 @@ export class CompareService implements OnDestroy {
 
         if (currentLabelDate && currentLabelDate.isValid()) {
           const relevantDate = DateFilterUtils.getMomentDate(currentLabelDate).subtract(datesDiff);
-          relevantLabelString = reportInterval === KalturaReportInterval.days
+          relevantLabelString = reportInterval === VidiunReportInterval.days
             ? relevantDate.format('YYYYMMDD')
             : relevantDate.format('YYYYMM');
   
-          if (reportInterval === KalturaReportInterval.months) {
+          if (reportInterval === VidiunReportInterval.months) {
             currentPeriodTitle = DateFilterUtils.formatMonthString(currentLabelDate.toDate());
             comparePeriodTitle = DateFilterUtils.formatMonthString(relevantDate.toDate());
           } else {
@@ -518,18 +518,18 @@ export class CompareService implements OnDestroy {
   
   public compareTableFromGraph(currentPeriod: { from: number, to: number },
                                comparePeriod: { from: number, to: number },
-                               current: KalturaReportGraph[],
-                               compare: KalturaReportGraph[],
+                               current: VidiunReportGraph[],
+                               compare: VidiunReportGraph[],
                                config: ReportDataItemConfig,
-                               reportInterval: KalturaReportInterval,
+                               reportInterval: VidiunReportInterval,
                                dataKey: string = ''): { columns: string[], tableData: TableRow<string>[], totalCount: number } {
-    const datesDiff = reportInterval === KalturaReportInterval.months
+    const datesDiff = reportInterval === VidiunReportInterval.months
       ? DateFilterUtils.getMomentDate(currentPeriod.from).diff(DateFilterUtils.getMomentDate(comparePeriod.from), 'months')
       : DateFilterUtils.getMomentDate(currentPeriod.from).diff(DateFilterUtils.getMomentDate(comparePeriod.from));
 
     let columns = current.map(item => item.id);
     
-    const firstColumn = reportInterval === KalturaReportInterval.days ? 'date_id' : 'month_id';
+    const firstColumn = reportInterval === VidiunReportInterval.days ? 'date_id' : 'month_id';
     const getTableData = data => {
       return data[0].filter(Boolean).map((item, i) => {
         return columns.reduce(
@@ -550,7 +550,7 @@ export class CompareService implements OnDestroy {
       let relevantLabelString = '';
       let relevantDate = null;
     
-      if (reportInterval === KalturaReportInterval.days) {
+      if (reportInterval === VidiunReportInterval.days) {
         relevantDate = DateFilterUtils.parseDateString(date).subtract(datesDiff);
         relevantLabelString = relevantDate.format('YYYYMMDD');
       } else {
@@ -572,7 +572,7 @@ export class CompareService implements OnDestroy {
       let currentPeriod: string | Date = DateFilterUtils.parseDateString(currentDate).toDate();
       let comparePeriod: string | Date = DateFilterUtils.parseDateString(compareDate).toDate();
   
-      if (reportInterval === KalturaReportInterval.months) {
+      if (reportInterval === VidiunReportInterval.months) {
         currentPeriod = DateFilterUtils.formatMonthString(currentPeriod);
         comparePeriod = DateFilterUtils.formatMonthString(comparePeriod);
       } else {
@@ -632,8 +632,8 @@ export class CompareService implements OnDestroy {
   
   public compareTotalsData(currentPeriod: { from: number, to: number },
                            comparePeriod: { from: number, to: number },
-                           current: KalturaReportTotal,
-                           compare: KalturaReportTotal,
+                           current: VidiunReportTotal,
+                           compare: VidiunReportTotal,
                            config: ReportDataItemConfig,
                            selected?: string): Tab[] {
     if (!current.header || !current.data) {
@@ -712,22 +712,22 @@ export class CompareService implements OnDestroy {
         const compareMetricValue = compareFormatFn(metricCompare.value);
 
         return `
-          <div class="kGraphTooltip">
+          <div class="vGraphTooltip">
             ${comparePeriod}<br/>
-            <span class="kBullet" style="color: ${colors[2]}">&bull;</span>&nbsp;${metricValue}<br/>
-            <span class="kBullet" style="color: ${colors[3]}">&bull;</span>&nbsp;${compareMetricValue}<br/>
+            <span class="vBullet" style="color: ${colors[2]}">&bull;</span>&nbsp;${metricValue}<br/>
+            <span class="vBullet" style="color: ${colors[3]}">&bull;</span>&nbsp;${compareMetricValue}<br/>
             ${currentPeriod}<br/>
-            <span class="kBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;${currentValue}<br/>
-            <span class="kBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;${compareValue}
+            <span class="vBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;${currentValue}<br/>
+            <span class="vBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;${compareValue}
           </div>
       `;
       }
   
       return `
-          <div class="kGraphTooltip">
+          <div class="vGraphTooltip">
             ${current.name}<br/>
-            <span class="kBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;${currentValue}<br/>
-            <span class="kBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;${compareValue}
+            <span class="vBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;${currentValue}<br/>
+            <span class="vBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;${compareValue}
           </div>
       `;
     };

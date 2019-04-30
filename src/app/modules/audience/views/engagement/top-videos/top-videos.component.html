@@ -1,9 +1,9 @@
-<div data-aid="report-mini-top-videos" class="kReport kContent kOverrideFAIcons">
-  <div class="kFilters">
-    <span class="kTitle">{{'app.engagement.topVideos' | translate}}</span>
-    <kInputHelper>
+<div data-aid="report-mini-top-videos" class="vReport vContent vOverrideFAIcons">
+  <div class="vFilters">
+    <span class="vTitle">{{'app.engagement.topVideos' | translate}}</span>
+    <vInputHelper>
       <span>{{'app.engagement.topVideos_tt' | translate}}</span>
-    </kInputHelper>
+    </vInputHelper>
   </div>
   <div class="vReportContent">
     <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
@@ -23,6 +23,6 @@
                                        [dates]="_currentDates"
                                        [firstTimeLoading]="_firstTimeLoading"
                                        [columns]="_columns"></app-engagement-top-videos-table>
-    </k-area-blocker>
+    </v-area-blocker>
   </div>
 </div>

@@ -1,23 +1,23 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaReportInterval } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunReportInterval } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { Report, ReportHelper, ReportService } from 'shared/services';
 import { ReportDataConfig, ReportDataSection } from 'shared/services/storage-data-base.config';
 import { TranslateService } from '@ngx-translate/core';
 import { MiniTopStatsConfig } from './mini-top-stats.config';
 import { FrameEventManagerService } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { InsightsBulletValue } from 'shared/components/insights-bullet/insights-bullet.component';
 import { InteractionsBaseReportComponent } from '../interactions-base-report/interactions-base-report.component';
 import { BehaviorSubject } from 'rxjs';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 
 @Component({
   selector: 'app-top-stats',
   templateUrl: './mini-top-stats.component.html',
   styleUrls: ['./mini-top-stats.component.scss'],
   providers: [
-    KalturaLogger.createLogger('MiniTopStatsComponent'),
+    VidiunLogger.createLogger('MiniTopStatsComponent'),
     MiniTopStatsConfig,
     ReportService
   ]
@@ -31,9 +31,9 @@ export class MiniTopStatsComponent extends InteractionsBaseReportComponent imple
   public _isBusy: boolean;
   public _blockerMessage: AreaBlockerMessage = null;
   public _tableData: any[] = [];
-  public _reportInterval = KalturaReportInterval.days;
-  public _pager = new KalturaFilterPager({ pageSize: 3, pageIndex: 1 });
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _reportInterval = VidiunReportInterval.days;
+  public _pager = new VidiunFilterPager({ pageSize: 3, pageIndex: 1 });
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });

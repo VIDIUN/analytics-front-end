@@ -36,7 +36,7 @@ export abstract class EngagementBaseReportComponent {
   
   protected abstract _updateRefineFilter(): void;
   
-  protected _refineFilterToServerValue(filter: KalturaEndUserReportInputFilter): void {
+  protected _refineFilterToServerValue(filter: VidiunEndUserReportInputFilter): void {
     refineFilterToServerValue(this._refineFilter, filter);
   }
 }

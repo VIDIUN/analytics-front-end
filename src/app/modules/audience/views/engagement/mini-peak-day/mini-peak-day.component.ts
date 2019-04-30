@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MiniPeakDayConfig } from './mini-peak-day.config';
 import { DateFilterComponent } from 'shared/components/date-filter/date-filter.component';
 import { FrameEventManagerService } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 
 @Component({
@@ -19,7 +19,7 @@ import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
   templateUrl: './mini-peak-day.component.html',
   styleUrls: ['./mini-peak-day.component.scss'],
   providers: [
-    KalturaLogger.createLogger('MiniPeakDayComponent'),
+    VidiunLogger.createLogger('MiniPeakDayComponent'),
     MiniPeakDayConfig,
     ReportService,
   ]
@@ -103,12 +103,12 @@ export class MiniPeakDayComponent extends EngagementBaseReportComponent {
     this._filter.timeZoneOffset = this._dateFilter.timeZoneOffset;
     this._filter.fromDate = this._dateFilter.startDate;
     this._filter.toDate = this._dateFilter.endDate;
-    this._filter.interval = KalturaReportInterval.days;
-    this._reportInterval = KalturaReportInterval.days;
+    this._filter.interval = VidiunReportInterval.days;
+    this._reportInterval = VidiunReportInterval.days;
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {

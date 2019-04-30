@@ -1,10 +1,10 @@
-<div [attr.data-aid]="'table-top-contributors' + name" class="kTableContainer">
-  <span class="kDates" *ngIf="dates">{{dates}}</span>
-  <div class="kDividerWrapper">
-    <div class="kDivider" *ngIf="showDivider"></div>
+<div [attr.data-aid]="'table-top-contributors' + name" class="vTableContainer">
+  <span class="vDates" *ngIf="dates">{{dates}}</span>
+  <div class="vDividerWrapper">
+    <div class="vDivider" *ngIf="showDivider"></div>
     <p-table appScrollTopOnPaging
              [customPaginationEvent]="_paginationChanged$"
-             [class.kCompareMode]="isCompareMode"
+             [class.vCompareMode]="isCompareMode"
              [value]="_tableData">
       <ng-template pTemplate="body" let-data>
         <tr class="vTopVideoRow">
@@ -23,19 +23,19 @@
             </div>
           </td>
           <td [ngStyle]="{'width': '100%', 'padding-left': '0'}">
-            <div class="kTopVideoEntryColumn"
+            <div class="vTopVideoEntryColumn"
                  (mouseleave)="_hideOverlay()"
                  (mouseenter)="_showOverlay($event, data['user_id'])">
-              <span class="kTableColumn kEntryName">{{data['creator_name']}}</span>
-              <div class="kEntryDetails">
-              <span class="kTableColumn" *ngIf="data['created_at'].length">{{'app.contributors.created' | translate}}</span>
-              <span class="kTableColumn kCreated">{{data['created_at']}}</span>
+              <span class="vTableColumn vEntryName">{{data['creator_name']}}</span>
+              <div class="vEntryDetails">
+              <span class="vTableColumn" *ngIf="data['created_at'].length">{{'app.contributors.created' | translate}}</span>
+              <span class="vTableColumn vCreated">{{data['created_at']}}</span>
               </div>
             </div>
           </td>
           <ng-container *ngIf="!isCompareMode">
             <td [ngStyle]="{'width': '220px'}">
-              <div class="kTableCell">
+              <div class="vTableCell">
                 <i class="icon-small-play"></i>
                 <span class="vCellValue">{{data['count_plays']}}</span>&nbsp;
                 <span class="vTableColumn"
@@ -46,7 +46,7 @@
               </div>
             </td>
             <td [ngStyle]="{'width': '220px'}">
-              <div class="kTableCell">
+              <div class="vTableCell">
                 <i class="icon-small-contribution"></i>
                 <span class="vCellValue">{{data['added_entries']}}</span>&nbsp;
                 <span class="vTableColumn"
@@ -68,11 +68,11 @@
               </div>
             </td>
           </ng-container>
-          <td class="kScore" [ngStyle]="{'width': '110px', 'text-align': 'center'}">
+          <td class="vScore" [ngStyle]="{'width': '110px', 'text-align': 'center'}">
             <span *ngIf="data['contributor_ranking'] !== undefined">{{data['contributor_ranking']}}/10</span>
             <div *ngIf="data['contributor_ranking'] === undefined" [ngStyle]="{display: 'inline-block'}">
               {{'app.common.na' | translate}}
-              <i class="kIconhelp_full" [kTooltip]="'app.contributors.noRanking' | translate"></i>
+              <i class="vIconhelp_full" [vTooltip]="'app.contributors.noRanking' | translate"></i>
             </div>
           </td>
         </tr>

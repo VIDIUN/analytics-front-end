@@ -1,15 +1,15 @@
 import { Component, Input } from '@angular/core';
-import {KalturaEntryStatus, KalturaMediaType} from 'kaltura-ngx-client';
+import {VidiunEntryStatus, VidiunMediaType} from 'vidiun-ngx-client';
 
 export interface EntryDetailsOverlayData {
   object_id: string;
   entry_name: string;
-  media_type: KalturaMediaType;
+  media_type: VidiunMediaType;
   creator_name: string;
   created_at: string;
   duration_msecs: string;
   thumbnailUrl: string;
-  status: KalturaEntryStatus;
+  status: VidiunEntryStatus;
 }
 
 @Component({

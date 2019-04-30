@@ -2,17 +2,17 @@ import { Component, Input } from '@angular/core';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportHelper, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import {
-  KalturaReportInputFilter,
-  KalturaFilterPager,
-  KalturaObjectBaseFactory,
-  KalturaReportGraph,
-  KalturaReportInterval,
-  KalturaReportTable,
-  KalturaReportTotal,
-  KalturaReportType
-} from 'kaltura-ngx-client';
+  VidiunReportInputFilter,
+  VidiunFilterPager,
+  VidiunObjectBaseFactory,
+  VidiunReportGraph,
+  VidiunReportInterval,
+  VidiunReportTable,
+  VidiunReportTotal,
+  VidiunReportType
+} from 'vidiun-ngx-client';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { TranslateService } from '@ngx-translate/core';
 import { CompareService } from 'shared/services/compare.service';
@@ -21,7 +21,7 @@ import { TrendService } from 'shared/services/trend.service';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { significantDigits } from 'shared/utils/significant-digits';
 import { DateFilterComponent } from 'shared/components/date-filter/date-filter.component';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { refineFilterToServerValue } from 'shared/components/filter/filter-to-server-value.util';
@@ -31,7 +31,7 @@ import { refineFilterToServerValue } from 'shared/components/filter/filter-to-se
   templateUrl: './syndication.component.html',
   styleUrls: ['./syndication.component.scss'],
   providers: [
-    KalturaLogger.createLogger('SyndicationComponent'),
+    VidiunLogger.createLogger('SyndicationComponent'),
     ReportService,
     SyndicationDataConfig,
   ]
@@ -63,10 +63,10 @@ export class SyndicationComponent {
   private _dateFilter: DateChangeEvent;
   private _refineFilter: RefineFilter = [];
   private _totalPlaysCount = 0;
-  private _compareFilter: KalturaReportInputFilter = null;
+  private _compareFilter: VidiunReportInputFilter = null;
   private _dataConfig: ReportDataConfig;
   private _order = '-count_plays';
-  private _filter = new KalturaReportInputFilter({
+  private _filter = new VidiunReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false,
     interval: VidiunReportInterval.days,
@@ -97,7 +97,7 @@ export class SyndicationComponent {
               private _authService: AuthService,
               private _compareService: CompareService,
               private _dataConfigService: SyndicationDataConfig,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     this._dataConfig = _dataConfigService.getConfig();
     this._selectedMetrics = this._dataConfig.totals.preSelected;
   }
@@ -193,7 +193,7 @@ export class SyndicationComponent {
     if (this._dateFilter.compare.active) {
       this._isCompareMode = true;
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {

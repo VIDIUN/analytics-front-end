@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ReportDataConfig, ReportDataSection, ReportDataBaseConfig } from 'shared/services/storage-data-base.config';
 import { ReportHelper } from 'shared/services';
 import * as moment from 'moment';
-import {KalturaEntryStatus} from "kaltura-ngx-client";
+import {VidiunEntryStatus} from "vidiun-ngx-client";
 
 @Injectable()
 export class TopVideosDataConfig extends ReportDataBaseConfig {
@@ -26,7 +26,7 @@ export class TopVideosDataConfig extends ReportDataBaseConfig {
             sortOrder: 1,
           },
           'status': {
-            format: value => value !== KalturaEntryStatus.ready ? value === KalturaEntryStatus.deleted ? this.translate.instant('app.engagement.topVideosReport.entryStatus.deleted') : this.translate.instant('app.engagement.topVideosReport.entryStatus.unavailable') : '',
+            format: value => value !== VidiunEntryStatus.ready ? value === VidiunEntryStatus.deleted ? this.translate.instant('app.engagement.topVideosReport.entryStatus.deleted') : this.translate.instant('app.engagement.topVideosReport.entryStatus.unavailable') : '',
             sortOrder: 8,
           },
           'creator_name': {

@@ -1,41 +1,41 @@
 @import '../../../../../../styles/variables';
 
-:host /deep/ .kValue {
+:host /deep/ .vValue {
   font-size: 24px;
   font-weight: 700;
 }
 
-:host /deep/ .kUnits {
+:host /deep/ .vUnits {
   font-size: 13px;
   font-weight: 700;
 }
 
 
-.kMini {
+.vMini {
   height: 100%;
 
-  .kFilters {
+  .vFilters {
     height: 93px !important;
 
-    .kTitle {
+    .vTitle {
       width: auto;
       padding-right: 0px;
     }
   }
 
-  .kDetails {
+  .vDetails {
     margin-left: auto;
     white-space: nowrap;
     margin-right: 24px;
   }
 
-  .kVal {
+  .vVal {
     display: flex;
     align-items: center;
     margin-left: 24px;
     height: 100%;
 
-    .kMiniIcon {
+    .vMiniIcon {
       width: 30px;
       height: 30px;
       border-radius: 15px;
@@ -71,13 +71,13 @@
       font-size: 24px;
       line-height: 24px;
       font-weight: 700;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
 
     .title {
       font-size: 18px;
       line-height: 18px;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
       margin-left: 14px;
     }
   }

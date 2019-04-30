@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {DateChangeEvent, DateRanges, DateRangeType} from 'shared/components/date-filter/date-filter.service';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
-import { KalturaObjectBaseFactory, KalturaReportGraph, KalturaReportInputFilter, KalturaReportInterval, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { VidiunObjectBaseFactory, VidiunReportGraph, VidiunReportInputFilter, VidiunReportInterval, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { PublisherStorageDataConfig } from './publisher-storage-data.config';
 import { ReportDataConfig, ReportDataSection } from 'shared/services/storage-data-base.config';
@@ -11,7 +11,7 @@ import { of as ObservableOf } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CompareService } from 'shared/services/compare.service';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { tableLocalSortHandler, TableRow } from 'shared/utils/table-local-sort-handler';
 import { SortEvent } from 'primeng/api';
@@ -24,7 +24,7 @@ import { ExportItem } from 'shared/components/export-csv/export-csv.component';
   styleUrls: ['./publisher-storage.component.scss'],
   providers: [
     PublisherExportConfig,
-    KalturaLogger.createLogger('PublisherStorageComponent'),
+    VidiunLogger.createLogger('PublisherStorageComponent'),
     PublisherStorageDataConfig,
   ]
 })
@@ -51,11 +51,11 @@ export class PublisherStorageComponent implements OnInit {
   public _accumulativeStorage: any[] = [];
   
   public _pageSize = analyticsConfig.defaultPageSize;
-  public reportType: KalturaReportType = KalturaReportType.partnerUsage;
+  public reportType: VidiunReportType = VidiunReportType.partnerUsage;
   public _exportConfig: ExportItem[] = [];
   public _dateFilter: DateChangeEvent;
-  public compareFilter: KalturaReportInputFilter = null;
-  public filter: KalturaReportInputFilter = new KalturaReportInputFilter(
+  public compareFilter: VidiunReportInputFilter = null;
+  public filter: VidiunReportInputFilter = new VidiunReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -75,7 +75,7 @@ export class PublisherStorageComponent implements OnInit {
               private _compareService: CompareService,
               private _authService: AuthService,
               private _dataConfigService: PublisherStorageDataConfig,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _exportConfigService: PublisherExportConfig) {
     this._dataConfig = _dataConfigService.getConfig();
     this._selectedMetrics = this._dataConfig.totals.preSelected;
@@ -95,10 +95,10 @@ export class PublisherStorageComponent implements OnInit {
     this.filter.toDate = event.endDate;
     this.filter.interval = event.timeUnits;
     this._reportInterval = event.timeUnits;
-    this._order = this._reportInterval === KalturaReportInterval.days ? '-date_id' : '-month_id';
+    this._order = this._reportInterval === VidiunReportInterval.days ? '-date_id' : '-month_id';
     if (event.compare.active) {
       const compare = event.compare;
-      this.compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this.filter), this.filter);
+      this.compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this.filter), this.filter);
       this.compareFilter.fromDate = compare.startDate;
       this.compareFilter.toDate = compare.endDate;
     } else {
@@ -233,7 +233,7 @@ export class PublisherStorageComponent implements OnInit {
      }
    }
   
-  private _handleTable(graphs: KalturaReportGraph[]): void {
+  private _handleTable(graphs: VidiunReportGraph[]): void {
     const { columns, tableData, totalCount } = this._reportService.tableFromGraph(
       graphs,
       this._dataConfig.table,

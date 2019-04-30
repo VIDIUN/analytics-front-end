@@ -39,7 +39,7 @@ export class SyndicationDataConfig extends ReportDataBaseConfig {
             format: value => Math.min(value, 100),
             title: this._translate.instant(`app.entry.avg_completion_rate`),
             colors: [getPrimaryColor('dropoff'), getSecondaryColor('dropoff')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.avg_completion_rate`)}:&nbsp;${ReportHelper.percents(value / 100, false, true)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.avg_completion_rate`)}:&nbsp;${ReportHelper.percents(value / 100, false, true)}</span>`
           },
         }
       },

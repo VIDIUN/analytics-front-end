@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BrowserService } from './browser.service';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
-import { KalturaAPIException } from 'kaltura-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
+import { VidiunAPIException } from 'vidiun-ngx-client';
 import { AuthService } from 'shared/services/auth.service';
 
 export type ErrorDetails = {
@@ -51,7 +51,7 @@ export class ErrorsManagerService {
       return { title, message, forceLogout};
     }
   
-  public getErrorMessage(error: KalturaAPIException, actions: AreaBlockerMessageActions): AreaBlockerMessage {
+  public getErrorMessage(error: VidiunAPIException, actions: AreaBlockerMessageActions): AreaBlockerMessage {
     if (!error) {
       return null;
     }

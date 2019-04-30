@@ -1,16 +1,16 @@
-<div data-aid="report-geo" class="kReport kContent kOverrideFAIcons">
-  <div class="kReportHeader">
-    <span class="kTitle">{{'app.audience.geo.title' | translate}}</span>
+<div data-aid="report-geo" class="vReport vContent vOverrideFAIcons">
+  <div class="vReportHeader">
+    <span class="vTitle">{{'app.audience.geo.title' | translate}}</span>
     <app-export-csv name="geo"
                     [reports]="_exportConfig"
                     [refineFilter]="_refineFilter"
                     [dateFilter]="_dateFilter"></app-export-csv>
 
-    <div class="kFilter kOverrideFAIcons">
-      <div class="kDropDown" (click)="_refineFilterOpened = !_refineFilterOpened">
+    <div class="vFilter vOverrideFAIcons">
+      <div class="vDropDown" (click)="_refineFilterOpened = !_refineFilterOpened">
         <span>{{'app.filters.filter' | translate}}</span>
-        <i *ngIf="!_refineFilterOpened" class="kIcondropdown_arrow_bottom"></i>
-        <i *ngIf="_refineFilterOpened" class="kIcondropdown_arrow_top"></i>
+        <i *ngIf="!_refineFilterOpened" class="vIcondropdown_arrow_bottom"></i>
+        <i *ngIf="_refineFilterOpened" class="vIcondropdown_arrow_top"></i>
       </div>
     </div>
 
@@ -22,7 +22,7 @@
                      (filterChange)="_onDateFilterChange($event)"></app-date-filter>
   </div>
 
-  <div class="kReportContainer kNoPadding">
+  <div class="vReportContainer vNoPadding">
     <app-geo-filter [opened]="_refineFilterOpened"
                     [dateFilter]="_dateFilter"
                     [selectedFilters]="_selectedRefineFilters"
@@ -42,22 +42,22 @@
     </div>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
 
     <div class="vReportContent">
       <app-report-tabs [tabs]="_tabsData" (tabChange)="_onTabChange($event)"></app-report-tabs>
-      <div class="kMap">
-        <div *ngIf="_mapDataReady" echarts class="kChart"
+      <div class="vMap">
+        <div *ngIf="_mapDataReady" echarts class="vChart"
              [options]="_mapChartData[_selectedMetrics]"
              (chartClick)="onChartClick($event)"
              (chartInit)="onChartInit($event)"></div>
-        <div class="kZoomWidget">
-          <button pButton class="kButtonDefault kZoomOutBtn" icon="icon-minus" (click)="zoom('out')"></button>
-          <button pButton class="kButtonDefault kZoomInBtn" icon="kIconplus" (click)="zoom('in')"></button>
+        <div class="vZoomWidget">
+          <button pButton class="vButtonDefault vZoomOutBtn" icon="icon-minus" (click)="zoom('out')"></button>
+          <button pButton class="vButtonDefault vZoomInBtn" icon="vIconplus" (click)="zoom('in')"></button>
         </div>
       </div>
-      <div class="kTable">
-        <div class="kTableContainer">
+      <div class="vTable">
+        <div class="vTableContainer">
           <p-table #table
                    appScrollTopOnPaging
                    sortField="count_plays"
@@ -124,8 +124,8 @@
                 <td>
                   <span>{{rowIndex+1}}</span>
                 </td>
-                <td class="kFlagColumn" *ngIf="!_drillDown.length">
-                  <i class="kFlag" [ngClass]="'kFlag-' + data['object_id']"></i>
+                <td class="vFlagColumn" *ngIf="!_drillDown.length">
+                  <i class="vFlag" [ngClass]="'vFlag-' + data['object_id']"></i>
                 </td>
                 <td class="vHighlight">
                   <a *ngIf="_drillDown.length === 0" (click)="_onDrillDown(data['country'])">{{data['country']}}</a>

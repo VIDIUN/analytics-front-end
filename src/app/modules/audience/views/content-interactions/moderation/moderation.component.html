@@ -1,9 +1,9 @@
-<div data-aid="report-moderation"class="kReport kOverrideFAIcons kAbuseReport">
-  <div class="kFilters">
-    <span class="kTitle">{{'app.contentInteractions.abuseReportReasons' | translate}}</span>
+<div data-aid="report-moderation"class="vReport vOverrideFAIcons vAbuseReport">
+  <div class="vFilters">
+    <span class="vTitle">{{'app.contentInteractions.abuseReportReasons' | translate}}</span>
   </div>
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
-    <div class="kReportContent">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+    <div class="vReportContent">
       <app-horizontal-bar-chart colorScheme="moderation"
                                 [data]="_tableData"
                                 [totalCount]="_totalCount"
@@ -12,6 +12,6 @@
                                 [isCompareMode]="_isCompareMode"
                                 [firstTimeLoading]="_firstTimeLoading"></app-horizontal-bar-chart>
     </div>
-  </k-area-blocker>
+  </v-area-blocker>
 </div>
 

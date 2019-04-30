@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 
 @Directive({
   selector: '[appEvenTableHeight]'
@@ -34,7 +34,7 @@ export class EvenTableHeightDirective implements OnInit, AfterViewInit, OnDestro
   private _setEvenHeight(): void {
     setTimeout(() => {
       if (this._element instanceof HTMLElement) {
-        const tableWrappers = Array.from(this._element.getElementsByClassName('kDividerWrapper'));
+        const tableWrappers = Array.from(this._element.getElementsByClassName('vDividerWrapper'));
         const table = Array.from(this._element.getElementsByClassName('ui-table'));
         if (table.length > 1 && tableWrappers.length > 1) { // if there're several tables on the page update their height by max of all tables
           const maxHeight = Math.max(...table.map(element => element.getBoundingClientRect().height));

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {KalturaEntryStatus, KalturaFilterPager} from 'kaltura-ngx-client';
+import {VidiunEntryStatus, VidiunFilterPager} from 'vidiun-ngx-client';
 import { OverlayComponent } from 'shared/components/overlay/overlay.component';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { analyticsConfig } from 'configuration/analytics-config';
@@ -41,7 +41,7 @@ export class TopVideosTableComponent implements OnDestroy {
   public _entryData: EntryDetailsOverlayData;
   public _totalCount = 0;
   public _tableData: TableRow<string>[] = [];
-  public _pager = new KalturaFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
+  public _pager = new VidiunFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
   public _paginationChanged$ = this._paginationChanged.asObservable();
 
   constructor(private _router: Router,
@@ -68,7 +68,7 @@ export class TopVideosTableComponent implements OnDestroy {
       this._entryData = this.entryDetails.find(({object_id}) => entryId === object_id);
       if (this.timeoutId === null) {
         this.timeoutId = setTimeout(() => {
-          if (this._entryData.status === KalturaEntryStatus.ready) {
+          if (this._entryData.status === VidiunEntryStatus.ready) {
             this._overlay.show(event);
             this.timeoutId = null;
           }

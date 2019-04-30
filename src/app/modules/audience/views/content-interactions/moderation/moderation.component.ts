@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorsManagerService, Report, ReportConfig, ReportHelper, ReportService } from 'shared/services';
 import { CompareService } from 'shared/services/compare.service';
-import { KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInputFilter, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInputFilter, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { ModerationDataConfig } from './moderation-data.config';
 import { TranslateService } from '@ngx-translate/core';
 import { EChartOption } from 'echarts';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { refineFilterToServerValue } from 'shared/components/filter/filter-to-server-value.util';
@@ -23,16 +23,16 @@ import { BarRowTooltip, BarRowValue } from 'shared/components/horizontal-bar-row
   templateUrl: './moderation.component.html',
   styleUrls: ['./moderation.component.scss'],
   providers: [
-    KalturaLogger.createLogger('ModerationComponent'),
+    VidiunLogger.createLogger('ModerationComponent'),
     ModerationDataConfig,
     ReportService,
   ],
 })
 export class ModerationComponent extends InteractionsBaseReportComponent {
-  private _reportType = KalturaReportType.contentReportReasons;
-  private _filter = new KalturaReportInputFilter({ searchInTags: true, searchInAdminTags: false });
-  private _compareFilter: KalturaReportInputFilter = null;
-  private _reportInterval = KalturaReportInterval.months;
+  private _reportType = VidiunReportType.contentReportReasons;
+  private _filter = new VidiunReportInputFilter({ searchInTags: true, searchInAdminTags: false });
+  private _compareFilter: VidiunReportInputFilter = null;
+  private _reportInterval = VidiunReportInterval.months;
   private _dataConfig: ReportDataConfig;
   private _totalReports: number = null;
   private _totalCompareReports: number = null;
@@ -44,7 +44,7 @@ export class ModerationComponent extends InteractionsBaseReportComponent {
   public _isBusy: boolean;
   public _blockerMessage: AreaBlockerMessage = null;
   public _tableData: BarChartRow[] = [];
-  public _pager: KalturaFilterPager = new KalturaFilterPager({ pageSize: 6, pageIndex: 1 });
+  public _pager: VidiunFilterPager = new VidiunFilterPager({ pageSize: 6, pageIndex: 1 });
   public _totalCount: number;
   public _currentPeriod: { from: number, to: number };
   public _comparePeriod: { from: number, to: number };
@@ -125,7 +125,7 @@ export class ModerationComponent extends InteractionsBaseReportComponent {
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDate = compare.startDate;
       this._compareFilter.toDate = compare.endDate;
     } else {
@@ -141,7 +141,7 @@ export class ModerationComponent extends InteractionsBaseReportComponent {
     }
   }
   
-  private _handleTotals(totals: KalturaReportTotal, compare?: Report): void {
+  private _handleTotals(totals: VidiunReportTotal, compare?: Report): void {
     const tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals);
     if (tabsData.length) {
       this._totalReports = Number(tabsData[0]['rawValue']);
@@ -155,7 +155,7 @@ export class ModerationComponent extends InteractionsBaseReportComponent {
     }
   }
   
-  private _handleTable(table: KalturaReportTable, compare?: Report): void {
+  private _handleTable(table: VidiunReportTable, compare?: Report): void {
     const { tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     
     if (compare && compare.table) {

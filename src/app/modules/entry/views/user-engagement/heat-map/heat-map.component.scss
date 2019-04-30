@@ -8,18 +8,18 @@
   align-items: center;
 }
 
-.kHeatMap {
+.vHeatMap {
   display: flex;
   height: 100%;
   width: 100%;
   background-color: #dfe9ff;
   position: relative;
 
-  .kHeatMapItem {
+  .vHeatMapItem {
     height: 100%;
   }
 
-  .kTimelineStart, .kTimelineEnd {
+  .vTimelineStart, .vTimelineEnd {
     position: absolute;
     bottom: 2px;
     display: inline-block;
@@ -27,16 +27,16 @@
     color: #FFFFFF;
   }
 
-  .kTimelineStart {
+  .vTimelineStart {
     left: 2px;
   }
 
-  .kTimelineEnd {
+  .vTimelineEnd {
     right: 2px;
   }
 }
 
-.kFollower {
+.vFollower {
   display: none;
   position: absolute;
   background-color: #FFFFFF;

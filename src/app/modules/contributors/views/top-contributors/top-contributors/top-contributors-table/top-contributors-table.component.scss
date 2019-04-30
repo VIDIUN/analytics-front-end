@@ -100,10 +100,10 @@
     font-weight: bold;
     padding-right: 24px;
   }
-  .kIconhelp_full{
+  .vIconhelp_full{
     font-size: 15px;
     &:hover{
-      color: $kSecondary;
+      color: $vSecondary;
       cursor: pointer;
     }
   }
@@ -113,7 +113,7 @@
   display: flex;
   height: 500px;
 
-  .kDivider {
+  .vDivider {
     border-left: 1px solid #d9d9d9;
   }
 }

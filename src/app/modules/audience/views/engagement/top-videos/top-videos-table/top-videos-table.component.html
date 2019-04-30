@@ -1,10 +1,10 @@
-<div [attr.data-aid]="'table-top-videos' + name" class="kTableContainer">
-  <span class="kDates" *ngIf="dates">{{dates}}</span>
-  <div class="kDividerWrapper">
-    <div class="kDivider" *ngIf="showDivider"></div>
+<div [attr.data-aid]="'table-top-videos' + name" class="vTableContainer">
+  <span class="vDates" *ngIf="dates">{{dates}}</span>
+  <div class="vDividerWrapper">
+    <div class="vDivider" *ngIf="showDivider"></div>
     <p-table appScrollTopOnPaging
              [customPaginationEvent]="_paginationChanged$"
-             [class.kCompareMode]="isCompareMode"
+             [class.vCompareMode]="isCompareMode"
              [value]="_tableData">
       <ng-template pTemplate="body" let-data>
         <tr class="vTopVideoRow">
@@ -18,7 +18,7 @@
             </div>
           </td>
           <td [ngStyle]="{'width': '155px', 'padding-left': '10px'}">
-            <div class="kThumbnailHolder" #holder
+            <div class="vThumbnailHolder" #holder
                  (click)="_drillDown(data)">
               <img [src]="data.thumbnailUrl"
                    onError="this.onerror=null;this.style.display='none'"
@@ -26,7 +26,7 @@
             </div>
           </td>
           <td [ngStyle]="{'width': '100%', 'padding-left': 0}">
-            <div class="kTopVideoEntryColumn"
+            <div class="vTopVideoEntryColumn"
                  (click)="_drillDown(data)"
                  (mouseleave)="_hideOverlay()"
                  (mouseenter)="_showOverlay($event, data['object_id'])">
@@ -38,7 +38,7 @@
           </td>
           <ng-container *ngIf="!isCompareMode">
             <td [ngStyle]="{'width': '170px'}">
-              <div class="kTableCell">
+              <div class="vTableCell">
                 <i class="icon-small-play"></i>
                 <span class="vCellValue">{{data['count_plays']}}</span>&nbsp;
                 <span class="vTableColumn"
@@ -49,7 +49,7 @@
               </div>
             </td>
             <td [ngStyle]="{'width': '220px'}">
-              <div class="kTableCell">
+              <div class="vTableCell">
                 <i class="icon-viewer-contributor"></i>
                 <span class="vCellValue">{{data['unique_known_users']}}</span>&nbsp;
                 <span class="vTableColumn"
@@ -60,7 +60,7 @@
               </div>
             </td>
             <td [ngStyle]="{'width': '220px'}">
-              <div class="kTableCell">
+              <div class="vTableCell">
                 <i class="icon-small-time"></i>
                 <span class="vCellValue">{{data['avg_view_drop_off']}}</span>&nbsp;
                 <span class="vTableColumn"
@@ -71,9 +71,9 @@
               </div>
             </td>
           </ng-container>
-          <td class="kScore" [ngStyle]="{'width': '110px', 'overflow': 'visible', 'height': '80px'}">
+          <td class="vScore" [ngStyle]="{'width': '110px', 'overflow': 'visible', 'height': '80px'}">
             <div *ngIf="data['status']?.length">
-              <span class="kEntryStatus">{{data['status']}}</span>
+              <span class="vEntryStatus">{{data['status']}}</span>
               <span>{{data['engagement_ranking']}}/10</span>
             </div>
             <span *ngIf="!data['status']?.length">{{data['engagement_ranking']}}/10</span>
@@ -94,6 +94,6 @@
                (onPageChange)="_onPaginationChanged($event)"></p-paginator>
 </div>
 
-<k-overlayPanel #overlay appendTo="body">
+<v-overlayPanel #overlay appendTo="body">
   <app-entry-details-overlay *ngIf="_entryData" [entryData]="_entryData"></app-entry-details-overlay>
-</k-overlayPanel>
+</v-overlayPanel>

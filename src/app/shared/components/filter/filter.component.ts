@@ -7,7 +7,7 @@ import { DateChangeEvent } from 'shared/components/date-filter/date-filter.servi
 import { LocationsFilterService } from './location-filter/locations-filter.service';
 import { LocationsFilterValue } from './location-filter/location-filter.component';
 import {FrameEventManagerService, FrameEvents} from "shared/modules/frame-event-manager/frame-event-manager.service";
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { isEqual } from 'shared/utils/is-equals';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
@@ -36,7 +36,7 @@ export type RefineFilter = { value: any, type: string }[];
   selector: 'app-refine-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
-  providers: [LocationsFilterService, KalturaLogger.createLogger('FilterComponent')],
+  providers: [LocationsFilterService, VidiunLogger.createLogger('FilterComponent')],
   animations: [
     trigger('state', [
       state('visible', style({ height: '*', opacity: 1 })),
@@ -129,7 +129,7 @@ export class FilterComponent {
   
   constructor(private _translate: TranslateService,
               private _frameEventManager: FrameEventManagerService,
-              private _logger: KalturaLogger) {
+              private _logger: VidiunLogger) {
     this._clearAll();
   }
   
@@ -180,7 +180,7 @@ export class FilterComponent {
           return { value, type, label: value, tooltip };
         case 'owners':
         case 'users':
-          const user = value as KalturaUser;
+          const user = value as VidiunUser;
           tooltip = this._translate.instant(`app.filters.${type}`) + `: ${user.id}`;
           label = user.screenName;
           return { value, type, label, tooltip };

@@ -1,16 +1,16 @@
 @import '../../../../styles/variables';
 
-.kExport {
-  .kExportBtn {
+.vExport {
+  .vExportBtn {
     margin-right: 16px;
     font-weight: normal;
   }
 
-  .kDropDown {
+  .vDropDown {
     background-color: white;
     width: 100px;
     height: 34px;
-    border: 1px solid $kGrayscale4;
+    border: 1px solid $vGrayscale4;
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
     margin-right: 16px;
 
     &:hover {
-      border-color: $kPrimary;
+      border-color: $vPrimary;
     }
 
     &:active {
@@ -37,15 +37,15 @@
     i {
       margin-left: auto;
       font-size: 12px;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
     }
   }
 }
 
-.kExportPanel {
+.vExportPanel {
   padding: 16px;
 
-  .kExportBtn {
+  .vExportBtn {
     width: 100%;
     margin-top: 8px;
   }

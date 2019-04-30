@@ -17,13 +17,13 @@
   font-size: 24px;
 }
 
-.kOpenLink {
-  color: $kGrayscale3;
+.vOpenLink {
+  color: $vGrayscale3;
   font-size: 24px;
   cursor: pointer;
 }
 
-.kDomainIcon {
+.vDomainIcon {
   overflow: hidden;
   position: relative;
   width: 24px;
@@ -54,7 +54,7 @@ td span {
   white-space: nowrap;
 }
 
-.kTitle{
+.vTitle{
   width: auto !important;
   padding-right: 0px !important;
 }

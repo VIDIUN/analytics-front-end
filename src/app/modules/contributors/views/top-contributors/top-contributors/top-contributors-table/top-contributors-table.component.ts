@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
-import { KalturaFilterPager } from 'kaltura-ngx-client';
+import { VidiunFilterPager } from 'vidiun-ngx-client';
 import { OverlayComponent } from 'shared/components/overlay/overlay.component';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { TableRow } from 'shared/utils/table-local-sort-handler';
 import { Subject } from 'rxjs';
 
@@ -36,10 +36,10 @@ export class TopContributorsTableComponent implements OnDestroy {
   public _userId: string;
   public _totalCount = 0;
   public _tableData: TableRow<string>[] = [];
-  public _pager = new KalturaFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
+  public _pager = new VidiunFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
   public _paginationChanged$ = this._paginationChanged.asObservable();
   
-  constructor(private _logger: KalturaLogger) {
+  constructor(private _logger: VidiunLogger) {
   }
   
   ngOnDestroy(): void {

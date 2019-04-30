@@ -1,24 +1,24 @@
-<div data-aid="filter-geo" class="kRefineFilters kReport">
-  <div class="kTagsContainer" *ngIf="_tags.length">
-    <span class="kDisclaimer" *ngIf="_showDisclaimer">
-      <i class="kIconhelp_full"></i>
+<div data-aid="filter-geo" class="vRefineFilters vReport">
+  <div class="vTagsContainer" *ngIf="_tags.length">
+    <span class="vDisclaimer" *ngIf="_showDisclaimer">
+      <i class="vIconhelp_full"></i>
       {{'app.filters.disclaimer' | translate}}
     </span>
-    <kTags title=""
+    <vTags title=""
            labelField="label"
            tooltipField="tooltip"
            [data]="_tags"
            [clearAllLabel]="'app.common.clearAll' | translate"
            (onTagRemove)="_removeFilter($event)"
            (onRemoveAll)="_removeAll()">
-    </kTags>
+    </vTags>
   </div>
   <div *ngIf="showFilters"
        [@state]="_state"
        (@state.done)="_filtersAnimationDone($event)">
-    <div class="kRefineFiltersMain">
-      <div class="kFilterContainer kOverrideFAIcons">
-        <div class="kFilterContainerRow">
+    <div class="vRefineFiltersMain">
+      <div class="vFilterContainer vOverrideFAIcons">
+        <div class="vFilterContainerRow">
           <app-country-filter [dateFilter]="_dateFilter"
                               [selectedFilters]="_selectedValues['countries']"
                               (itemSelected)="_onItemSelected($event, 'countries')"
@@ -35,8 +35,8 @@
                                (itemUnselected)="_onItemUnselected($event, 'categories')"></app-category-filter>
         </div>
       </div>
-      <div class="kRefineFiltersFooter">
-        <button type="button" class="kButtonBranded" pButton
+      <div class="vRefineFiltersFooter">
+        <button type="button" class="vButtonBranded" pButton
                 [label]="'app.common.apply' | translate"
                 (click)="_apply()"></button>
       </div>

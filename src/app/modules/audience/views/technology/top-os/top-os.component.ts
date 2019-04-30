@@ -3,21 +3,21 @@ import { ReportService } from 'shared/services';
 import { VidiunReportType } from 'vidiun-ngx-client';
 import { TopOsConfig } from './top-os.config';
 import { BaseDevicesReportComponent, BaseDevicesReportConfig } from '../base-devices-report/base-devices-report.component';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 @Component({
   selector: 'app-top-os',
   templateUrl: '../base-devices-report/base-devices-report.component.html',
   styleUrls: ['../base-devices-report/base-devices-report.component.scss'],
   providers: [
-    KalturaLogger.createLogger('TopOsComponent'),
+    VidiunLogger.createLogger('TopOsComponent'),
     { provide: BaseDevicesReportConfig, useClass: TopOsConfig },
     ReportService
   ]
 })
 export class TopOsComponent extends BaseDevicesReportComponent {
-  protected _defaultReportType = KalturaReportType.operatingSystemFamilies;
-  protected _drillDownReportType = KalturaReportType.operatingSystem;
+  protected _defaultReportType = VidiunReportType.operatingSystemFamilies;
+  protected _drillDownReportType = VidiunReportType.operatingSystem;
   public _name = 'top-os';
   
   public _title = 'app.audience.technology.topOS';
