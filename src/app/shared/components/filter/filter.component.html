@@ -1,35 +1,35 @@
-<div class="kRefineFilters kReport">
-  <div class="kTagsContainer" *ngIf="_tags.length">
-    <kTags title=""
+<div class="vRefineFilters vReport">
+  <div class="vTagsContainer" *ngIf="_tags.length">
+    <vTags title=""
            labelField="label"
            tooltipField="tooltip"
            [data]="_tags"
            [clearAllLabel]="'app.common.clearAll' | translate"
            (onTagRemove)="_removeFilter($event)"
            (onRemoveAll)="_removeAll()">
-    </kTags>
+    </vTags>
   </div>
   <div *ngIf="showFilters"
        [@state]="_state"
        (@state.done)="_filtersAnimationDone($event)">
-    <div class="kRefineFiltersMain">
-      <div class="kFilterContainer kOverrideFAIcons">
-        <div class="kFilterContainerRow">
-          <div class="kListFilters">
+    <div class="vRefineFiltersMain">
+      <div class="vFilterContainer vOverrideFAIcons">
+        <div class="vFilterContainerRow">
+          <div class="vListFilters">
             <app-checkboxes-list-filter [label]="'app.filters.mediaType.title' | translate"
                                         [options]="_mediaTypes"
                                         [selectedFilters]="_selectedValues['mediaType']"
                                         (itemSelected)="_onItemSelected($event, 'mediaType')"
                                         (itemUnselected)="_onItemUnselected($event, 'mediaType')"></app-checkboxes-list-filter>
 
-            <app-checkboxes-list-filter class="kLastItem"
+            <app-checkboxes-list-filter class="vLastItem"
                                         [label]="'app.filters.entrySources.title' | translate"
                                         [options]="_entrySources"
                                         [selectedFilters]="_selectedValues['entrySources']"
                                         (itemSelected)="_onItemSelected($event, 'entrySources')"
                                         (itemUnselected)="_onItemUnselected($event, 'entrySources')"></app-checkboxes-list-filter>
           </div>
-          <div class="kMiscFilters">
+          <div class="vMiscFilters">
             <app-tags-filter [selectedFilters]="_selectedValues['tags']"
                              (itemSelected)="_onItemSelected($event, 'tags')"
                              (itemUnselected)="_onItemUnselected($event, 'tags')"></app-tags-filter>
@@ -46,23 +46,23 @@
           </div>
         </div>
         <div *ngIf="showAdvancedFilters"
-             class="kFilterContainerRow"
+             class="vFilterContainerRow"
              [@state]="_advancedFiltersState"
              (@state.done)="_advancedFiltersAnimationDone($event)">
-          <div class="kListFilters">
+          <div class="vListFilters">
             <app-location-filters [dateFilter]="_dateFilter"
                                   [selectedFilters]="_selectedValues['location']"
                                   (itemSelected)="_onItemSelected($event, 'location')"></app-location-filters>
           </div>
-          <div class="kMiscFilters">&nbsp;</div>
+          <div class="vMiscFilters">&nbsp;</div>
         </div>
       </div>
-      <div class="kRefineFiltersFooter">
+      <div class="vRefineFiltersFooter">
         <a (click)="showAdvancedFilters = !showAdvancedFilters">
           <span *ngIf="showAdvancedFilters">{{'app.filters.basicFilters' | translate}}</span>
           <span *ngIf="!showAdvancedFilters">{{'app.filters.advancedFilters' | translate}}</span>
         </a>
-        <button type="button" class="kButtonBranded" pButton
+        <button type="button" class="vButtonBranded" pButton
                 [label]="'app.common.apply' | translate"
                 (click)="_apply()"></button>
       </div>

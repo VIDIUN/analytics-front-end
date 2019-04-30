@@ -19,7 +19,7 @@ export class EndUserStorageDataConfig extends ReportDataBaseConfig {
         fields: {
           'total_storage_mb': {
             format: value => value,
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;MB`,
           },
           'total_entries': {
             format: value => value,
@@ -28,7 +28,7 @@ export class EndUserStorageDataConfig extends ReportDataBaseConfig {
           'total_msecs': {
             format: value => Math.round(value / 60000),
             colors: [getPrimaryColor('time'), getSecondaryColor('time')],
-            graphTooltip: (value) => `<span class="kValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;Min`,
+            graphTooltip: (value) => `<span class="vValue">${ReportHelper.numberOrZero(String(value), false)}</span>&nbsp;Min`,
           },
         }
       },

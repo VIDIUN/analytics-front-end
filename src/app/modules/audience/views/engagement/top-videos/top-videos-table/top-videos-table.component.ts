@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { KalturaFilterPager } from 'kaltura-ngx-client';
+import { VidiunFilterPager } from 'vidiun-ngx-client';
 import { OverlayComponent } from 'shared/components/overlay/overlay.component';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 import { analyticsConfig } from 'configuration/analytics-config';
@@ -36,7 +36,7 @@ export class TopVideosTableComponent {
   public _entryId: string;
   public _totalCount = 0;
   public _tableData: any[] = [];
-  public _pager = new KalturaFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
+  public _pager = new VidiunFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
 
   constructor(private _router: Router,
               private _frameEventManager: FrameEventManagerService) {

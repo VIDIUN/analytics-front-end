@@ -25,8 +25,8 @@ import { ContentInteractionsComponent } from './views/content-interactions/conte
 import { FilterComponent } from '../../shared/components/filter/filter.component';
 
 import { SharedModule } from 'shared/shared.module';
-import { AreaBlockerModule, TagsModule, TooltipModule, PopupWidgetModule } from '@kaltura-ng/kaltura-ui';
-import { AutoCompleteModule } from '@kaltura-ng/kaltura-primeng-ui';
+import { AreaBlockerModule, TagsModule, TooltipModule, PopupWidgetModule } from '@vidiun-ng/vidiun-ui';
+import { AutoCompleteModule } from '@vidiun-ng/vidiun-primeng-ui';
 import { TableModule } from 'primeng/table';
 import { DevicesOverviewComponent } from './views/technology/devices-overview/devices-overview.component';
 import { CheckboxModule, OverlayPanelModule } from 'primeng/primeng';

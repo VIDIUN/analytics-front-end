@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
-import { KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInputFilter, KalturaReportInterval, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+import { VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInputFilter, VidiunReportInterval, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
@@ -23,7 +23,7 @@ export class EntryTotalsComponent extends EntryBase {
   @Input() entryId = '';
 
   private _order = '-month_id';
-  private _reportType = KalturaReportType.userTopContent;
+  private _reportType = VidiunReportType.userTopContent;
   private _dataConfig: ReportDataConfig;
   
   protected _dateFilter: DateChangeEvent;
@@ -32,10 +32,10 @@ export class EntryTotalsComponent extends EntryBase {
   public _isBusy: boolean;
   public _blockerMessage: AreaBlockerMessage = null;
   public _tabsData: Tab[] = [];
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaReportInputFilter = null;
-  public _pager = new KalturaFilterPager({ pageSize: 25, pageIndex: 1 });
-  public _filter = new KalturaReportInputFilter({
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunReportInputFilter = null;
+  public _pager = new VidiunFilterPager({ pageSize: 25, pageIndex: 1 });
+  public _filter = new VidiunReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -136,7 +136,7 @@ export class EntryTotalsComponent extends EntryBase {
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDay = compare.endDay;
       this._compareFilter.toDay = this._dateFilter.endDay;
     } else {
@@ -159,7 +159,7 @@ export class EntryTotalsComponent extends EntryBase {
     }
   }
 
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals);
   }
 

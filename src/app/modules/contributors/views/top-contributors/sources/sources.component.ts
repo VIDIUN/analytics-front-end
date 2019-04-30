@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService, ErrorDetails, ErrorsManagerService, GraphsData, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
 import { ReportDataConfig, ReportDataItemConfig } from 'shared/services/storage-data-base.config';
 import { TranslateService } from '@ngx-translate/core';
 import { CompareService } from 'shared/services/compare.service';
@@ -19,11 +19,11 @@ import { Tab } from 'shared/components/report-tabs/report-tabs.component';
   providers: [ReportService, SourcesDataConfig]
 })
 export class ContributorsSourcesComponent extends TopContributorsBaseReportComponent {
-  private _compareFilter: KalturaEndUserReportInputFilter = null;
-  private _pager = new KalturaFilterPager();
+  private _compareFilter: VidiunEndUserReportInputFilter = null;
+  private _pager = new VidiunFilterPager();
   private _dataConfig: ReportDataConfig;
-  private _reportInterval = KalturaReportInterval.months;
-  private _filter = new KalturaEndUserReportInputFilter({
+  private _reportInterval = VidiunReportInterval.months;
+  private _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false,
     interval: this._reportInterval,
@@ -36,7 +36,7 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
   public _isCompareMode: boolean;
   public _columns: string[] = [];
   public _compareFirstTimeLoading = true;
-  public _reportType = KalturaReportType.topSources;
+  public _reportType = VidiunReportType.topSources;
   public _barChartData: any = {};
   public _selectedMetrics: string;
   public _tabsData: Tab[] = [];
@@ -131,7 +131,7 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
     if (this._dateFilter.compare.active) {
       this._isCompareMode = true;
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDay = compare.startDay;
       this._compareFilter.toDay = compare.endDay;
     } else {
@@ -144,7 +144,7 @@ export class ContributorsSourcesComponent extends TopContributorsBaseReportCompo
     this._selectedMetrics = tab.key;
   }
 
-  private _handleTable(table: KalturaReportTable, compare?: Report): void {
+  private _handleTable(table: VidiunReportTable, compare?: Report): void {
     this._tabsData = this._reportService.parseTotals(table, this._dataConfig.totals, this._selectedMetrics);
   
     const columnsCount = table.data ? table.data.split(';').length : 0;

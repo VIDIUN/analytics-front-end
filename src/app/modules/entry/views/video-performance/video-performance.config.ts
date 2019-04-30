@@ -45,28 +45,28 @@ export class VideoPerformanceConfig extends ReportDataBaseConfig {
             title: this._translate.instant(`app.entry.plays`),
             sortOrder: 1,
             colors: [getPrimaryColor(), getSecondaryColor()],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.plays`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.plays`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'sum_time_viewed': {
             format: value => value,
             title: this._translate.instant(`app.entry.sum_time_viewed`),
             sortOrder: 2,
             colors: [getPrimaryColor('time'), getSecondaryColor('time')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.sum_time_viewed`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.sum_time_viewed`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'avg_time_viewed': {
             format: value => value,
             title: this._translate.instant(`app.entry.avg_time_viewed`),
             sortOrder: 3,
             colors: [getPrimaryColor('time'), getSecondaryColor('time')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.avg_time_viewed`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.avg_time_viewed`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'count_loads': {
             format: value => value,
             title: this._translate.instant(`app.entry.count_loads`),
             sortOrder: 4,
             colors: [getPrimaryColor(), getSecondaryColor()],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.entry.count_loads`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.entry.count_loads`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
         }
       },

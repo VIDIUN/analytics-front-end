@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { KalturaClientModule } from 'kaltura-ngx-client';
+import { VidiunClientModule } from 'vidiun-ngx-client';
 import { analyticsConfig } from '../configuration/analytics-config';
 import { BrowserService, ErrorsManagerService, AuthService } from './shared/services';
 import { ConfirmationService, ConfirmDialogModule } from 'primeng/primeng';
@@ -34,7 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    KalturaClientModule.forRoot(),
+    VidiunClientModule.forRoot(),
     FrameEventManagerModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

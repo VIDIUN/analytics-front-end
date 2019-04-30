@@ -1,10 +1,10 @@
 @import '../../../../styles/variables';
 
-.kReportTabs{
+.vReportTabs{
   display: flex;
   width: 100%;
-  border-bottom: 1px solid $kGrayscale4;
-  .kTab{
+  border-bottom: 1px solid $vGrayscale4;
+  .vTab{
     display: flex;
     flex-direction: column;
     padding: 16px 24px;
@@ -15,39 +15,39 @@
     background-color: white;
     cursor: pointer;
     &:hover{
-      background-color: $kGrayscale7;
+      background-color: $vGrayscale7;
     }
-    .kTabTitle{
+    .vTabTitle{
       font-size: 15px;
       font-weight: 400;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
     }
-    .kValueContainer{
+    .vValueContainer{
       margin-top: auto;
       display: flex;
       align-items: flex-end;
-      /deep/ .kValue{
+      /deep/ .vValue{
         font-size: 24px;
         font-weight: 400;
-        color: $kGrayscale1;
+        color: $vGrayscale1;
       }
-      .kUnits{
+      .vUnits{
         font-size: 13px;
         font-weight: 700;
-        color: $kGrayscale3;
+        color: $vGrayscale3;
         line-height: 20px;
         margin-left: 4px;
       }
     }
     &.active{
       cursor: default;
-      border-bottom: 4px solid $kTertiary;
+      border-bottom: 4px solid $vTertiary;
       padding-bottom: 16px;
-      .kValueContainer .kValue {
+      .vValueContainer .vValue {
         font-weight: 700;
       }
-      .kTabTitle {
-        color: $kGrayscale1;
+      .vTabTitle {
+        color: $vGrayscale1;
         font-weight: 700;
       }
     }

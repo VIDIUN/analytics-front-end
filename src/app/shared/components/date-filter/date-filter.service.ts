@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
-import { KalturaReportInterval } from 'kaltura-ngx-client';
+import { VidiunReportInterval } from 'vidiun-ngx-client';
 import * as moment from 'moment';
 
 export enum DateRanges {
@@ -33,7 +33,7 @@ export type DateChangeEvent = {
   endDate: number;
   startDay: string;
   endDay: string;
-  timeUnits: KalturaReportInterval;
+  timeUnits: VidiunReportInterval;
   timeZoneOffset: number;
   applyIn?: string;
   changeOnly?: string;

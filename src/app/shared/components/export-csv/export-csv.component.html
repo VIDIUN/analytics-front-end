@@ -1,18 +1,18 @@
-<div class="kExport">
-  <button pButton class="kButtonDefault" icon="icon-export" (click)="exportToScv()" [class.kButtonProcess]="_exportingCsv" [disabled]="disabled || _exportingCsv" [label]="(_exportingCsv ? 'app.common.exporting' : 'app.common.exportCsv') | translate"></button>
+<div class="vExport">
+  <button pButton class="vButtonDefault" icon="icon-export" (click)="exportToScv()" [class.vButtonProcess]="_exportingCsv" [disabled]="disabled || _exportingCsv" [label]="(_exportingCsv ? 'app.common.exporting' : 'app.common.exportCsv') | translate"></button>
 </div>
 <p-toast key="ready">
   <ng-template let-message pTemplate="message">
-    <div class="kToast">
-      <span class="kHeader" >{{'app.common.reportReady' | translate}}</span>
+    <div class="vToast">
+      <span class="vHeader" >{{'app.common.reportReady' | translate}}</span>
       <a (click)="download()">{{'app.common.downloadCsv' | translate}}</a>
     </div>
   </ng-template>
 </p-toast>
 <p-toast key="error">
   <ng-template let-message pTemplate="message">
-    <div class="kToast">
-      <span class="kHeader" >{{'app.common.reportFail' | translate}}</span>
+    <div class="vToast">
+      <span class="vHeader" >{{'app.common.reportFail' | translate}}</span>
       <a (click)="tryAgain()">{{'app.common.tryAgain' | translate}}</a>
     </div>
   </ng-template>

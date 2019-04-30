@@ -1,48 +1,48 @@
-<div class="kReport kOverrideFAIcons">
+<div class="vReport vOverrideFAIcons">
   <ng-content></ng-content>
 
-  <div class="kFilters">
-    <span class="kTitle">{{'app.audience.technology.devicesOverview' | translate}}</span>
+  <div class="vFilters">
+    <span class="vTitle">{{'app.audience.technology.devicesOverview' | translate}}</span>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
 
-    <div class="kReportContent">
+    <div class="vReportContent">
       <ng-container *ngIf="_summaryData[_selectedMetrics]">
         <app-report-tabs [tabs]="_tabsData" [showValue]="false" (tabChange)="_onTabChange($event)"></app-report-tabs>
-        <div class="kOverview">
-          <div class="kSummary">
-            <div class="kSummaryRow" *ngFor="let summary of _summaryData[_selectedMetrics]">
-              <div class="kSummaryCheckbox">
+        <div class="vOverview">
+          <div class="vSummary">
+            <div class="vSummaryRow" *ngFor="let summary of _summaryData[_selectedMetrics]">
+              <div class="vSummaryCheckbox">
                 <p-checkbox name="devices"
                             [inputId]="summary.key"
                             [value]="summary.key"
                             (onChange)="_onSelectionChange()"
                             [(ngModel)]="_selectedValues"></p-checkbox>
                 <label [for]="summary.key">
-                  <i class="kIcon" [ngClass]="summary.key | appDeviceIcon"></i>
-                  <span class="kLabel">{{summary.name}}</span>
+                  <i class="vIcon" [ngClass]="summary.key | appDeviceIcon"></i>
+                  <span class="vLabel">{{summary.name}}</span>
                 </label>
               </div>
-              <div class="kSummaryValue">
+              <div class="vSummaryValue">
                 <h5 class="mini-loader" *ngIf="summary.trend === undefined"><span></span><span></span></h5>
-                <span *ngIf="summary.trend !== undefined" class="kTrend" [kTooltip]="summary.tooltip" [escape]="false"
+                <span *ngIf="summary.trend !== undefined" class="vTrend" [vTooltip]="summary.tooltip" [escape]="false"
                       [maxWidth]="500">
                 <app-trend-value [value]="summary.trend"
                                  [units]="summary.compareUnits"
                                  [trend]="summary.trendDirection"></app-trend-value>
               </span>
                 <div>
-                  <span class="kValue">{{summary.value}}</span>
-                  <span class="kUnits">{{summary.units}}</span>
+                  <span class="vValue">{{summary.value}}</span>
+                  <span class="vUnits">{{summary.units}}</span>
                 </div>
               </div>
 
             </div>
           </div>
-          <div class="kSummaryChart">
-            <div class="kChart">
-              <div echarts class="kChart"
+          <div class="vSummaryChart">
+            <div class="vChart">
+              <div echarts class="vChart"
                    [options]="_barChartData[_selectedMetrics]"
                    [merge]="_mergeChartData"></div>
             </div>
@@ -50,10 +50,10 @@
         </div>
       </ng-container>
 
-      <div *ngIf="!_summaryData[_selectedMetrics]" class="kNoResults">
+      <div *ngIf="!_summaryData[_selectedMetrics]" class="vNoResults">
         <span *ngIf="!_isBusy">{{'app.common.noResults' | translate}}</span>
       </div>
     </div>
 
-  </k-area-blocker>
+  </v-area-blocker>
 </div>

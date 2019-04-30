@@ -1,4 +1,4 @@
-@import '../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/variables';
+@import '../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/variables';
 
 $mini-loader-size: 12px;
 $mini-loader-spacer: 7px;
@@ -64,7 +64,7 @@ $start-position-right: -$mini-loader-size / 2;
     display: inline-block;
     width: $mini-loader-size;
     height: $mini-loader-size;
-    background: $kOrange;
+    background: $vOrange;
     border-radius: $mini-loader-size;
 
     &:nth-child(1) {

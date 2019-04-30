@@ -91,7 +91,7 @@ export class ReportHelper {
             case 'sum_time_viewed':
             case 'avg_time_viewed':
               // format as HH:MM:SS
-              return KTimeUtil.formatTime2(Number(value) * 60);
+              return VTimeUtil.formatTime2(Number(value) * 60);
               break;
             case 'event_date_id':
               return new Date(Number(value) * 1000).toDatestring();

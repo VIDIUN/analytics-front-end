@@ -1,8 +1,8 @@
 @import '../../../../../styles/variables';
-.kReport{
+.vReport{
   border-radius: 0px !important;
 }
-.kPlayer {
+.vPlayer {
   position: relative;
   width: 100%;
   height: 480px;
@@ -12,7 +12,7 @@
     left: 0px;
     width: 100%;
     height: 100%;
-    .kChart {
+    .vChart {
       height: 100%;
       width: 100%;
     }
@@ -34,22 +34,22 @@
   }
 }
 
-.kScrubber {
+.vScrubber {
   position: absolute;
   top: 0px;
   left: 0px;
   width: 0%;
   height: 100%;
   border: none;
-  border-bottom: 20px solid $kSecondary;
-  border-right: 2px solid $kSecondary;
+  border-bottom: 20px solid $vSecondary;
+  border-right: 2px solid $vSecondary;
   pointer-events: none;
 }
 
 .playerFooter{
   width: 100%;
   height: 20px;
-  background-color: $kGrayscale1;
+  background-color: $vGrayscale1;
 }
 
 :host {
@@ -57,7 +57,7 @@
 }
 
 /* Player overrides start */
-:host /deep/ #kaltura_player_analytics{
+:host /deep/ #vidiun_player_analytics{
   width: 100% !important;
   height: 100% !important;
 }

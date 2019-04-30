@@ -3,18 +3,18 @@ import { Observable } from 'rxjs';
 import {
   CategoryGetAction,
   CategoryListAction,
-  KalturaAppearInListType,
-  KalturaCategory,
-  KalturaCategoryFilter,
-  KalturaCategoryListResponse,
-  KalturaClient,
-  KalturaContributionPolicyType,
-  KalturaDetachedResponseProfile,
-  KalturaFilterPager,
-  KalturaPrivacyType,
-  KalturaResponseProfileType
-} from 'kaltura-ngx-client';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+  VidiunAppearInListType,
+  VidiunCategory,
+  VidiunCategoryFilter,
+  VidiunCategoryListResponse,
+  VidiunClient,
+  VidiunContributionPolicyType,
+  VidiunDetachedResponseProfile,
+  VidiunFilterPager,
+  VidiunPrivacyType,
+  VidiunResponseProfileType
+} from 'vidiun-ngx-client';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 import { publishReplay, refCount } from 'rxjs/operators';
 import { analyticsConfig } from 'configuration/analytics-config';
 
@@ -28,9 +28,9 @@ export interface CategoryData {
   fullName: string;
   childrenCount: number;
   membersCount: number;
-  appearInList: KalturaAppearInListType;
-  contributionPolicy: KalturaContributionPolicyType;
-  privacy: KalturaPrivacyType;
+  appearInList: VidiunAppearInListType;
+  contributionPolicy: VidiunContributionPolicyType;
+  privacy: VidiunPrivacyType;
   privacyContexts: string;
   privacyContext: string;
 }
@@ -44,9 +44,9 @@ export interface CategoriesQuery {
 export class CategoriesSearchService implements OnDestroy {
   private _groupedCategoriesCache: { [key: string]: Observable<{ items: CategoryData[] }> } = {};
   private _categoriesMap: Map<number, CategoryData> = new Map<number, CategoryData>();
-  private _logger: KalturaLogger;
+  private _logger: VidiunLogger;
   
-  constructor(private _kalturaServerClient: KalturaClient) {
+  constructor(private _vidiunServerClient: VidiunClient) {
   }
   
   ngOnDestroy() {
@@ -71,7 +71,7 @@ export class CategoriesSearchService implements OnDestroy {
     
     const responseProfile = this._createResponseProfile();
     
-    return <any>this._kalturaServerClient.request(
+    return <any>this._vidiunServerClient.request(
       new CategoryGetAction({ id: categoryId }).setRequestOptions({
         responseProfile
       })
@@ -108,17 +108,17 @@ export class CategoriesSearchService implements OnDestroy {
     // changing it prioritize cache will require refactoring places that are using this method.
     if (text) {
       return Observable.create(observer => {
-        const filter = new KalturaCategoryFilter({
+        const filter = new VidiunCategoryFilter({
           nameOrReferenceIdStartsWith: text,
           orderBy: '+fullName'
         });
         
-        const pager = new KalturaFilterPager({
+        const pager = new VidiunFilterPager({
           pageIndex: 0,
           pageSize: 30
         });
         
-        const requestSubscription = this._kalturaServerClient.request(
+        const requestSubscription = this._vidiunServerClient.request(
           new CategoryListAction({ filter })
         ).subscribe(result => {
             const items = this.parseAndCacheCategories(result.objects);
@@ -162,11 +162,11 @@ export class CategoriesSearchService implements OnDestroy {
     return cachedResponse;
   }
   
-  private parseAndCacheCategories(kalturaCategories: KalturaCategory[]): CategoryData[] {
+  private parseAndCacheCategories(vidiunCategories: VidiunCategory[]): CategoryData[] {
     const result = [];
     
-    if (kalturaCategories) {
-      kalturaCategories.map((category) => {
+    if (vidiunCategories) {
+      vidiunCategories.map((category) => {
         const fullIdPath = (category.fullIds ? category.fullIds.split('>') : []).map((item: any) => Number(item));
         const newCategoryData = {
           id: category.id,
@@ -194,8 +194,8 @@ export class CategoriesSearchService implements OnDestroy {
     return result;
   }
   
-  private buildCategoryListRequest({ parentId, categoriesList }: { parentId?: number, categoriesList?: number[] }): Observable<KalturaCategoryListResponse> {
-    const filter = new KalturaCategoryFilter({});
+  private buildCategoryListRequest({ parentId, categoriesList }: { parentId?: number, categoriesList?: number[] }): Observable<VidiunCategoryListResponse> {
+    const filter = new VidiunCategoryFilter({});
     filter.orderBy = '+name';
     if (parentId !== null && typeof parentId !== 'undefined') {
       filter.parentIdEqual = parentId;
@@ -207,17 +207,17 @@ export class CategoriesSearchService implements OnDestroy {
     
     const responseProfile = this._createResponseProfile();
     
-    return <any>this._kalturaServerClient.request(
+    return <any>this._vidiunServerClient.request(
       new CategoryListAction({ filter }).setRequestOptions({
         responseProfile
       })
     );
   }
   
-  private _createResponseProfile(): KalturaDetachedResponseProfile {
-    return new KalturaDetachedResponseProfile({
+  private _createResponseProfile(): VidiunDetachedResponseProfile {
+    return new VidiunDetachedResponseProfile({
       fields: 'id,name,parentId,partnerSortValue,fullName,fullIds,directSubCategoriesCount,contributionPolicy,privacyContext,privacyContexts,appearInList,privacy,membersCount',
-      type: KalturaResponseProfileType.includeFields
+      type: VidiunResponseProfileType.includeFields
     });
   }
 }

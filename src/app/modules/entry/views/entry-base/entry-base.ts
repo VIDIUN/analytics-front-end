@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
-import { KalturaEndUserReportInputFilter } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter } from 'vidiun-ngx-client';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { analyticsConfig } from 'configuration/analytics-config';
 
@@ -35,7 +35,7 @@ export abstract class EntryBase {
   
   protected abstract _updateRefineFilter(): void;
   
-  protected _refineFilterToServerValue(filter: KalturaEndUserReportInputFilter): void {
+  protected _refineFilterToServerValue(filter: VidiunEndUserReportInputFilter): void {
     let categories = [], mediaType = [], sourceType = [],
       tags = [], owners = [], country = [], region = [], city = [];
     

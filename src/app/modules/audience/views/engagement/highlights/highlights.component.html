@@ -1,31 +1,31 @@
-<div class="kReport kContent kOverrideFAIcons">
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+<div class="vReport vContent vOverrideFAIcons">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
 
-    <div class="kReportContent">
+    <div class="vReportContent">
       <app-report-tabs [tabs]="_tabsData" [showValue]="false" (tabChange)="_onTabChange($event)"></app-report-tabs>
-      <div class="kDimensions">
+      <div class="vDimensions">
         <app-time-units applyIn="highlights"
                         [dateFilter]="dateFilterComponent"
                         [selectedTimeUnit]="_reportInterval"></app-time-units>
       </div>
-      <div class="kChart">
-        <div echarts class="kChart"
+      <div class="vChart">
+        <div echarts class="vChart"
              *ngIf="_lineChartData && _lineChartData[_selectedMetrics] && _lineChartData[_selectedMetrics]?.series[0]?.data?.length"
              [options]="_lineChartData[_selectedMetrics]"></div>
 
-        <div *ngIf="!_isBusy && (!_lineChartData || !_lineChartData[_selectedMetrics] || !_lineChartData[_selectedMetrics]?.series[0]?.data?.length)" class="kNoResults">
+        <div *ngIf="!_isBusy && (!_lineChartData || !_lineChartData[_selectedMetrics] || !_lineChartData[_selectedMetrics]?.series[0]?.data?.length)" class="vNoResults">
           <span>{{'app.common.noResults' | translate}}</span>
         </div>
       </div>
 
-      <div class="kTable">
-        <div class="kToggle">
-          <i [class.kIcondropdown_arrow_bottom]="!_showTable" [class.kIcondropdown_arrow_top]="_showTable"></i>
+      <div class="vTable">
+        <div class="vToggle">
+          <i [class.vIcondropdown_arrow_bottom]="!_showTable" [class.vIcondropdown_arrow_top]="_showTable"></i>
           <a (click)="_toggleTable()">
             {{(_showTable ? 'app.common.hideDetails' : 'app.common.viewDetails') | translate}}
           </a>
         </div>
-        <div class="kTableContainer" [class.kOpen]="_showTable" [class.kClose]="!_showTable">
+        <div class="vTableContainer" [class.vOpen]="_showTable" [class.vClose]="!_showTable">
           <p-table sortField="month_id"
                    [value]="_tableData"
                    [customSort]="true"
@@ -43,9 +43,9 @@
             </ng-template>
             <ng-template pTemplate="body" let-data>
               <tr>
-                <td *ngFor="let col of _columns; let i = index" [class.kHighlight]="i===0">
-                  <span *ngIf="_isCompareMode && data[col]?.value && col !== 'month_id' && col !== 'date_id'" class="kTrend">
-                    <span [kTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
+                <td *ngFor="let col of _columns; let i = index" [class.vHighlight]="i===0">
+                  <span *ngIf="_isCompareMode && data[col]?.value && col !== 'month_id' && col !== 'date_id'" class="vTrend">
+                    <span [vTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
                       <app-trend-value [value]="data[col].value"
                                        [units]="data[col].units"
                                        [trend]="data[col].trend"></app-trend-value>
@@ -59,8 +59,8 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
               <div class="emptymessage">
-                <div class="kEmptyMessage" *ngIf="!_firstTimeLoading">{{'app.common.noResults' | translate}}</div>
-                <div class="kEmptyMessage" *ngIf="_firstTimeLoading">&nbsp;</div>
+                <div class="vEmptyMessage" *ngIf="!_firstTimeLoading">{{'app.common.noResults' | translate}}</div>
+                <div class="vEmptyMessage" *ngIf="_firstTimeLoading">&nbsp;</div>
               </div>
             </ng-template>
           </p-table>
@@ -73,6 +73,6 @@
       </div>
     </div>
 
-  </k-area-blocker>
+  </v-area-blocker>
 </div>
 

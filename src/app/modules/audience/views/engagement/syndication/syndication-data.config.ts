@@ -17,29 +17,29 @@ export class SyndicationDataConfig extends ReportDataBaseConfig {
           'count_plays': {
             format: value => value,
             colors: [getPrimaryColor(), getSecondaryColor()],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.engagement.topDomainsReport.count_plays`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.engagement.topDomainsReport.count_plays`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'count_loads': {
             format: value => value,
             colors: [getPrimaryColor(), getSecondaryColor()],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.engagement.topDomainsReport.count_loads`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.engagement.topDomainsReport.count_loads`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}</span>`
           },
           'load_play_ratio': {
             format: value => value,
             parse: value => parseFloat(value) * 100,
             colors: [getPrimaryColor(), getSecondaryColor()],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.engagement.topDomainsReport.load_play_ratio`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}%</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.engagement.topDomainsReport.load_play_ratio`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}%</span>`
           },
           'sum_time_viewed': {
             format: value => value,
             colors: [getPrimaryColor('time'), getSecondaryColor('time')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.engagement.topDomainsReport.sum_time_viewed`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)} Min</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.engagement.topDomainsReport.sum_time_viewed`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)} Min</span>`
           },
           'avg_view_drop_off': {
             format: value => value,
             parse: value => parseFloat(value) * 100,
             colors: [getPrimaryColor('dropoff'), getSecondaryColor('dropoff')],
-            graphTooltip: (value) => `<span class="kValue">${this._translate.instant(`app.engagement.topDomainsReport.avg_view_drop_off`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}%</span>`
+            graphTooltip: (value) => `<span class="vValue">${this._translate.instant(`app.engagement.topDomainsReport.avg_view_drop_off`)}:&nbsp;${ReportHelper.numberOrZero(String(value), false)}%</span>`
           },
         }
       },

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReportService } from 'shared/services';
-import { KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunReportType } from 'vidiun-ngx-client';
 import { TopOsConfig } from './top-os.config';
 import { BaseDevicesReportComponent, BaseDevicesReportConfig } from '../base-devices-report/base-devices-report.component';
 
@@ -14,8 +14,8 @@ import { BaseDevicesReportComponent, BaseDevicesReportConfig } from '../base-dev
   ]
 })
 export class TopOsComponent extends BaseDevicesReportComponent {
-  protected _defaultReportType = KalturaReportType.operatingSystemFamilies;
-  protected _drillDownReportType = KalturaReportType.operatingSystem;
+  protected _defaultReportType = VidiunReportType.operatingSystemFamilies;
+  protected _drillDownReportType = VidiunReportType.operatingSystem;
   public _title = 'app.audience.technology.topOS';
   
   protected getRelevantCompareRow(tableData: { [key: string]: string }[], row: { [key: string]: string }): { [key: string]: string } {

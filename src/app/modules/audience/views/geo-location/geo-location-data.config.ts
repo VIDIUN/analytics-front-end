@@ -195,7 +195,7 @@ export class GeoLocationDataConfig extends ReportDataBaseConfig {
   }
 
   public getCountryName(country: string): string {
-    // map kaltura server country names to gep map county names
+    // map vidiun server country names to gep map county names
     const serveCountryNames = ["ALAND ISLANDS",
       "ANTIGUA AND BARBUDA",
       "BOLIVIA, PLURINATIONAL STATE OF",

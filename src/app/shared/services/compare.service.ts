@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportTotal } from 'kaltura-ngx-client';
+import { VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportTotal } from 'vidiun-ngx-client';
 import { ReportDataItemConfig } from 'shared/services/storage-data-base.config';
 import { GraphsData } from 'shared/services/report.service';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
@@ -23,26 +23,26 @@ export class CompareService implements OnDestroy {
   
   private _getMissingDatesValues(startDate: moment.Moment,
                                  endDate: moment.Moment,
-                                 reportInterval: KalturaReportInterval,
+                                 reportInterval: VidiunReportInterval,
                                  formatFn: Function,
                                  compareData: string[],
                                  datesDiff: number): { name: string, value: number, compare: number }[] {
     const formatValue = value => typeof formatFn === 'function' ? formatFn(value) : value;
-    const dates = reportInterval === KalturaReportInterval.days
+    const dates = reportInterval === VidiunReportInterval.days
       ? enumerateDaysBetweenDates(startDate, endDate)
       : enumerateMonthsBetweenDates(startDate, endDate);
     
     return dates.map(date => {
       const label = date.format('YYYYMMDD');
       const relevantDate = moment(date).subtract(datesDiff);
-      const relevantLabelString = reportInterval === KalturaReportInterval.days
+      const relevantLabelString = reportInterval === VidiunReportInterval.days
         ? relevantDate.format('YYYYMMDD')
         : relevantDate.format('YYYYMM');
       
       const compareString = compareData.find(item => (item.split(analyticsConfig.valueSeparator)[0] || '') === relevantLabelString);
       const compareValue = compareString ? compareString.split(analyticsConfig.valueSeparator)[1] : 0;
 
-      const name = reportInterval === KalturaReportInterval.months
+      const name = reportInterval === VidiunReportInterval.months
         ? DateFilterUtils.formatMonthOnlyString(label, analyticsConfig.locale)
         : DateFilterUtils.formatShortDateString(label, analyticsConfig.locale);
       
@@ -52,10 +52,10 @@ export class CompareService implements OnDestroy {
 
   public compareGraphData(currentPeriod: { from: string, to: string },
                           comparePeriod: { from: string, to: string },
-                          current: KalturaReportGraph[],
-                          compare: KalturaReportGraph[],
+                          current: VidiunReportGraph[],
+                          compare: VidiunReportGraph[],
                           config: ReportDataItemConfig,
-                          reportInterval: KalturaReportInterval,
+                          reportInterval: VidiunReportInterval,
                           dataLoadedCb?: Function,
                           graphOptions?: { xAxisLabelRotation?: number, yAxisLabelRotation?: number }): GraphsData {
     const lineChartData = {};
@@ -64,7 +64,7 @@ export class CompareService implements OnDestroy {
 
     let currentPeriodTitle = '';
     let comparePeriodTitle = '';
-    if (reportInterval === KalturaReportInterval.months) {
+    if (reportInterval === VidiunReportInterval.months) {
       currentPeriodTitle = `${DateFilterUtils.formatMonthString(currentPeriod.from, analyticsConfig.locale)} – ${DateFilterUtils.formatMonthString(currentPeriod.to, analyticsConfig.locale)}`;
       comparePeriodTitle = `${DateFilterUtils.formatMonthString(comparePeriod.from, analyticsConfig.locale)} – ${DateFilterUtils.formatMonthString(comparePeriod.to, analyticsConfig.locale)}`;
     } else {
@@ -72,7 +72,7 @@ export class CompareService implements OnDestroy {
       comparePeriodTitle = `${DateFilterUtils.formatFullDateString(comparePeriod.from, analyticsConfig.locale)} – ${DateFilterUtils.formatFullDateString(comparePeriod.to, analyticsConfig.locale)}`;
     }
 
-    current.forEach((graph: KalturaReportGraph, i) => {
+    current.forEach((graph: VidiunReportGraph, i) => {
       if (!config.fields[graph.id] || !graph.data) {
         return;
       }
@@ -89,7 +89,7 @@ export class CompareService implements OnDestroy {
         let fromDate = DateFilterUtils.parseDateString(currentPeriod.from);
         let currentDate = DateFilterUtils.parseDateString((currentData[0] || '').split(analyticsConfig.valueSeparator)[0] || '');
     
-        if (reportInterval === KalturaReportInterval.days) {
+        if (reportInterval === VidiunReportInterval.days) {
           fromDate = fromDate.clone().startOf('day');
           currentDate = currentDate.clone().startOf('day');
         } else {
@@ -114,7 +114,7 @@ export class CompareService implements OnDestroy {
           let currentName = currentLabel;
 
           if (!config.fields[graph.id].nonDateGraphLabel) {
-            currentName = reportInterval === KalturaReportInterval.months
+            currentName = reportInterval === VidiunReportInterval.months
               ? DateFilterUtils.formatMonthOnlyString(currentLabel, analyticsConfig.locale)
               : DateFilterUtils.formatShortDateString(currentLabel, analyticsConfig.locale);
           }
@@ -155,7 +155,7 @@ export class CompareService implements OnDestroy {
 
             if (nextValue) {
               let nextValueDate, actualNextValueDate;
-              if (reportInterval === KalturaReportInterval.days) {
+              if (reportInterval === VidiunReportInterval.days) {
                 nextValueDate = moment(nextValue.split(analyticsConfig.valueSeparator)[0]).startOf('day');
                 actualNextValueDate = moment(currentLabel).startOf('day').add(1, 'days');
               } else {
@@ -175,7 +175,7 @@ export class CompareService implements OnDestroy {
               let currentDate = DateFilterUtils.parseDateString(currentLabel);
               let toDate = DateFilterUtils.parseDateString(currentPeriod.to);
   
-              if (reportInterval === KalturaReportInterval.days) {
+              if (reportInterval === VidiunReportInterval.days) {
                 toDate = toDate.clone().startOf('day');
                 currentDate = currentDate.clone().startOf('day');
               } else {
@@ -184,7 +184,7 @@ export class CompareService implements OnDestroy {
               }
   
               if (currentDate.isBefore(toDate)) {
-                toDate = toDate.clone().add(1, reportInterval === KalturaReportInterval.days ? 'days' : 'months');
+                toDate = toDate.clone().add(1, reportInterval === VidiunReportInterval.days ? 'days' : 'months');
     
                 this._getMissingDatesValues(currentDate, toDate, reportInterval, config.fields[graph.id].format, compareData, datesDiff)
                   .forEach(result => {
@@ -208,12 +208,12 @@ export class CompareService implements OnDestroy {
           ? config.fields[graph.id].graphTooltip(compare.value)
           : compare.value;
         return `
-          <div class="kGraphTooltip">
+          <div class="vGraphTooltip">
             ${current.name}<br/>
-            <span class="kBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;
-            <span class="kValue kSeriesName">${current.seriesName}</span>&nbsp;${currentValue}<br/>
-            <span class="kBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;
-            <span class="kValue kSeriesName">${compare.seriesName}</span>&nbsp;${compareValue}
+            <span class="vBullet" style="color: ${colors[0]}">&bull;</span>&nbsp;
+            <span class="vValue vSeriesName">${current.seriesName}</span>&nbsp;${currentValue}<br/>
+            <span class="vBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;
+            <span class="vValue vSeriesName">${compare.seriesName}</span>&nbsp;${compareValue}
           </div>
         `;
       };
@@ -426,8 +426,8 @@ export class CompareService implements OnDestroy {
 
   public compareTableData(currentPeriod: { from: string, to: string },
                           comparePeriod: { from: string, to: string },
-                          current: KalturaReportTable,
-                          compare: KalturaReportTable,
+                          current: VidiunReportTable,
+                          compare: VidiunReportTable,
                           config: ReportDataItemConfig,
                           dataKey: string = ''): { columns: string[], tableData: { [key: string]: string }[] } {
     if (!current.header || !current.data) {
@@ -512,8 +512,8 @@ export class CompareService implements OnDestroy {
 
   public compareTotalsData(currentPeriod: { from: string, to: string },
                            comparePeriod: { from: string, to: string },
-                           current: KalturaReportTotal,
-                           compare: KalturaReportTotal,
+                           current: VidiunReportTotal,
+                           compare: VidiunReportTotal,
                            config: ReportDataItemConfig,
                            selected?: string): Tab[] {
     if (!current.header || !current.data) {

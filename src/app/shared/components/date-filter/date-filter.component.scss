@@ -1,24 +1,24 @@
 @import '../../../../styles/variables';
 
-.kDateFilter{
+.vDateFilter{
   display: flex;
   align-items: center;
-  .kExitCompare{
+  .vExitCompare{
     white-space: nowrap;
     margin-left: 12px;
   }
-  .kLabel{
-    color: $kGrayscale1;
+  .vLabel{
+    color: $vGrayscale1;
     margin-right: 8px;
   }
-  .kMargin{
+  .vMargin{
     margin-left: 16px;
   }
   .datesRangeDropDown{
     background-color: white;
     min-width: 210px;
     height: 34px;
-    border: 1px solid $kGrayscale4;
+    border: 1px solid $vGrayscale4;
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@
     box-sizing: border-box;
     cursor: pointer;
     &:hover{
-      border-color: $kPrimary;
+      border-color: $vPrimary;
     }
     &:active{
       box-shadow: 0 0 0 3px rgba(0,167,132,0.4);
@@ -40,30 +40,30 @@
     i{
       margin-left: auto;
       font-size: 12px;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
     }
     .compareIcon{
       font-size: 24px;
-      color: $kOrange;
+      color: $vOrange;
     }
   }
 }
-.kDateFilterPopup{
+.vDateFilterPopup{
   height: 100%;
-  border: 1px solid $kGrayscale5;
+  border: 1px solid $vGrayscale5;
   border-radius: 4px;
-  .kFilters{
+  .vFilters{
     width: 100%;
     height: 100%;
-    &.kPreset{
+    &.vPreset{
       display: flex;
       .col{
         width: 50%;
         display: flex;
         flex-direction: column;
-        .kTitle{
+        .vTitle{
           font-size:14px;
-          color: $kGrayscale3;
+          color: $vGrayscale3;
           padding-left: 24px;
           margin-bottom: 8px;
         }
@@ -73,7 +73,7 @@
           box-sizing: border-box;
           cursor: pointer;
           &:hover{
-            background-color: $kGrayscale6;
+            background-color: $vGrayscale6;
           }
           /deep/ .ui-radiobutton{
             float: right;
@@ -88,7 +88,7 @@
                 background: transparent;
                 .pi-circle-on:before {
                   content: "\e91c";
-                  color: $kGrayscale1;
+                  color: $vGrayscale1;
                   font-size: 14px;
                 }
               }
@@ -109,20 +109,20 @@
         }
       }
     }
-    &.kSpecific{
+    &.vSpecific{
       display: flex;
       justify-content: center;
       p-calendar{
         /deep/ .ui-calendar .ui-datepicker{
           width: 380px;
           .ui-datepicker-calendar td:not(.ui-state-disabled) a:hover{
-            background-color: $kPrimary;
+            background-color: $vPrimary;
           }
         }
       }
     }
   }
-  .kViews{
+  .vViews{
     width: 100%;
     display: flex;
     padding-top: 20px;
@@ -132,7 +132,7 @@
       min-width: 190px;
     }
   }
-  .kCompare{
+  .vCompare{
     /deep/ .ui-chkbox-label{
       font-weight: normal;
     }
@@ -156,7 +156,7 @@
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid $kGrayscale4;
+    border-top: 1px solid $vGrayscale4;
     margin-top: 20px;
     margin-bottom: 0px;
     padding: 0;

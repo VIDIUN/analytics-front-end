@@ -1,9 +1,9 @@
-<div class="kReport kContent kOverrideFAIcons">
-  <div class="kFilters">
-    <span class="kTitle">{{'app.contributors.top-contributors' | translate}}</span>
+<div class="vReport vContent vOverrideFAIcons">
+  <div class="vFilters">
+    <span class="vTitle">{{'app.contributors.top-contributors' | translate}}</span>
   </div>
-  <div class="kReportContent">
-    <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+  <div class="vReportContent">
+    <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
       <app-contributors-top-contributors-table *ngIf="_isCompareMode"
                                        [isCompareMode]="_isCompareMode"
                                        [tableData]="_compareTableData"
@@ -17,6 +17,6 @@
                                        [firstTimeLoading]="_firstTimeLoading"
                                        [columns]="_columns"
                                        (sortFieldChanged)="_onSortChanged($event)"></app-contributors-top-contributors-table>
-    </k-area-blocker>
+    </v-area-blocker>
   </div>
 </div>

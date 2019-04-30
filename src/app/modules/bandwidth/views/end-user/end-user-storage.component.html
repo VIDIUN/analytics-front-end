@@ -1,56 +1,56 @@
-<div class="kReport kContent kOverrideFAIcons">
-  <div class="kReportHeader">
-    <span class="kTitle">{{'app.bandwidth.usersStorage' | translate}}</span>
+<div class="vReport vContent vOverrideFAIcons">
+  <div class="vReportHeader">
+    <span class="vTitle">{{'app.bandwidth.usersStorage' | translate}}</span>
     <app-export-csv [headers]="_csvExportHeaders" [totalCount]="_totalCount" [reportInputFilter]="filter" [reportType]="reportType"
                     [dimension]="_selectedMetrics" [reportText]="'app.common.noMsg' | translate" [reportTitle]="'app.bandwidth.usersStorage' | translate"></app-export-csv>
     <app-date-filter #dateFilter [dateRange]="_dateRange" [dateRangeType]="_dateRangeType" (filterChange)="_onDateFilterChange($event)"></app-date-filter>
   </div>
 
-  <div class="kFilters">
-    <span class="kTitle" *ngIf="!_drillDown.length">{{'app.bandwidth.allUsers' | translate}}</span>
+  <div class="vFilters">
+    <span class="vTitle" *ngIf="!_drillDown.length">{{'app.bandwidth.allUsers' | translate}}</span>
     <div class="kBreadcrumbs" *ngIf="_drillDown.length">
       <a (click)="_onDrillDown('')">{{'app.bandwidth.allUsers' | translate}}</a>
       <span class="separator">/</span>
       <span>{{_drillDown}}</span>
     </div>
-    <app-users-filter #userFilter [class.kHidden]="_drillDown.length>0" (filterChange)="_onSearchUsersChange($event)"></app-users-filter>
+    <app-users-filter #userFilter [class.vHidden]="_drillDown.length>0" (filterChange)="_onSearchUsersChange($event)"></app-users-filter>
   </div>
 
-  <kTags *ngIf="_tags.length"
+  <vTags *ngIf="_tags.length"
          [title]="''"
          [data]="_tags"
          [labelField]="'fullName'"
          [tooltipField]="'fullName'"
          [clearAllLabel]="'app.common.clearAll' | translate"
-         [class.kHidden]="_drillDown.length>0"
+         [class.vHidden]="_drillDown.length>0"
          (onTagRemove)="_onRemoveTag($event)"
          (onRemoveAll)="_onRemoveAllTags()">
-  </kTags>
+  </vTags>
 
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
-    <div class="kReportContent">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+    <div class="vReportContent">
       <app-report-tabs [tabs]="_tabsData" [compareMode]="isCompareMode" (tabChange)="_onTabChange($event)"></app-report-tabs>
-      <div class="kDimensions">
+      <div class="vDimensions">
         <app-time-units [dateFilter]="dateFilter"></app-time-units>
       </div>
-      <div class="kChart">
-        <div echarts class="kChart" [options]="_barChartData[_selectedMetrics]" *ngIf="_chartType==='bar'"></div>
-        <div echarts class="kChart" [options]="_lineChartData[_selectedMetrics]" *ngIf="_chartType==='line'"></div>
+      <div class="vChart">
+        <div echarts class="vChart" [options]="_barChartData[_selectedMetrics]" *ngIf="_chartType==='bar'"></div>
+        <div echarts class="vChart" [options]="_lineChartData[_selectedMetrics]" *ngIf="_chartType==='line'"></div>
       </div>
 
-      <div class="kTable">
-        <div class="kToggle">
-          <i [class.kIcondropdown_arrow_bottom]="!_showTable" [class.kIcondropdown_arrow_top]="_showTable"></i>
+      <div class="vTable">
+        <div class="vToggle">
+          <i [class.vIcondropdown_arrow_bottom]="!_showTable" [class.vIcondropdown_arrow_top]="_showTable"></i>
           <a (click)="toggleTable()">{{(_showTable ? 'app.common.hideDetails' : 'app.common.viewDetails') | translate}}</a>
         </div>
-        <div class="kTableContainer" [class.kOpen]="_showTable" [class.kClose]="!_showTable">
+        <div class="vTableContainer" [class.vOpen]="_showTable" [class.vClose]="!_showTable">
           <p-table [value]="_tableData" (sortFunction)="_onSortChanged($event)" [customSort]="true" [defaultSortOrder]="-1" [sortField]="_drillDown.length ? 'month_id' : 'total_storage_mb'" [sortOrder]="-1">
             <ng-template pTemplate="header">
               <tr>
                 <th *ngFor="let col of _columns" [pSortableColumn]="(isCompareMode || col === 'name') ? null : col">
-                  <div class="kColumnHeader">
-                    <span [kTooltip]="'app.bandwidth.enduser_table.' + col | translate" [showOnEllipsis]="true">
+                  <div class="vColumnHeader">
+                    <span [vTooltip]="'app.bandwidth.enduser_table.' + col | translate" [showOnEllipsis]="true">
                       {{'app.bandwidth.enduser_table.' + col | translate}}
                     </span>
                     <p-sortIcon [field]="col" *ngIf="!isCompareMode && col !== 'name'"></p-sortIcon>
@@ -63,23 +63,23 @@
               <tr>
                 <td *ngFor="let col of _columns; let i = index">
                   <span *ngIf="isCompareMode && data[col]?.value && col !== 'name' && col !== 'month_id' && col !== 'date_id'"
-                        class="kTrend"
-                        [kTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
+                        class="vTrend"
+                        [vTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
                     <app-trend-value [value]="data[col].value"
                                      [units]="data[col].units"
                                      [trend]="data[col].trend"></app-trend-value>
                   </span>
                   <ng-container *ngIf="!isCompareMode || col === 'name' || col === 'month_id' || col === 'date_id'">
                     <span *ngIf="col !== 'name'">{{data[col]}}</span>
-                    <a *ngIf="col === 'name'" (click)="_onDrillDown(data[col])" class="nameLink" [kTooltip]="data[col]" [showOnEllipsis]="true">{{data[col]}}</a>
+                    <a *ngIf="col === 'name'" (click)="_onDrillDown(data[col])" class="nameLink" [vTooltip]="data[col]" [showOnEllipsis]="true">{{data[col]}}</a>
                   </ng-container>
                 </td>
               </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
               <div class="emptymessage">
-                <div class="kEmptyMessage" *ngIf="!_isBusy">{{'app.common.noResults' | translate}}</div>
-                <div class="kEmptyMessage" *ngIf="_isBusy">&nbsp;</div>
+                <div class="vEmptyMessage" *ngIf="!_isBusy">{{'app.common.noResults' | translate}}</div>
+                <div class="vEmptyMessage" *ngIf="_isBusy">&nbsp;</div>
               </div>
             </ng-template>
           </p-table>
@@ -91,7 +91,7 @@
 
 
 
-  </k-area-blocker>
+  </v-area-blocker>
 
 </div>
 

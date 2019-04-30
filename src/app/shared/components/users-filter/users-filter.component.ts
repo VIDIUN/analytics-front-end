@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { KalturaUser } from 'kaltura-ngx-client';
+import { VidiunUser } from 'vidiun-ngx-client';
 import { UsersFilterService } from './users-filter.service';
 import { TranslateService } from '@ngx-translate/core';
-import { SuggestionsProviderData } from '@kaltura-ng/kaltura-primeng-ui';
+import { SuggestionsProviderData } from '@vidiun-ng/vidiun-primeng-ui';
 import { ISubscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
@@ -13,11 +13,11 @@ import { Subject } from 'rxjs/Subject';
   providers: [UsersFilterService]
 })
 export class UsersFilterComponent implements OnInit {
-  @Output() filterChange: EventEmitter<KalturaUser[]> = new EventEmitter();
+  @Output() filterChange: EventEmitter<VidiunUser[]> = new EventEmitter();
   @Input() hideLabels = true;
   @Input() disabled = false;
 
-  public _selectedUsers: KalturaUser[] = [];
+  public _selectedUsers: VidiunUser[] = [];
   public _usersProvider = new Subject<SuggestionsProviderData>();
   private _searchUsersSubscription: ISubscription;
 
@@ -38,7 +38,7 @@ export class UsersFilterComponent implements OnInit {
 
     this._searchUsersSubscription = this._usersFilterService.searchUsers(event.query).subscribe(data => {
         const suggestions = [];
-        (data || []).forEach((suggestedUser: KalturaUser) => {
+        (data || []).forEach((suggestedUser: VidiunUser) => {
           suggestedUser['__tooltip'] = suggestedUser.id;
           let isSelectable = !this._selectedUsers.find(user => {
             return user.id === suggestedUser.id;
@@ -74,7 +74,7 @@ export class UsersFilterComponent implements OnInit {
   }
 
   public removeUser(id: string): void {
-    this._selectedUsers = this._selectedUsers.filter((user: KalturaUser) => {
+    this._selectedUsers = this._selectedUsers.filter((user: VidiunUser) => {
       return user.id !== id;
     });
     this.filterChange.emit(this._selectedUsers);

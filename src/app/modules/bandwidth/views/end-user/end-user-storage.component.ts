@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DateChangeEvent, DateRangeType, DateRanges } from 'shared/components/date-filter/date-filter.service';
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType, KalturaUser } from 'kaltura-ngx-client';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType, VidiunUser } from 'vidiun-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { UsersFilterComponent } from 'shared/components/users-filter/users-filter.component';
 import { EndUserStorageDataConfig } from './end-user-storage-data.config';
@@ -25,7 +25,7 @@ export class EndUserStorageComponent implements OnInit {
 
   public _dateRangeType: DateRangeType = DateRangeType.LongTerm;
   public _selectedMetrics: string;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.months;
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.months;
   public _chartDataLoaded = false;
   public _tableData: any[] = [];
   public _tabsData: Tab[] = [];
@@ -43,10 +43,10 @@ export class EndUserStorageComponent implements OnInit {
   public _drillDown = '';
   public _tags: any[] = [];
 
-  public pager: KalturaFilterPager = new KalturaFilterPager({pageSize: 25, pageIndex: 1});
-  public reportType: KalturaReportType = KalturaReportType.userUsage;
-  public compareFilter: KalturaEndUserReportInputFilter = null;
-  public filter: KalturaEndUserReportInputFilter = new KalturaEndUserReportInputFilter(
+  public pager: VidiunFilterPager = new VidiunFilterPager({pageSize: 25, pageIndex: 1});
+  public reportType: VidiunReportType = VidiunReportType.userUsage;
+  public compareFilter: VidiunEndUserReportInputFilter = null;
+  public filter: VidiunEndUserReportInputFilter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -86,7 +86,7 @@ export class EndUserStorageComponent implements OnInit {
     this.pager.pageIndex = 1;
     if (event.compare.active) {
       const compare = event.compare;
-      this.compareFilter = new KalturaEndUserReportInputFilter(
+      this.compareFilter = new VidiunEndUserReportInputFilter(
         {
           searchInTags: true,
           searchInAdminTags: false,
@@ -111,7 +111,7 @@ export class EndUserStorageComponent implements OnInit {
   public _onSearchUsersChange(users): void {
     let usersIds = [];
     this._tags = users;
-    users.forEach((user: KalturaUser) => {
+    users.forEach((user: VidiunUser) => {
       usersIds.push(user.id);
     });
     if (usersIds.toString().length) {
@@ -129,7 +129,7 @@ export class EndUserStorageComponent implements OnInit {
 
   public _onDrillDown(user: string): void {
     this._drillDown = user.length ? user : '';
-    this.reportType = user.length ? KalturaReportType.specificUserUsage : KalturaReportType.userUsage;
+    this.reportType = user.length ? VidiunReportType.specificUserUsage : VidiunReportType.userUsage;
     this.filter.userIds = user.length ? user : this.selectedUsers;
     this.pager.pageIndex = 1;
     if (this.compareFilter) {
@@ -154,7 +154,7 @@ export class EndUserStorageComponent implements OnInit {
     }
   }
 
-  public _onRemoveTag(user: KalturaUser): void {
+  public _onRemoveTag(user: VidiunUser): void {
     this.userFilter.removeUser(user.id);
   }
 
@@ -248,7 +248,7 @@ export class EndUserStorageComponent implements OnInit {
     const currentPeriod = { from: this.filter.fromDay, to: this.filter.toDay };
     const comparePeriod = { from: this.compareFilter.fromDay, to: this.compareFilter.toDay };
 
-    const dataKey = this._drillDown.length ? '' : 'kuser_id';
+    const dataKey = this._drillDown.length ? '' : 'vuser_id';
     if (current.table && compare.table) {
       const { columns, tableData } = this._compareService.compareTableData(
         currentPeriod,
@@ -289,18 +289,18 @@ export class EndUserStorageComponent implements OnInit {
     }
   }
 
-  private handleTable(table: KalturaReportTable): void {
+  private handleTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._columns = columns;
     this._tableData = tableData;
   }
 
-  private handleTotals(totals: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
   }
 
-  private handleGraphs(graphs: KalturaReportGraph[]): void {
+  private handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData, barChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,
@@ -313,7 +313,7 @@ export class EndUserStorageComponent implements OnInit {
   }
 
   private updateChartType(): void {
-    this._chartType = ((this._selectedMetrics === 'added_storage_mb' || this._selectedMetrics === 'deleted_storage_mb') && this._reportInterval === KalturaReportInterval.months) ? 'bar' : 'line';
+    this._chartType = ((this._selectedMetrics === 'added_storage_mb' || this._selectedMetrics === 'deleted_storage_mb') && this._reportInterval === VidiunReportInterval.months) ? 'bar' : 'line';
   }
 
   private prepareCsvExportHeaders(): void {

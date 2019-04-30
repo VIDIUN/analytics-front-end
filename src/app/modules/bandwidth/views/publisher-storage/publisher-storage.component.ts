@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {DateChangeEvent, DateRanges, DateRangeType} from 'shared/components/date-filter/date-filter.service';
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
-import { KalturaFilterPager, KalturaReportGraph, KalturaReportInputFilter, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+import { VidiunFilterPager, VidiunReportGraph, VidiunReportInputFilter, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { PublisherStorageDataConfig } from './publisher-storage-data.config';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
@@ -23,7 +23,7 @@ export class PublisherStorageComponent implements OnInit {
 
   public _dateRangeType: DateRangeType = DateRangeType.LongTerm;
   public _selectedMetrics: string;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.months;
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.months;
   public _chartDataLoaded = false;
   public _tableData: any[] = [];
   public _tabsData: Tab[] = [];
@@ -41,10 +41,10 @@ export class PublisherStorageComponent implements OnInit {
 
   public _accumulativeStorage: any[] = [];
 
-  public pager: KalturaFilterPager = new KalturaFilterPager({pageSize: 25, pageIndex: 1});
-  public reportType: KalturaReportType = KalturaReportType.partnerUsage;
-  public compareFilter: KalturaReportInputFilter = null;
-  public filter: KalturaReportInputFilter = new KalturaReportInputFilter(
+  public pager: VidiunFilterPager = new VidiunFilterPager({pageSize: 25, pageIndex: 1});
+  public reportType: VidiunReportType = VidiunReportType.partnerUsage;
+  public compareFilter: VidiunReportInputFilter = null;
+  public filter: VidiunReportInputFilter = new VidiunReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -82,7 +82,7 @@ export class PublisherStorageComponent implements OnInit {
     this.pager.pageIndex = 1;
     if (event.compare.active) {
       const compare = event.compare;
-      this.compareFilter = new KalturaReportInputFilter(
+      this.compareFilter = new VidiunReportInputFilter(
         {
           searchInTags: true,
           searchInAdminTags: false,
@@ -247,19 +247,19 @@ export class PublisherStorageComponent implements OnInit {
      }
    }
 
-  private handleTable(table: KalturaReportTable): void {
+  private handleTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._columns = columns;
     this._tableData = tableData;
   }
 
-  private handleTotals(totals: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
     this._accumulativeStorage = this._reportService.parseTotals(totals, this._dataConfig.accumulative);
   }
 
-  private handleGraphs(graphs: KalturaReportGraph[]): void {
+  private handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData, barChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,
@@ -272,7 +272,7 @@ export class PublisherStorageComponent implements OnInit {
   }
 
   private updateChartType(): void {
-    this._chartType = ((this._selectedMetrics === 'added_storage' || this._selectedMetrics === 'deleted_storage') && this._reportInterval === KalturaReportInterval.months) ? 'bar' : 'line';
+    this._chartType = ((this._selectedMetrics === 'added_storage' || this._selectedMetrics === 'deleted_storage') && this._reportInterval === VidiunReportInterval.months) ? 'bar' : 'line';
   }
 
   private prepareCsvExportHeaders(): void {

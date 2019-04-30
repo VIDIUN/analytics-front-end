@@ -1,22 +1,22 @@
 @import '../../../../styles/variables';
 
-.kSearch{
+.vSearch{
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 34px;
   i{
     margin-left: 8px;
-    color: $kGrayscale3;
+    color: $vGrayscale3;
     font-size: 18px;
   }
-  kAutoComplete {
+  vAutoComplete {
     margin-left: 3px;
     height: 34px;
   }
 }
 .hideLabels{
-  kautocomplete /deep/ {
+  vautocomplete /deep/ {
     .ui-autocomplete-multiple-container {
       padding: 4px;
       padding-left: 8px;
@@ -24,21 +24,21 @@
       align-items: center;
       width: 200px;
       &.ui-state-focus{
-        border: 1px solid $kGrayscale3;
+        border: 1px solid $vGrayscale3;
       }
       input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-        color: $kGrayscale4;
+        color: $vGrayscale4;
       }
       input::-moz-placeholder { /* Firefox 19+ */
-        color: $kGrayscale4;
+        color: $vGrayscale4;
       }
       input:-ms-input-placeholder { /* IE 10+ */
-        color: $kGrayscale4;
+        color: $vGrayscale4;
       }
     }
     /*
     .ui-autocomplete-multiple-container:before {
-      font-family: 'kmcng-icon-pack' !important;
+      font-family: 'vmcng-icon-pack' !important;
       content: "\e90f";
       margin-right: 6px;
       margin-left: 3px;

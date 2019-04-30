@@ -5,8 +5,8 @@
                       (exportDataChange)="_onExportDataChange($event)"
                       (devicesListChange)="_onDevicesListChange($event)"
                       (deviceFilterChange)="_onDeviceFilterChange($event)">
-  <div class="kReportHeader">
-    <span class="kTitle">{{'app.audience.technology.title' | translate}}</span>
+  <div class="vReportHeader">
+    <span class="vTitle">{{'app.audience.technology.title' | translate}}</span>
     <app-export-csv [disabled]="!_exportData"
                     [headers]="_exportData?.headers"
                     [totalCount]="_exportData?.totalCount"

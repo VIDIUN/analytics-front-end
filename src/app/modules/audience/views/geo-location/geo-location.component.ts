@@ -3,15 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import {DateChangeEvent, DateRanges, DateRangeType} from 'shared/components/date-filter/date-filter.service';
 import { AuthService, ErrorDetails, ErrorsManagerService, ReportConfig, ReportHelper, ReportService } from 'shared/services';
-import { KalturaFilterPager, KalturaReportInputFilter, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+import { VidiunFilterPager, VidiunReportInputFilter, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { GeoLocationDataConfig } from './geo-location-data.config';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { TrendService } from 'shared/services/trend.service';
 import { SelectItem } from 'primeng/api';
 import { EChartOption } from 'echarts';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
 import { analyticsConfig } from 'configuration/analytics-config';
 import * as echarts from 'echarts';
@@ -27,7 +27,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
 
   public _dateRangeType: DateRangeType = DateRangeType.LongTerm;
   public _selectedMetrics: string;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.days;
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.days;
   public _dateRange = DateRanges.Last30D;
 
   public _tableData: any[] = [];
@@ -43,15 +43,15 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
   public _totalCount: number;
   public _tags: any[] = [];
 
-  private pager: KalturaFilterPager = new KalturaFilterPager({pageSize: 500, pageIndex: 1});
-  public reportType: KalturaReportType = KalturaReportType.mapOverlayCountry;
-  public filter: KalturaReportInputFilter = new KalturaReportInputFilter(
+  private pager: VidiunFilterPager = new VidiunFilterPager({pageSize: 500, pageIndex: 1});
+  public reportType: VidiunReportType = VidiunReportType.mapOverlayCountry;
+  public filter: VidiunReportInputFilter = new VidiunReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
     }
   );
-  private trendFilter: KalturaReportInputFilter = new KalturaReportInputFilter(
+  private trendFilter: VidiunReportInputFilter = new VidiunReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -184,7 +184,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
     } else if (this._drillDown.length === 2) {
       this._drillDown.pop();
     }
-    this.reportType = this._drillDown.length === 2 ?  KalturaReportType.mapOverlayCity : this._drillDown.length === 1 ? KalturaReportType.mapOverlayRegion : KalturaReportType.mapOverlayCountry;
+    this.reportType = this._drillDown.length === 2 ?  VidiunReportType.mapOverlayCity : this._drillDown.length === 1 ? VidiunReportType.mapOverlayRegion : VidiunReportType.mapOverlayCountry;
     this._mapZoom = this._drillDown.length === 0 ? 1.2 : this._mapZoom;
     this.pager.pageIndex = 1;
     this.loadReport();
@@ -247,7 +247,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
         });
   }
 
-  private handleTable(table: KalturaReportTable): void {
+  private handleTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._columns = columns;
@@ -287,7 +287,7 @@ export class GeoLocationComponent implements OnInit, OnDestroy {
     });
   }
 
-  private handleTotals(totals: KalturaReportTotal): void {
+  private handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
     this.selectedTab = this._tabsData[0];
   }

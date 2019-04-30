@@ -1,26 +1,26 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   BaseEntryGetAction,
-  KalturaClient,
-  KalturaDetachedResponseProfile,
-  KalturaMediaEntry,
-  KalturaMediaType,
-  KalturaMultiRequest,
-  KalturaMultiResponse,
-  KalturaRequestOptions,
-  KalturaResponseProfileType,
-  KalturaUser,
+  VidiunClient,
+  VidiunDetachedResponseProfile,
+  VidiunMediaEntry,
+  VidiunMediaType,
+  VidiunMultiRequest,
+  VidiunMultiResponse,
+  VidiunRequestOptions,
+  VidiunResponseProfileType,
+  VidiunUser,
   UserGetAction
-} from 'kaltura-ngx-client';
+} from 'vidiun-ngx-client';
 import { Unsubscribable } from 'rxjs';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { map } from 'rxjs/operators';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { TranslateService } from '@ngx-translate/core';
 
 export interface EntryDetailsOverlayData {
   name: string;
-  type: KalturaMediaType;
+  type: VidiunMediaType;
   creator: string;
   creationDate: Date;
   duration: number;
@@ -37,15 +37,15 @@ export class EntryDetailsOverlayComponent implements OnInit, OnDestroy {
   
   private _requestSubscription: Unsubscribable;
   private _partnerId = analyticsConfig.pid;
-  private _apiUrl = analyticsConfig.kalturaServer.uri.startsWith('http')
-    ? analyticsConfig.kalturaServer.uri
-    : `${location.protocol}//${analyticsConfig.kalturaServer.uri}`;
+  private _apiUrl = analyticsConfig.vidiunServer.uri.startsWith('http')
+    ? analyticsConfig.vidiunServer.uri
+    : `${location.protocol}//${analyticsConfig.vidiunServer.uri}`;
   
   public _data: EntryDetailsOverlayData;
   public _loading = false;
   public _errorMessage: string;
   
-  constructor(private _kalturaClient: KalturaClient,
+  constructor(private _vidiunClient: VidiunClient,
               private _translate: TranslateService) {
     
   }
@@ -62,37 +62,37 @@ export class EntryDetailsOverlayComponent implements OnInit, OnDestroy {
       this._requestSubscription = null;
     }
     
-    const request = new KalturaMultiRequest(
+    const request = new VidiunMultiRequest(
       new BaseEntryGetAction({ entryId: this.entryId })
         .setRequestOptions({
-          responseProfile: new KalturaDetachedResponseProfile({
-            type: KalturaResponseProfileType.includeFields,
+          responseProfile: new VidiunDetachedResponseProfile({
+            type: VidiunResponseProfileType.includeFields,
             fields: 'id,name,mediaType,createdAt,msDuration,userId'
           })
         }),
       new UserGetAction({ userId: '' })
         .setDependency(['userId', 0, 'userId'])
         .setRequestOptions(
-          new KalturaRequestOptions({
-            responseProfile: new KalturaDetachedResponseProfile({
-              type: KalturaResponseProfileType.includeFields,
+          new VidiunRequestOptions({
+            responseProfile: new VidiunDetachedResponseProfile({
+              type: VidiunResponseProfileType.includeFields,
               fields: 'id,fullName'
             })
           })
         )
     );
     
-    this._requestSubscription = this._kalturaClient
+    this._requestSubscription = this._vidiunClient
       .multiRequest(request)
       .pipe(
         cancelOnDestroy(this),
-        map((responses: KalturaMultiResponse) => {
+        map((responses: VidiunMultiResponse) => {
           if (responses.hasErrors()) {
             throw Error(this._translate.instant('app.engagement.topVideosReport.errorLoadingEntry'));
           }
           
-          const entry = responses[0].result as KalturaMediaEntry;
-          const user = responses[1].result as KalturaUser;
+          const entry = responses[0].result as VidiunMediaEntry;
+          const user = responses[1].result as VidiunUser;
           
           return {
             name: entry.name,

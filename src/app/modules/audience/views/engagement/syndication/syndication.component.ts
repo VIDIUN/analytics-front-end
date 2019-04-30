@@ -3,8 +3,8 @@ import { EngagementBaseReportComponent } from '../engagement-base-report/engagem
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportHelper, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportGraph, KalturaReportInputFilter, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportGraph, VidiunReportInputFilter, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { TranslateService } from '@ngx-translate/core';
 import { CompareService } from 'shared/services/compare.service';
@@ -24,31 +24,31 @@ export class SyndicationComponent extends EngagementBaseReportComponent {
   @Input() dateFilterComponent: DateFilterComponent;
   
   private _totalPlaysCount = 0;
-  private _compareFilter: KalturaEndUserReportInputFilter = null;
+  private _compareFilter: VidiunEndUserReportInputFilter = null;
   private _dataConfig: ReportDataConfig;
   private _order = '-count_plays';
-  private _filter = new KalturaEndUserReportInputFilter({
+  private _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false,
-    interval: KalturaReportInterval.days,
+    interval: VidiunReportInterval.days,
   });
   
   protected _componentId = 'syndication';
   
-  public _reportInterval = KalturaReportInterval.days;
+  public _reportInterval = VidiunReportInterval.days;
   public _drillDown: string = null;
   public _blockerMessage: AreaBlockerMessage = null;
   public _isBusy = true;
   public _selectedMetrics: string;
   public _isCompareMode: boolean;
   public _columns: string[] = [];
-  public _reportType = KalturaReportType.topSyndication;
+  public _reportType = VidiunReportType.topSyndication;
   public _lineChartData: any = {};
   public _totalUsers = null;
   public _tableData: any[] = [];
   public _tabsData: Tab[] = [];
   public _totalCount: number;
-  public _pager = new KalturaFilterPager({ pageIndex: 1, pageSize: 5 });
+  public _pager = new VidiunFilterPager({ pageIndex: 1, pageSize: 5 });
   public _distributionColorScheme: string;
   
   constructor(private _errorsManager: ErrorsManagerService,
@@ -164,7 +164,7 @@ export class SyndicationComponent extends EngagementBaseReportComponent {
     if (this._dateFilter.compare.active) {
       this._isCompareMode = true;
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDay = compare.startDay;
       this._compareFilter.toDay = compare.endDay;
     } else {
@@ -172,14 +172,14 @@ export class SyndicationComponent extends EngagementBaseReportComponent {
     }
   }
   
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
     if (this._tabsData.length) {
       this._totalPlaysCount = Number(this._tabsData[0].rawValue);
     }
   }
   
-  private _handleGraphs(graphs: KalturaReportGraph[]): void {
+  private _handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,
@@ -233,7 +233,7 @@ export class SyndicationComponent extends EngagementBaseReportComponent {
     }
   }
   
-  private _handleTable(table: KalturaReportTable): void {
+  private _handleTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._insertColumnAfter('plays_distribution', 'count_plays', columns);
     this._totalCount = table.totalCount;

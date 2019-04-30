@@ -9,7 +9,7 @@ export class DeviceIconPipe implements PipeTransform {
     'Tablet': 'icon-tablet',
     'Mobile': 'icon-phone',
     'Game console': 'icon-game-console',
-    'OTHER': 'kIcondevices'
+    'OTHER': 'vIcondevices'
   };
 
   transform(device: string): string {

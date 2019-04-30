@@ -1,33 +1,33 @@
 @import '../../../../styles/variables';
 
-.kExport{
+.vExport{
   display: flex;
   width: 100%;
   align-items: center;
-  .kSpinner{
+  .vSpinner{
     width: 12px;
     height: 12px;
     margin-right: 8px;
   }
-  .kStatus{
+  .vStatus{
     display: flex;
     align-items: center;
     margin-left: 8px;
-    .kError{
-      color: $kDandger;
+    .vError{
+      color: $vDandger;
     }
     i{
-      color: $kDandger;
+      color: $vDandger;
       font-size: 12px;
       margin-left: 4px;
       cursor: pointer;
     }
-    .kReady{
-      color: $kPrimary;
+    .vReady{
+      color: $vPrimary;
       margin-right: 4px;
     }
     a{
-      color: $kPrimary;
+      color: $vPrimary;
     }
   }
 }
@@ -40,7 +40,7 @@
   }
 }
 
-.ui-button.kButtonProcess {
+.ui-button.vButtonProcess {
   position: relative;
   overflow: hidden;
 
@@ -75,19 +75,19 @@
     .ui-toast-message.ui-toast-message-success {
       border-radius: 3px;
       background-color: white;
-      border-left: 4px solid $kPrimary;
+      border-left: 4px solid $vPrimary;
     }
     .ui-toast-message.ui-toast-message-error {
       border-radius: 3px;
       background-color: white;
-      border-left: 4px solid $kDandger;
+      border-left: 4px solid $vDandger;
     }
-    .kToast{
+    .vToast{
       display: flex;
       flex-direction: column;
       padding-top: .5em;
-      .kHeader{
-        color: $kGrayscale1;
+      .vHeader{
+        color: $vGrayscale1;
         font-size: 15px;
         font-weight: 700;
       }
@@ -109,7 +109,7 @@
 :host /deep/ .ui-toast-close-icon{
   text-decoration: none;
   font-size: 24px;
-  color: $kGrayscale3;
+  color: $vGrayscale3;
   &:before{
     content: "\e973";
   }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { KalturaClient, KalturaFilterPager, KalturaTagFilter, KalturaTaggedObjectType, TagSearchAction } from 'kaltura-ngx-client';
+import { VidiunClient, VidiunFilterPager, VidiunTagFilter, VidiunTaggedObjectType, TagSearchAction } from 'vidiun-ngx-client';
 import { Observable, Subject, Unsubscribable } from 'rxjs';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -24,7 +24,7 @@ export class TagsFilterComponent implements OnDestroy {
   
   public _tagsProvider = new Subject();
   
-  constructor(private _kalturaServerClient: KalturaClient) {
+  constructor(private _vidiunServerClient: VidiunClient) {
   }
   
   ngOnDestroy() {
@@ -58,14 +58,14 @@ export class TagsFilterComponent implements OnDestroy {
   }
   
   public _searchTagsRequest(text: string): Observable<string[]> {
-    return this._kalturaServerClient
+    return this._vidiunServerClient
       .request(
         new TagSearchAction({
-            tagFilter: new KalturaTagFilter({
+            tagFilter: new VidiunTagFilter({
               tagStartsWith: text,
-              objectTypeEqual: KalturaTaggedObjectType.entry
+              objectTypeEqual: VidiunTaggedObjectType.entry
             }),
-            pager: new KalturaFilterPager({
+            pager: new VidiunFilterPager({
               pageIndex: 0,
               pageSize: 30
             })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInputFilter, KalturaReportInterval, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInputFilter, VidiunReportInterval, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
 import * as moment from 'moment';
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
@@ -21,10 +21,10 @@ import { TopContributorsBaseReportComponent } from '../top-contributors-base-rep
 })
 export class ContributorsTopContributorsComponent extends TopContributorsBaseReportComponent implements OnInit {
   private _order = '-added_entries';
-  private _compareFilter: KalturaEndUserReportInputFilter = null;
+  private _compareFilter: VidiunEndUserReportInputFilter = null;
   private _dataConfig: ReportDataConfig;
-  private _reportInterval = KalturaReportInterval.months;
-  private _filter = new KalturaEndUserReportInputFilter({
+  private _reportInterval = VidiunReportInterval.months;
+  private _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -37,12 +37,12 @@ export class ContributorsTopContributorsComponent extends TopContributorsBaseRep
   public _compareTableData: any[] = [];
   public _isCompareMode: boolean;
   public _columns: string[] = [];
-  public _pager = new KalturaFilterPager({ pageSize: 50, pageIndex: 1 });
+  public _pager = new VidiunFilterPager({ pageSize: 50, pageIndex: 1 });
   public _firstTimeLoading = true;
   public _compareFirstTimeLoading = true;
   public _currentDates: string;
   public _compareDates: string;
-  public _reportType = KalturaReportType.topContentContributors;
+  public _reportType = VidiunReportType.topContentContributors;
 
   constructor(private _errorsManager: ErrorsManagerService,
               private _reportService: ReportService,
@@ -134,7 +134,7 @@ export class ContributorsTopContributorsComponent extends TopContributorsBaseRep
     if (this._dateFilter.compare.active) {
       this._isCompareMode = true;
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDay = compare.startDay;
       this._compareFilter.toDay = compare.endDay;
     } else {
@@ -143,7 +143,7 @@ export class ContributorsTopContributorsComponent extends TopContributorsBaseRep
     }
   }
   
-  private _handleTable(table: KalturaReportTable, compare?: Report): void {
+  private _handleTable(table: VidiunReportTable, compare?: Report): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     const extendTableRow = (item, index) => {
       (<any>item)['index'] = index + 1;

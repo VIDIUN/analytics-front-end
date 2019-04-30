@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { KalturaFilterPager } from 'kaltura-ngx-client';
+import { VidiunFilterPager } from 'vidiun-ngx-client';
 import { OverlayComponent } from 'shared/components/overlay/overlay.component';
 
 @Component({
@@ -33,7 +33,7 @@ export class TopContributorsTableComponent {
   public _userId: string;
   public _totalCount = 0;
   public _tableData: any[] = [];
-  public _pager = new KalturaFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
+  public _pager = new VidiunFilterPager({ pageSize: this._pageSize, pageIndex: 1 });
   
   public _onSortChanged(event: { data: any[], field: string, mode: string, order: number }): void {
     const { field, order } = event;

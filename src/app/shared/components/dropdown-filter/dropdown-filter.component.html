@@ -1,9 +1,9 @@
-<div class="kColumn kMultiselectFilter">
-  <div class="kColumnLabel">
+<div class="vColumn vMultiselectFilter">
+  <div class="vColumnLabel">
     {{label}}&nbsp;
     <h5 class="mini-loader" *ngIf="isLoading"><span></span><span></span></h5>
   </div>
-  <div class="kColumnContent">
+  <div class="vColumnContent">
     <p-multiSelect appendTo="body"
                    [style]="{'width':'192px'}"
                    [options]="options"
@@ -18,7 +18,7 @@
                    [defaultLabel]="defaultLabel">
 
       <ng-template let-item pTemplate="item">
-        <img *ngIf="countryTemplate && item.value" class="kFlag" src="{{'assets/flags/' + item?.value?.id.toUpperCase() + '.png'}}" style="margin-right: 8px;margin-left: 4px;display:inline-block; vertical-align:middle"/>
+        <img *ngIf="countryTemplate && item.value" class="vFlag" src="{{'assets/flags/' + item?.value?.id.toUpperCase() + '.png'}}" style="margin-right: 8px;margin-left: 4px;display:inline-block; vertical-align:middle"/>
         <span *ngIf="countryTemplate" style="margin-top:2px; position: absolute">{{item.label}}</span>
         <span *ngIf="!countryTemplate" style="margin-top:2px; position: absolute">{{item.label}}</span>
       </ng-template>

@@ -2,39 +2,39 @@
 :host{
   width: 100%;
 }
-.kDates {
+.vDates {
   font-size: 15px;
   margin-left: 24px;
   margin-bottom: 16px;
   display: inline-block;
 }
 
-.kTopVideoEntryColumn {
+.vTopVideoEntryColumn {
   display: flex;
   flex-direction: column;
   cursor: pointer;
   font-weight: bold;
   margin-top: -24px;
 
-  .kEntryName {
+  .vEntryName {
     font-size: 18px;
-    color: $kGrayscale1;
+    color: $vGrayscale1;
     margin-bottom: 12px;
   }
 
-  .kEntryDetails {
-    color: $kGrayscale3;
+  .vEntryDetails {
+    color: $vGrayscale3;
   }
 }
 
-.kTopVideoRow {
+.vTopVideoRow {
   height: 100px;
 
-  .kReportRowIndex {
+  .vReportRowIndex {
     position: relative;
     font-size: 18px;
     font-weight: bold;
-    color: $kGrayscale3;
+    color: $vGrayscale3;
 
     span {
       position: absolute;
@@ -42,7 +42,7 @@
       left: 4px;
     }
 
-    &.kFirst {
+    &.vFirst {
       margin-right: 28px;
 
       img {
@@ -57,15 +57,15 @@
         position: absolute;
         top: -35px;
         left: 4px;
-        color: $kGrayscale1
+        color: $vGrayscale1
       }
 
     }
   }
 }
 
-.kTableCell {
-  color: $kGrayscale1;
+.vTableCell {
+  color: $vGrayscale1;
   display: flex;
   align-items: center;
 
@@ -85,25 +85,25 @@
     color: #E1962E;
   }
 
-  .kCellValue {
+  .vCellValue {
     font-weight: bold;
   }
 }
 
-.kScore {
+.vScore {
   text-align: right;
 
   span {
-    color: $kGrayscale1;
+    color: $vGrayscale1;
     font-size: 18px;
     font-weight: bold;
     padding-right: 24px;
   }
 }
 
-.kDividerWrapper {
+.vDividerWrapper {
   display: flex;
-  .kDivider {
+  .vDivider {
     height: 500px;
     border-left: 1px solid #d9d9d9;
   }
@@ -112,7 +112,7 @@
 .emptymessage {
   height: 500px;
 
-  .kEmptyMessage {
+  .vEmptyMessage {
     top: 115px;
     border-bottom: none;
   }

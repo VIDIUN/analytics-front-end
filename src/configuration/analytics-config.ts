@@ -1,7 +1,7 @@
 export interface AnalyticsConfig {
   appVersion: string;
   valueSeparator: string;
-  kalturaServer?: {
+  vidiunServer?: {
       uri?: string,
     previewUIConf?: number
   };
@@ -9,7 +9,7 @@ export interface AnalyticsConfig {
     serverUri?: string,
     securedServerUri?: string
   };
-  ks?: string;
+  vs?: string;
   pid?: string;
   locale?: string;
   showNavBar?: boolean;
@@ -30,12 +30,12 @@ export function buildUrlWithClientProtocol(urlWithoutProtocol) {
   return `${protocol}://${urlWithoutProtocol}`;
 }
 
-export function getKalturaServerUri(suffix: string = ''): string {
-  if (analyticsConfig.kalturaServer && analyticsConfig.kalturaServer.uri) {
-    const serverEndpoint = analyticsConfig.kalturaServer.uri;
+export function getVidiunServerUri(suffix: string = ''): string {
+  if (analyticsConfig.vidiunServer && analyticsConfig.vidiunServer.uri) {
+    const serverEndpoint = analyticsConfig.vidiunServer.uri;
     return buildUrlWithClientProtocol(`${serverEndpoint}${suffix}`);
   } else {
-    throw new Error(`cannot provide kaltura server uri. server configuration wasn't loaded already`);
+    throw new Error(`cannot provide vidiun server uri. server configuration wasn't loaded already`);
   }
 }
 

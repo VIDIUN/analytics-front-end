@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { KalturaFilterPager, KalturaReportInputFilter, KalturaReportType, ReportGetUrlForReportAsCsvActionArgs } from 'kaltura-ngx-client';
+import { VidiunFilterPager, VidiunReportInputFilter, VidiunReportType, ReportGetUrlForReportAsCsvActionArgs } from 'vidiun-ngx-client';
 import { BrowserService, ErrorDetails, ErrorsManagerService, ReportService } from 'shared/services';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
 
 @Component({
   selector: 'app-export-csv',
@@ -15,8 +15,8 @@ export class ExportCsvComponent implements OnInit {
   @Input() headers: string;
   @Input() dimension: string;
   @Input() totalCount: number;
-  @Input() reportType: KalturaReportType;
-  @Input() reportInputFilter: KalturaReportInputFilter;
+  @Input() reportType: VidiunReportType;
+  @Input() reportInputFilter: VidiunReportInputFilter;
   @Input() reportText: string;
   @Input() reportTitle: string;
 
@@ -25,7 +25,7 @@ export class ExportCsvComponent implements OnInit {
   private downloadLink = '';
 
   constructor(private _errorsManager: ErrorsManagerService,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _reportService: ReportService,
               private _messageService: MessageService,
               private _browserService: BrowserService) {
@@ -39,7 +39,7 @@ export class ExportCsvComponent implements OnInit {
     this.downloadLink = '';
     const args: ReportGetUrlForReportAsCsvActionArgs = {
       dimension: this.dimension,
-      pager: new KalturaFilterPager({pageSize: this.totalCount, pageIndex: 1}),
+      pager: new VidiunFilterPager({pageSize: this.totalCount, pageIndex: 1}),
       reportType: this.reportType,
       reportInputFilter: this.reportInputFilter,
       headers: this.headers,

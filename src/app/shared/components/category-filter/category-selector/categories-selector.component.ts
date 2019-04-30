@@ -1,8 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ISubscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import { AutoComplete, SuggestionsProviderData } from '@kaltura-ng/kaltura-primeng-ui';
-import { PopupWidgetComponent, TagsComponent } from '@kaltura-ng/kaltura-ui';
+import { AutoComplete, SuggestionsProviderData } from '@vidiun-ng/vidiun-primeng-ui';
+import { PopupWidgetComponent, TagsComponent } from '@vidiun-ng/vidiun-ui';
 import { BrowserService } from 'src/app/shared/services';
 import { TranslateService } from '@ngx-translate/core';
 import { CategoriesSearchService, CategoryData } from 'shared/services/categories-search.service';

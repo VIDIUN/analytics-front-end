@@ -3,8 +3,8 @@ import { EngagementBaseReportComponent } from '../engagement-base-report/engagem
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
 import { ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { TranslateService } from '@ngx-translate/core';
 import { CompareService } from 'shared/services/compare.service';
@@ -20,11 +20,11 @@ import { TrendService } from 'shared/services/trend.service';
   providers: [ReportService, UsersDataConfig]
 })
 export class EngagementUsersComponent extends EngagementBaseReportComponent {
-  private _compareFilter: KalturaEndUserReportInputFilter = null;
-  private _pager = new KalturaFilterPager();
+  private _compareFilter: VidiunEndUserReportInputFilter = null;
+  private _pager = new VidiunFilterPager();
   private _dataConfig: ReportDataConfig;
-  private _reportInterval = KalturaReportInterval.months;
-  private _filter = new KalturaEndUserReportInputFilter({
+  private _reportInterval = VidiunReportInterval.months;
+  private _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false,
     interval: this._reportInterval,
@@ -37,7 +37,7 @@ export class EngagementUsersComponent extends EngagementBaseReportComponent {
   public _isCompareMode: boolean;
   public _columns: string[] = [];
   public _compareFirstTimeLoading = true;
-  public _reportType = KalturaReportType.uniqueUsersPlay;
+  public _reportType = VidiunReportType.uniqueUsersPlay;
   public _barChartData: any = {};
   public _totalUsers = null;
   public _totalUsersCompare: {
@@ -133,7 +133,7 @@ export class EngagementUsersComponent extends EngagementBaseReportComponent {
     if (this._dateFilter.compare.active) {
       this._isCompareMode = true;
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDay = compare.startDay;
       this._compareFilter.toDay = compare.endDay;
     } else {
@@ -149,8 +149,8 @@ export class EngagementUsersComponent extends EngagementBaseReportComponent {
     }
   }
   
-  private _handleGraph(table: KalturaReportTable): void {
-    const graphs = [{ id: 'default', data: table.data } as KalturaReportGraph];
+  private _handleGraph(table: VidiunReportTable): void {
+    const graphs = [{ id: 'default', data: table.data } as VidiunReportGraph];
     const { barChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,
@@ -169,8 +169,8 @@ export class EngagementUsersComponent extends EngagementBaseReportComponent {
     const comparePeriod = { from: this._compareFilter.fromDay, to: this._compareFilter.toDay };
     
     if (current.table && compare.table) {
-      const currentGraph = [{ id: 'default', data: current.table.data } as KalturaReportGraph];
-      const compareGraph = [{ id: 'default', data: compare.table.data } as KalturaReportGraph];
+      const currentGraph = [{ id: 'default', data: current.table.data } as VidiunReportGraph];
+      const compareGraph = [{ id: 'default', data: compare.table.data } as VidiunReportGraph];
       const { barChartData } = this._compareService.compareGraphData(
         currentPeriod,
         comparePeriod,

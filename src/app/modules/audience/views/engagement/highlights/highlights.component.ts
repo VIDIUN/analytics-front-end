@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { EngagementBaseReportComponent } from '../engagement-base-report/engagement-base-report.component';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorDetails, ErrorsManagerService, Report, ReportConfig, ReportService } from 'shared/services';
 import { map, switchMap } from 'rxjs/operators';
 import { of as ObservableOf } from 'rxjs';
@@ -24,7 +24,7 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
   @Input() dateFilterComponent: DateFilterComponent;
   
   private _order = '-month_id';
-  private _reportType = KalturaReportType.userEngagementTimeline;
+  private _reportType = VidiunReportType.userEngagementTimeline;
   private _dataConfig: ReportDataConfig;
   
   protected _componentId = 'highlights';
@@ -37,13 +37,13 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
   public _tabsData: Tab[] = [];
   public _tableData: any[] = [];
   public _selectedMetrics: string;
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
   public _lineChartData = {};
   public _showTable = false;
   public _totalCount = 0;
-  public _pager = new KalturaFilterPager({ pageSize: 25, pageIndex: 1 });
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _pager = new VidiunFilterPager({ pageSize: 25, pageIndex: 1 });
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -146,7 +146,7 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
     this._pager.pageIndex = 1;
     if (this._dateFilter.compare.active) {
       const compare = this._dateFilter.compare;
-      this._compareFilter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+      this._compareFilter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
       this._compareFilter.fromDay = compare.startDay;
       this._compareFilter.toDay = compare.endDay;
     } else {
@@ -196,18 +196,18 @@ export class EngagementHighlightsComponent extends EngagementBaseReportComponent
     }
   }
   
-  private handleTable(table: KalturaReportTable): void {
+  private handleTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._totalCount = table.totalCount;
     this._columns = columns;
     this._tableData = tableData;
   }
   
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
   }
   
-  private _handleGraphs(graphs: KalturaReportGraph[]): void {
+  private _handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,

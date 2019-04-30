@@ -5,22 +5,22 @@
   width: 100%;
 }
 
-.kBulletContainer{
+.vBulletContainer{
   display: flex;
   align-items: center;
-  .kValue{
+  .vValue{
     font-size: 15px;
-    color: $kGrayscale3;
+    color: $vGrayscale3;
     width: 60px;
   }
-  .kBullet{
+  .vBullet{
     width: 70%;
     height: 12px;
-    border: 0px solid $kGrayscale5;
+    border: 0px solid $vGrayscale5;
     border-radius: 6px;
     overflow: hidden;
-    background-color: $kGrayscale5;
-    .kBar{
+    background-color: $vGrayscale5;
+    .vBar{
       height: 100%;
       transition: width 0.35s ease-out;
     }

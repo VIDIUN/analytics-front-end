@@ -1,6 +1,6 @@
 @import './variables';
-$mc-theme-font-path : '~@kaltura-ng/mc-theme/themes/default/fonts';
-@import '~@kaltura-ng/mc-theme/themes/default/scss/index.scss';
+$mc-theme-font-path : '~@vidiun-ng/mc-theme/themes/default/fonts';
+@import '~@vidiun-ng/mc-theme/themes/default/scss/index.scss';
 @import './icons/icons.scss';
 @import './mini-loader';
 
@@ -24,11 +24,11 @@ body{
   }
 }
 
-.kMain {
+.vMain {
   width: 100%;
-  .kReportView{
+  .vReportView{
     width: 100%;
-    .kReport {
+    .vReport {
       width: 100%;
       margin-bottom: 24px;
       background-color: white;
@@ -36,14 +36,14 @@ body{
       border-radius: 3px;
       display: flex;
       flex-direction: column;
-      .kReportHeader{
+      .vReportHeader{
         height: 80px;
         display: flex;
         align-items: center;
         background-color: $appBkgColor;
-        .kTitle {
+        .vTitle {
           font-size: 24px;
-          color: $kGrayscale1;
+          color: $vGrayscale1;
           font-weight: bold;
         }
         app-export-csv{
@@ -63,43 +63,43 @@ body{
         a{
           font-size:20px;
           font-weight: 700;
-          color: $kGrayscale3;
+          color: $vGrayscale3;
           text-decoration: none;
           &:hover{
-            color: $kGrayscale1;
+            color: $vGrayscale1;
           }
         }
         span{
           font-size:20px;
           font-weight: 700;
-          color: $kGrayscale1;
+          color: $vGrayscale1;
           &.separator{
-            color: $kGrayscale3;
+            color: $vGrayscale3;
             margin-left: 8px;
             margin-right: 8px;
           }
         }
       }
-      .kFilters{
+      .vFilters{
         height: 70px;
         display: flex;
         width: 100%;
         align-items: center;
-        .kTitle {
+        .vTitle {
           width: 100%;
           padding: 0 24px;
           font-size: 20px;
-          color: $kGrayscale1;
+          color: $vGrayscale1;
           font-weight: bold;
         }
       }
-      .kReportContent{
+      .vReportContent{
         display: flex;
         flex-direction: column;
         width: 100%;
         height:100%;
         background-color: white;
-        .kDimensions{
+        .vDimensions{
           width: 100%;
           margin-top: 16px;
           display: flex;
@@ -110,51 +110,51 @@ body{
           }
         }
       }
-      ktags{
+      vtags{
         margin-left: 16px;
         width: auto;
-        /deep/ .kTags {
+        /deep/ .vTags {
           border-top: none;
         }
       }
-      .kChart{
+      .vChart{
         width: 100%;
         height: 280px;
         margin-bottom: 24px;
       }
-      .kTable{
+      .vTable{
         display: flex;
         flex-direction: column;
-        .kToggle{
+        .vToggle{
           display: flex;
           align-items: center;
           margin-bottom: 24px;
           i{
             width: 20px;
-            color: $kTertiary;
+            color: $vTertiary;
             font-size: 12px;
             margin-left: 24px;
           }
         }
-        .kTableContainer{
+        .vTableContainer{
           overflow-y: hidden;
-          &.kOpen{
+          &.vOpen{
             height: auto;
           }
-          &.kClose{
+          &.vClose{
             height: 0px;
           }
         }
       }
 
-      .kHighlight{
+      .vHighlight{
         font-weight: bold;
-        color: $kGrayscale1;
+        color: $vGrayscale1;
       }
     }
   }
 }
-.kHidden {
+.vHidden {
   visibility: hidden;
   width: 0px !important;
   height: 0px !important;
@@ -162,19 +162,19 @@ body{
 }
 .ng-tooltip {
   background-color: white;
-  color: $kGrayscale1;
-  border: 1px solid $kGrayscale4;
+  color: $vGrayscale1;
+  border: 1px solid $vGrayscale4;
   box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.30);
   display: flex;
   flex-direction: column;
   transition: none !important;
-  .kTotalsCompareTooltip {
+  .vTotalsCompareTooltip {
     line-height: 24px;
     display: flex;
     strong {
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
-    .kTotalsCompareTooltipValue {
+    .vTotalsCompareTooltipValue {
       display: flex;
       margin-left: 24px;
     }
@@ -188,7 +188,7 @@ body{
   display: none;
 }
 
-.kTrend {
+.vTrend {
   cursor: default;
 
   .icon-progress,
@@ -197,64 +197,64 @@ body{
   }
 
   .icon-progress, .icon-progress + span, .icon-progress + span + span {
-    color: $kPrimary !important;
+    color: $vPrimary !important;
   }
 
   .icon-regression, .icon-regression + span, .icon-regression + span + span {
-    color: $kDandger !important;
+    color: $vDandger !important;
   }
 }
 /* main content width according to screen resolution */
 @media screen and (max-width: 991px) {
-  .kContent {
+  .vContent {
     width: 970px !important;
     margin: auto !important;
     display: flex;
   }
 }
 @media screen and (min-width: 992px) {
-  .kContent {
+  .vContent {
     width: 970px !important;
     margin: auto !important;
     display: flex;
   }
 }
 @media screen and (min-width: 1280px) {
-  .kContent {
+  .vContent {
     width: 1200px!important;
     margin: auto !important;
     display: flex;
   }
 }
 @media screen and (min-width: 1610px) {
-  .kContent {
+  .vContent {
     width: 1500px !important;
     margin: auto !important;
     display: flex;
   }
 }
 
-.kGraphTooltip {
+.vGraphTooltip {
   padding: 5px;
 
-  .kBullet {
+  .vBullet {
     font-weight: bold;
     font-size: 24px;
     vertical-align: text-bottom;
   }
 
-  .kValue {
+  .vValue {
     font-weight: bold;
-    color: $kGrayscale1;
+    color: $vGrayscale1;
   }
 
-  .kSeriesName {
+  .vSeriesName {
     margin-right: 15px;
   }
 }
 
-kpopupwidget{
-  .kPopupWidget{
+vpopupwidget{
+  .vPopupWidget{
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .24) !important;
   }
 }
@@ -278,26 +278,26 @@ p-multiselect /deep/ {
   border: 0;
   height: 200px;
 
-  .kEmptyMessage {
+  .vEmptyMessage {
     position: absolute;
     width: 100%;
     height: 200px;
-    border-bottom: 1px solid $kGrayscale4;
+    border-bottom: 1px solid $vGrayscale4;
   }
 }
 
-.kThumbnailHolder {
+.vThumbnailHolder {
   overflow: hidden;
   position: relative;
   width: 128px;
   height: 72px;
-  background-color: $kGrayscale6;
+  background-color: $vGrayscale6;
   white-space: nowrap;
   text-align: center;
   border-radius: 3px;
 
   &.error{
-    border: 1px solid $kGrayscale4;
+    border: 1px solid $vGrayscale4;
   }
   img {
     position: absolute;
@@ -312,7 +312,7 @@ p-multiselect /deep/ {
   }
 }
 
-.kTableColumn {
+.vTableColumn {
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
@@ -330,7 +330,7 @@ ui-carousel /deep/ {
   }
 
   .dot {
-    background: $kGrayscale3 !important;
+    background: $vGrayscale3 !important;
 
     &.active {
       background-color: $menuBkgColor !important;
@@ -350,7 +350,7 @@ ui-carousel /deep/ {
 }
 
 
-.kFlag {
+.vFlag {
   width: 24px;
   height: 24px;
 }
@@ -365,7 +365,7 @@ ui-carousel /deep/ {
   border: 0;
 }
 
-.kCountryList {
+.vCountryList {
   vertical-align: middle;
   display: flex;
   align-items: center;
@@ -379,6 +379,6 @@ ui-carousel /deep/ {
   }
 }
 
-.kNoPadding {
+.vNoPadding {
   padding: 0 !important;
 }

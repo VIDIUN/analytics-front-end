@@ -1,20 +1,20 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { analyticsConfig, getKalturaServerUri } from '../configuration/analytics-config';
-import { KalturaLogger } from '@kaltura-ng/kaltura-logger';
-import { KalturaClient } from 'kaltura-ngx-client';
+import { analyticsConfig, getVidiunServerUri } from '../configuration/analytics-config';
+import { VidiunLogger } from '@vidiun-ng/vidiun-logger';
+import { VidiunClient } from 'vidiun-ngx-client';
 import { TranslateService } from '@ngx-translate/core';
 import { BrowserService } from './shared/services/browser.service';
 import { ConfirmationService, ConfirmDialog } from 'primeng/primeng';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [KalturaLogger.createLogger('AppComponent')]
+  providers: [VidiunLogger.createLogger('AppComponent')]
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -34,10 +34,10 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private _frameEventManager: FrameEventManagerService,
               private _translate: TranslateService,
               private _confirmationService: ConfirmationService,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _router: Router,
               private _browserService: BrowserService,
-              private _kalturaServerClient: KalturaClient) {
+              private _vidiunServerClient: VidiunClient) {
     this._initApp();
   
     this._frameEventManager.listen(FrameEvents.Init)
@@ -87,23 +87,23 @@ export class AppComponent implements OnInit, OnDestroy {
       config = configuration;
       this.hosted = true; // hosted;
     }
-    analyticsConfig.ks = config.ks;
+    analyticsConfig.vs = config.vs;
     analyticsConfig.pid = config.pid;
     analyticsConfig.locale = config.locale;
-    analyticsConfig.kalturaServer = config.kalturaServer;
+    analyticsConfig.vidiunServer = config.vidiunServer;
     analyticsConfig.cdnServers = config.cdnServers;
     analyticsConfig.liveAnalytics = config.liveAnalytics;
     analyticsConfig.showNavBar = !this.hosted;
     analyticsConfig.isHosted = this.hosted;
 
-    // set ks in ngx-client
-    this._logger.info(`Setting ks in ngx-client: ${analyticsConfig.ks}`);
-    this._kalturaServerClient.setOptions({
-      endpointUrl: getKalturaServerUri(),
-      clientTag: 'kmc-analytics:v0.1'
+    // set vs in ngx-client
+    this._logger.info(`Setting vs in ngx-client: ${analyticsConfig.vs}`);
+    this._vidiunServerClient.setOptions({
+      endpointUrl: getVidiunServerUri(),
+      clientTag: 'vmc-analytics:v0.1'
     });
-    this._kalturaServerClient.setDefaultRequestOptions({
-      ks: analyticsConfig.ks
+    this._vidiunServerClient.setDefaultRequestOptions({
+      vs: analyticsConfig.vs
     });
 
     // load localization
@@ -126,9 +126,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this._logger.error(errorMsg);
   }
 
-  private mapRoutes(kmcRoute: string): string {
-    let analyticsRoute = kmcRoute;
-    switch (kmcRoute) {
+  private mapRoutes(vmcRoute: string): string {
+    let analyticsRoute = vmcRoute;
+    switch (vmcRoute) {
       case '/analytics/contributors':
         analyticsRoute = '/contributors/top-contributors';
         break;

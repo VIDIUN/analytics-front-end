@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReportService } from 'shared/services';
-import { KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunReportType } from 'vidiun-ngx-client';
 import { TopBrowsersConfig } from './top-browsers.config';
 import { BaseDevicesReportComponent, BaseDevicesReportConfig } from '../base-devices-report/base-devices-report.component';
 
@@ -14,8 +14,8 @@ import { BaseDevicesReportComponent, BaseDevicesReportConfig } from '../base-dev
   ]
 })
 export class TopBrowsersComponent extends BaseDevicesReportComponent {
-  protected _defaultReportType = KalturaReportType.browsersFamilies;
-  protected _drillDownReportType = KalturaReportType.browsers;
+  protected _defaultReportType = VidiunReportType.browsersFamilies;
+  protected _drillDownReportType = VidiunReportType.browsers;
   public _title = 'app.audience.technology.topBrowsers';
   
   protected getRelevantCompareRow(tableData: { [key: string]: string }[], row: { [key: string]: string }): { [key: string]: string } {

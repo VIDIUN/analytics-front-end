@@ -3,21 +3,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
 import {
   BaseEntryGetAction,
-  KalturaBaseEntry,
-  KalturaClient,
-  KalturaDetachedResponseProfile,
-  KalturaMediaEntry,
-  KalturaMediaType,
-  KalturaMultiRequest,
-  KalturaMultiResponse,
-  KalturaReportInputFilter,
-  KalturaReportInterval,
-  KalturaReportType,
-  KalturaRequestOptions,
-  KalturaResponseProfileType, KalturaUser,
+  VidiunBaseEntry,
+  VidiunClient,
+  VidiunDetachedResponseProfile,
+  VidiunMediaEntry,
+  VidiunMediaType,
+  VidiunMultiRequest,
+  VidiunMultiResponse,
+  VidiunReportInputFilter,
+  VidiunReportInterval,
+  VidiunReportType,
+  VidiunRequestOptions,
+  VidiunResponseProfileType, VidiunUser,
   UserGetAction
-} from "kaltura-ngx-client";
-import {cancelOnDestroy} from "@kaltura-ng/kaltura-common";
+} from "vidiun-ngx-client";
+import {cancelOnDestroy} from "@vidiun-ng/vidiun-common";
 import {DateChangeEvent, DateRanges} from "shared/components/date-filter/date-filter.service";
 import {RefineFilter} from "shared/components/filter/filter.component";
 import {FrameEventManagerService, FrameEvents} from "shared/modules/frame-event-manager/frame-event-manager.service";
@@ -33,15 +33,15 @@ export class EntryViewComponent implements OnInit, OnDestroy {
 
   public _selectedRefineFilters: RefineFilter = null;
   public _dateRange = DateRanges.Last30D;
-  public _timeUnit = KalturaReportInterval.days;
+  public _timeUnit = VidiunReportInterval.days;
   public _csvExportHeaders = '';
   public _totalCount: number;
-  public _reportType: KalturaReportType = KalturaReportType.userUsage;
+  public _reportType: VidiunReportType = VidiunReportType.userUsage;
   public _selectedMetrics: string;
   public _dateFilter: DateChangeEvent = null;
   public _refineFilter: RefineFilter = null;
   public _refineFilterOpened = false;
-  public _filter: KalturaReportInputFilter = new KalturaReportInputFilter(
+  public _filter: VidiunReportInputFilter = new VidiunReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -54,13 +54,13 @@ export class EntryViewComponent implements OnInit, OnDestroy {
 
   public _entryId = '';
   public _entryName = '';
-  public _entryType: KalturaMediaType = null;
+  public _entryType: VidiunMediaType = null;
   public _owner = '';
 
   constructor(private _router: Router,
               private route: ActivatedRoute,
               private zone: NgZone,
-              private _kalturaClient: KalturaClient,
+              private _vidiunClient: VidiunClient,
               private _frameEventManager: FrameEventManagerService) { }
 
   ngOnInit() {
@@ -106,35 +106,35 @@ export class EntryViewComponent implements OnInit, OnDestroy {
   }
 
   private loadEntryDetails(): void {
-    const request = new KalturaMultiRequest(
+    const request = new VidiunMultiRequest(
       new BaseEntryGetAction({ entryId: this._entryId })
         .setRequestOptions({
-          responseProfile: new KalturaDetachedResponseProfile({
-            type: KalturaResponseProfileType.includeFields,
+          responseProfile: new VidiunDetachedResponseProfile({
+            type: VidiunResponseProfileType.includeFields,
             fields: 'name,mediaType'
           })
         }),
       new UserGetAction({ userId: null })
         .setRequestOptions(
-          new KalturaRequestOptions({
-            responseProfile: new KalturaDetachedResponseProfile({
-              type: KalturaResponseProfileType.includeFields,
+          new VidiunRequestOptions({
+            responseProfile: new VidiunDetachedResponseProfile({
+              type: VidiunResponseProfileType.includeFields,
               fields: 'id,fullName'
             })
           }).setDependency(['userId', 0, 'userId'])
         )
     );
 
-    this.requestSubscription = this._kalturaClient
+    this.requestSubscription = this._vidiunClient
       .multiRequest(request)
       .pipe(
         cancelOnDestroy(this),
-        map((responses: KalturaMultiResponse) => {
+        map((responses: VidiunMultiResponse) => {
           if (responses.hasErrors()) {
             throw Error(responses.reduce((acc, val) => `${acc}\n${val.error ? val.error.message : ''}`, ''));
           }
   
-          return [responses[0].result, responses[1].result] as [KalturaMediaEntry, KalturaUser];
+          return [responses[0].result, responses[1].result] as [VidiunMediaEntry, VidiunUser];
         })
       )
       .subscribe(

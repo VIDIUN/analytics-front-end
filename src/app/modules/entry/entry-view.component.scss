@@ -1,14 +1,14 @@
 @import '../../../styles/variables';
-.kReport{
+.vReport{
   background-color: $appBkgColor !important;
-  .kBackBtn{
+  .vBackBtn{
     margin-top: 4px;
     margin-left: -40px;
     margin-right: 22px;
     border: none;
     outline: none;
     background-color: transparent;
-    color: $kGrayscale3;
+    color: $vGrayscale3;
     height: 20px;
     width: 18px;
     font-size: 24px;
@@ -16,28 +16,28 @@
       box-shadow: none;
     }
     &:hover{
-      color: $kPrimary;
+      color: $vPrimary;
     }
   }
-  .kReportHeader{
+  .vReportHeader{
     height: 60px;
   }
-  .kEntryDetails{
+  .vEntryDetails{
     display: flex;
     font-size: 14px;
-    color: $kGrayscale2;
+    color: $vGrayscale2;
     height: 36px;
-    .kIconMediaType{
+    .vIconMediaType{
       margin-right: 8px;
     }
-    .kOwner{
+    .vOwner{
       margin-left: 8px;
     }
-    .kSeparator{
+    .vSeparator{
       width: 1px;
       height: 12px;
       margin-top: 2px;
-      background-color: $kGrayscale4;
+      background-color: $vGrayscale4;
       margin-left: 16px;
       margin-right: 16px;
     }
@@ -46,15 +46,15 @@
     }
   }
 }
-.kFilter {
+.vFilter {
   display: flex;
   align-items: center;
 
-  .kDropDown {
+  .vDropDown {
     background-color: white;
     width: 100px;
     height: 34px;
-    border: 1px solid $kGrayscale4;
+    border: 1px solid $vGrayscale4;
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -65,7 +65,7 @@
     margin-right: 16px;
 
     &:hover {
-      border-color: $kPrimary;
+      border-color: $vPrimary;
     }
 
     &:active {
@@ -81,7 +81,7 @@
     i {
       margin-left: auto;
       font-size: 12px;
-      color: $kGrayscale3;
+      color: $vGrayscale3;
     }
   }
 }

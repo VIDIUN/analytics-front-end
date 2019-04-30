@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DateChangeEvent, DateRanges } from 'shared/components/date-filter/date-filter.service';
-import { AreaBlockerMessage } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage } from '@vidiun-ng/vidiun-ui';
 import { DevicesOverviewComponent } from './devices-overview/devices-overview.component';
-import { KalturaEndUserReportInputFilter, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter, VidiunReportType } from 'vidiun-ngx-client';
 
 @Component({
   selector: 'app-technology',
@@ -20,8 +20,8 @@ export class TechnologyComponent implements OnInit {
   public _filterEvent: DateChangeEvent = null;
   public _devicesFilter: string[] = [];
   public _devicesList: { value: string, label: string; }[] = [];
-  public _exportData: { headers: string, totalCount: number, filter: KalturaEndUserReportInputFilter, selectedMetrics: string; } = null;
-  public _reportType = KalturaReportType.platforms;
+  public _exportData: { headers: string, totalCount: number, filter: VidiunEndUserReportInputFilter, selectedMetrics: string; } = null;
+  public _reportType = VidiunReportType.platforms;
   
   constructor() {
   }
@@ -47,7 +47,7 @@ export class TechnologyComponent implements OnInit {
     }
   }
   
-  public _onExportDataChange(event: { headers: string, totalCount: number, filter: KalturaEndUserReportInputFilter, selectedMetrics: string }): void {
+  public _onExportDataChange(event: { headers: string, totalCount: number, filter: VidiunEndUserReportInputFilter, selectedMetrics: string }): void {
     this._exportData = event;
   }
 }
