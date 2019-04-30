@@ -305,11 +305,11 @@ export class VideoPerformanceComponent extends EntryBase {
     }
   }
   
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     this._tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals, this._selectedMetrics);
   }
   
-  private _handleGraphs(graphs: KalturaReportGraph[]): void {
+  private _handleGraphs(graphs: VidiunReportGraph[]): void {
     const { lineChartData } = this._reportService.parseGraphs(
       graphs,
       this._dataConfig.graph,

@@ -71,7 +71,7 @@ export class CategoriesTreeService {
         }
       }
     } else {
-      console.warn('[kmcng] - not in lazy mode loading. Ignoring call');
+      console.warn('[vmcng] - not in lazy mode loading. Ignoring call');
     }
   }
   

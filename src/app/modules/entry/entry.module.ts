@@ -13,7 +13,7 @@ import { EntryViewComponent } from './entry-view.component';
 import { EntryTotalsComponent } from './views/entry-totals/entry-totals.component';
 import { EntryPreviewComponent } from './views/entry-preview/entry-preview.component';
 import { SharedModule } from 'shared/shared.module';
-import { AreaBlockerModule, TagsModule, TooltipModule } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerModule, TagsModule, TooltipModule } from '@vidiun-ng/vidiun-ui';
 import { TableModule } from 'primeng/table';
 import { VideoPerformanceComponent } from './views/video-performance/video-performance.component';
 import { EntryFilterComponent } from './filter/filter.component';

@@ -7,14 +7,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { BrowserService } from 'shared/services';
 import { ConfirmationService, ConfirmDialog } from 'primeng/primeng';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [KalturaLogger.createLogger('AppComponent')]
+  providers: [VidiunLogger.createLogger('AppComponent')]
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private _frameEventManager: FrameEventManagerService,
               private _translate: TranslateService,
               private _confirmationService: ConfirmationService,
-              private _logger: KalturaLogger,
+              private _logger: VidiunLogger,
               private _router: Router,
               private _browserService: BrowserService,
               private _kalturaServerClient: KalturaClient) {
@@ -108,7 +108,7 @@ export class AppComponent implements OnInit, OnDestroy {
     analyticsConfig.ks = config.ks;
     analyticsConfig.pid = config.pid;
     analyticsConfig.locale = config.locale;
-    analyticsConfig.kalturaServer = config.kalturaServer;
+    analyticsConfig.vidiunServer = config.vidiunServer;
     analyticsConfig.cdnServers = config.cdnServers;
     analyticsConfig.liveAnalytics = config.liveAnalytics;
     analyticsConfig.showNavBar = !this.hosted;
@@ -121,8 +121,8 @@ export class AppComponent implements OnInit, OnDestroy {
       endpointUrl: getKalturaServerUri(),
       clientTag: `kmc-analytics:${analyticsConfig.appVersion}`
     });
-    this._kalturaServerClient.setDefaultRequestOptions({
-      ks: analyticsConfig.ks
+    this._vidiunServerClient.setDefaultRequestOptions({
+      vs: analyticsConfig.vs
     });
 
     // load localization
@@ -145,9 +145,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this._logger.error(errorMsg);
   }
 
-  private mapRoutes(kmcRoute: string): string {
-    let analyticsRoute = kmcRoute;
-    switch (kmcRoute) {
+  private mapRoutes(vmcRoute: string): string {
+    let analyticsRoute = vmcRoute;
+    switch (vmcRoute) {
       case '/analytics/contributors':
         analyticsRoute = '/contributors/top-contributors';
         break;

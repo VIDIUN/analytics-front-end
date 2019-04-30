@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { KalturaReportGraph, KalturaReportInterval, KalturaReportTable, KalturaReportTotal } from 'kaltura-ngx-client';
+import { VidiunReportGraph, VidiunReportInterval, VidiunReportTable, VidiunReportTotal } from 'vidiun-ngx-client';
 import { ReportDataItemConfig } from 'shared/services/storage-data-base.config';
 import { GraphsData } from 'shared/services/report.service';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
@@ -46,7 +46,7 @@ export class CompareService implements OnDestroy {
                           current: KalturaReportGraph[],
                           compare: KalturaReportGraph[],
                           config: ReportDataItemConfig,
-                          reportInterval: KalturaReportInterval,
+                          reportInterval: VidiunReportInterval,
                           dataLoadedCb?: Function,
                           graphOptions?: { xAxisLabelRotation?: number, yAxisLabelRotation?: number }): GraphsData {
     const lineChartData = {};
@@ -70,7 +70,7 @@ export class CompareService implements OnDestroy {
       () => ({ currentPeriod, comparePeriod, reportInterval, graphIds: current.map(({ id }) => id).join(', ') })
     );
 
-    current.forEach((graph: KalturaReportGraph, i) => {
+    current.forEach((graph: VidiunReportGraph, i) => {
       if (!config.fields[graph.id] || !graph.data) {
         return;
       }
@@ -177,7 +177,7 @@ export class CompareService implements OnDestroy {
         }
 
         return `
-          <div class="kGraphTooltip">
+          <div class="vGraphTooltip">
             ${current.name}<br/>
             <span class="kBullet" style="color: ${colors[1]}">&bull;</span>&nbsp;
             <span class="kValue kSeriesName">${compare.seriesName}</span>&nbsp;${compareValue}<br/>

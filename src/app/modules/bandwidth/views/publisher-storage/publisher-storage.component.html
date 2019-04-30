@@ -28,7 +28,7 @@
                        (filterChange)="_onRefineFilterChange($event)"></app-refine-filter>
   </div>
 
-  <k-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
+  <v-area-blocker [message]="_blockerMessage" [showLoader]="_isBusy">
 
     <div class="kReportContent">
 
@@ -37,17 +37,17 @@
       </div>
 
       <app-report-tabs [tabs]="_tabsData" [compareMode]="isCompareMode" (tabChange)="_onTabChange($event)"></app-report-tabs>
-      <div class="kDimensions">
+      <div class="vDimensions">
         <app-time-units [dateFilter]="dateFilter"></app-time-units>
       </div>
-      <div class="kChart">
-        <div echarts class="kChart" [options]="_barChartData[_selectedMetrics]" *ngIf="_chartType==='bar'"></div>
-        <div echarts class="kChart" [options]="_lineChartData[_selectedMetrics]" *ngIf="_chartType==='line'"></div>
+      <div class="vChart">
+        <div echarts class="vChart" [options]="_barChartData[_selectedMetrics]" *ngIf="_chartType==='bar'"></div>
+        <div echarts class="vChart" [options]="_lineChartData[_selectedMetrics]" *ngIf="_chartType==='line'"></div>
       </div>
 
-      <div class="kTable">
-        <div class="kToggle">
-          <i [class.kIcondropdown_arrow_bottom]="!_showTable" [class.kIcondropdown_arrow_top]="_showTable"></i>
+      <div class="vTable">
+        <div class="vToggle">
+          <i [class.vIcondropdown_arrow_bottom]="!_showTable" [class.vIcondropdown_arrow_top]="_showTable"></i>
           <a (click)="toggleTable()">{{(_showTable ? 'app.common.hideDetails' : 'app.common.viewDetails') | translate}}</a>
         </div>
         <div class="kTableContainer" [class.kOpen]="_showTable" [class.kClose]="!_showTable">
@@ -63,8 +63,8 @@
             <ng-template pTemplate="header">
               <tr>
                 <th *ngFor="let col of _columns" [pSortableColumn]="isCompareMode ? null : col">
-                  <div class="kColumnHeader">
-                    <span [kTooltip]="'app.bandwidth.publisher_table.' + col | translate" [showOnEllipsis]="true">
+                  <div class="vColumnHeader">
+                    <span [vTooltip]="'app.bandwidth.publisher_table.' + col | translate" [showOnEllipsis]="true">
                       {{'app.bandwidth.publisher_table.' + col | translate}}
                     </span>
                     <p-sortIcon [field]="col" *ngIf="!isCompareMode"></p-sortIcon>
@@ -74,10 +74,10 @@
             </ng-template>
             <ng-template pTemplate="body" let-data>
               <tr>
-                <td *ngFor="let col of _columns; let i = index" [class.kHighlight]="i===0">
+                <td *ngFor="let col of _columns; let i = index" [class.vHighlight]="i===0">
                   <span *ngIf="isCompareMode && data[col]?.value !== undefined"
-                        class="kTrend"
-                        [kTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
+                        class="vTrend"
+                        [vTooltip]="data[col].tooltip" [escape]="false" [maxWidth]="500">
                     <app-trend-value [value]="data[col].value"
                                      [units]="data[col].units"
                                      [trend]="data[col].trend"></app-trend-value>
@@ -88,29 +88,29 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
               <div class="emptymessage">
-                <div class="kEmptyMessage" *ngIf="!_isBusy">{{'app.common.noResults' | translate}}</div>
-                <div class="kEmptyMessage" *ngIf="_isBusy">&nbsp;</div>
+                <div class="vEmptyMessage" *ngIf="!_isBusy">{{'app.common.noResults' | translate}}</div>
+                <div class="vEmptyMessage" *ngIf="_isBusy">&nbsp;</div>
               </div>
             </ng-template>
           </p-table>
         </div>
       </div>
 
-      <div class="kSeparator"></div>
-      <span class="kAccumulativeTitle">{{'app.bandwidth.accumulative' | translate}}</span>
-      <div class="kAccumulative">
-        <div class="kItem" *ngFor="let item of _accumulativeStorage">
-          <span class="kLabel">{{item.title}}</span>
-          <div class="kValueContainer">
-            <span *ngIf="isCompareMode" class="kTrend" [kTooltip]="item.tooltip" [maxWidth]="500" [escape]="false">
-              <app-trend-value valueStyleClass="kValue"
+      <div class="vSeparator"></div>
+      <span class="vAccumulativeTitle">{{'app.bandwidth.accumulative' | translate}}</span>
+      <div class="vAccumulative">
+        <div class="vItem" *ngFor="let item of _accumulativeStorage">
+          <span class="vLabel">{{item.title}}</span>
+          <div class="vValueContainer">
+            <span *ngIf="isCompareMode" class="vTrend" [vTooltip]="item.tooltip" [maxWidth]="500" [escape]="false">
+              <app-trend-value valueStyleClass="vValue"
                                [value]="item.value"
                                [trend]="item.trend"></app-trend-value>
-              <span class="kUnits">{{item.units}}</span>
+              <span class="vUnits">{{item.units}}</span>
             </span>
             <ng-container *ngIf="!isCompareMode">
-              <span class="kValue">{{item.value}}</span>
-              <span class="kUnits">{{item.units}}</span>
+              <span class="vValue">{{item.value}}</span>
+              <span class="vUnits">{{item.units}}</span>
             </ng-container>
           </div>
         </div>
@@ -118,7 +118,7 @@
 
     </div>
 
-  </k-area-blocker>
+  </v-area-blocker>
 
 </div>
 

@@ -46,7 +46,7 @@ export class EntryViewComponent implements OnInit, OnDestroy {
   public _dateRange = DateRanges.Last30D;
   public _timeUnit = KalturaReportInterval.days;
   public _totalCount: number;
-  public _reportType: KalturaReportType = KalturaReportType.userUsage;
+  public _reportType: VidiunReportType = VidiunReportType.userUsage;
   public _selectedMetrics: string;
   public _dateFilter: DateChangeEvent = null;
   public _refineFilter: RefineFilter = null;
@@ -67,7 +67,7 @@ export class EntryViewComponent implements OnInit, OnDestroy {
   public _entryId = '';
   public _duration = 0;
   public _entryName = '';
-  public _entryType: KalturaMediaType = null;
+  public _entryType: VidiunMediaType = null;
   public _owner = '';
 
   constructor(private _router: Router,
@@ -137,20 +137,20 @@ export class EntryViewComponent implements OnInit, OnDestroy {
       new UserGetAction({ userId: null })
         .setDependency(['userId', 0, 'userId'])
         .setRequestOptions(
-          new KalturaRequestOptions({
-            responseProfile: new KalturaDetachedResponseProfile({
-              type: KalturaResponseProfileType.includeFields,
+          new VidiunRequestOptions({
+            responseProfile: new VidiunDetachedResponseProfile({
+              type: VidiunResponseProfileType.includeFields,
               fields: 'id,fullName'
             })
           })
         )
     );
 
-    this.requestSubscription = this._kalturaClient
+    this.requestSubscription = this._vidiunClient
       .multiRequest(request)
       .pipe(
         cancelOnDestroy(this),
-        map((responses: KalturaMultiResponse) => {
+        map((responses: VidiunMultiResponse) => {
           if (responses.hasErrors()) {
             const err =  Error(responses.reduce((acc, val) => `${acc}\n${val.error ? val.error.message : ''}`, ''));
             this.requestSubscription = null;
@@ -167,7 +167,7 @@ export class EntryViewComponent implements OnInit, OnDestroy {
             });
           }
   
-          return [responses[0].result, responses[1].result] as [KalturaMediaEntry, KalturaUser];
+          return [responses[0].result, responses[1].result] as [VidiunMediaEntry, VidiunUser];
         })
       )
       .subscribe(

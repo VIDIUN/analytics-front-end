@@ -34,7 +34,7 @@ export class ErrorsManagerService {
 
       if (error.code) {
         switch (error.code) {
-          case 'INVALID_KS':
+          case 'INVALID_VS':
             message =  this._translate.instant('app.errors.invalidKS');
             forceLogout = true;
             break;

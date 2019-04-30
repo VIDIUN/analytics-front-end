@@ -13,7 +13,7 @@
     padding-top: 24px;
     margin-bottom: 24px;
     .peakDay{
-      color: $kGrayscale1;
+      color: $vGrayscale1;
       font-size: 24px;
       font-weight: bold;
       margin-left: 24px;
@@ -25,34 +25,34 @@
       font-weight: normal;
     }
   }
-  .kValueHolder{
+  .vValueHolder{
     display: flex;
     margin-top: 12px;
     margin-left: 24px;
-    .kVal{
+    .vVal{
       font-size: 15px;
       font-weight: bold;
       margin-right: 8px;
       margin-left: 8px;
     }
-    .kLabel{
+    .vLabel{
       font-size: 15px;
       font-weight: normal;
     }
-    .kBlue{
+    .vBlue{
       color: #487ADF;
     }
-    .kGreen{
+    .vGreen{
       color: #31BEA6;
     }
-    .kOrange{
+    .vOrange{
       color: #E1962E;
     }
   }
 
 }
 
-.kNoResults {
+.vNoResults {
   display: flex;
   width: 100%;
   align-items: center;
@@ -60,6 +60,6 @@
 
   span {
     font-size: 28px;
-    color: $kGrayscale3;
+    color: $vGrayscale3;
   }
 }

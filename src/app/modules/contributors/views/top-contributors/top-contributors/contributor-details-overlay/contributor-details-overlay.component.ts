@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { KalturaClient, KalturaDetachedResponseProfile, KalturaResponseProfileType, KalturaUser, UserGetAction } from 'kaltura-ngx-client';
+import { VidiunClient, VidiunDetachedResponseProfile, VidiunResponseProfileType, VidiunUser, UserGetAction } from 'vidiun-ngx-client';
 import { Unsubscribable } from 'rxjs';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -13,11 +13,11 @@ export class ContributorDetailsOverlayComponent implements OnInit, OnDestroy {
   @Input() userId: string;
   
   private _requestSubscription: Unsubscribable;
-  public _data: KalturaUser;
+  public _data: VidiunUser;
   public _loading = false;
   public _errorMessage: string;
   
-  constructor(private _kalturaClient: KalturaClient,
+  constructor(private _vidiunClient: VidiunClient,
               private _translate: TranslateService) {
     
   }
@@ -35,16 +35,16 @@ export class ContributorDetailsOverlayComponent implements OnInit, OnDestroy {
     }
     
     const action = new UserGetAction({ userId: this.userId }).setRequestOptions({
-      responseProfile: new KalturaDetachedResponseProfile({
-        type: KalturaResponseProfileType.includeFields,
+      responseProfile: new VidiunDetachedResponseProfile({
+        type: VidiunResponseProfileType.includeFields,
         fields: 'id,name,fullName,createdAt,roleNames,email'
       })
     });
-    this._requestSubscription = this._kalturaClient
+    this._requestSubscription = this._vidiunClient
       .request(action)
       .pipe(cancelOnDestroy(this))
       .subscribe(
-        (data: KalturaUser) => {
+        (data: VidiunUser) => {
           this._loading = false;
           this._data = data;
         },

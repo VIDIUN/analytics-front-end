@@ -1,7 +1,7 @@
 import { Injectable, KeyValueDiffer, KeyValueDiffers, OnDestroy } from '@angular/core';
 import { ReportConfig, ReportService } from 'src/app/shared/services';
-import { KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInputFilter, KalturaReportTable, KalturaReportType } from 'kaltura-ngx-client';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInputFilter, VidiunReportTable, VidiunReportType } from 'vidiun-ngx-client';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { BehaviorSubject } from 'rxjs';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
 
@@ -17,9 +17,9 @@ export class LocationsFilterService implements OnDestroy {
   private _regionsOptions = new BehaviorSubject<LocationFilterItem[]>([]);
   private _citiesOptions = new BehaviorSubject<LocationFilterItem[]>([]);
   private _dateFilterDiffer: KeyValueDiffer<DateChangeEvent, any>;
-  private _pager = new KalturaFilterPager({ pageSize: 500, pageIndex: 1 });
+  private _pager = new VidiunFilterPager({ pageSize: 500, pageIndex: 1 });
   private _currentlyLoading: string[] = [];
-  private _filter = new KalturaReportInputFilter({
+  private _filter = new VidiunReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });
@@ -49,7 +49,7 @@ export class LocationsFilterService implements OnDestroy {
     this._citiesOptions.complete();
   }
   
-  private _handleCountryTable(table: KalturaReportTable): void {
+  private _handleCountryTable(table: VidiunReportTable): void {
     const { tableData } = this._reportService.parseTableData(table, this._reportConfig.table);
   
     this._countriesOptions.next(tableData.map(data => ({
@@ -58,7 +58,7 @@ export class LocationsFilterService implements OnDestroy {
     })));
   }
   
-  private _handleRegionTable(table: KalturaReportTable): void {
+  private _handleRegionTable(table: VidiunReportTable): void {
     const { tableData } = this._reportService.parseTableData(table, this._reportConfig.table);
   
     this._regionsOptions.next(tableData.map(data => ({
@@ -67,7 +67,7 @@ export class LocationsFilterService implements OnDestroy {
     })));
   }
   
-  private _handleCityTable(table: KalturaReportTable): void {
+  private _handleCityTable(table: VidiunReportTable): void {
     const { tableData } = this._reportService.parseTableData(table, this._reportConfig.table);
     
     this._citiesOptions.next(tableData.map(data => ({
@@ -81,7 +81,7 @@ export class LocationsFilterService implements OnDestroy {
     this._currentlyLoading.push('country');
     
     const reportConfig: ReportConfig = {
-      reportType: KalturaReportType.mapOverlayCountry,
+      reportType: VidiunReportType.mapOverlayCountry,
       filter: this._filter,
       pager: this._pager,
       order: null,
@@ -107,7 +107,7 @@ export class LocationsFilterService implements OnDestroy {
     this._currentlyLoading.push('region');
     
     let reportConfig: ReportConfig = {
-      reportType: KalturaReportType.mapOverlayRegion,
+      reportType: VidiunReportType.mapOverlayRegion,
       filter: this._filter,
       pager: this._pager,
       order: null
@@ -133,12 +133,12 @@ export class LocationsFilterService implements OnDestroy {
     this._isBusy = true;
     this._currentlyLoading.push('city');
   
-    const filter = Object.assign(KalturaObjectBaseFactory.createObject(this._filter), this._filter);
+    const filter = Object.assign(VidiunObjectBaseFactory.createObject(this._filter), this._filter);
     filter.countryIn = country;
     filter.regionIn = region;
     
     const reportConfig: ReportConfig = {
-      reportType: KalturaReportType.mapOverlayCity,
+      reportType: VidiunReportType.mapOverlayCity,
       filter: filter,
       pager: this._pager,
       order: null,

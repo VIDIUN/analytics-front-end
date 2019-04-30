@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
-import { KalturaEndUserReportInputFilter } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter } from 'vidiun-ngx-client';
 import { RefineFilter } from 'shared/components/filter/filter.component';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { refineFilterToServerValue } from 'shared/components/filter/filter-to-server-value.util';

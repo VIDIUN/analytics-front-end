@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { analyticsConfig, getKalturaServerUri, buildCDNUrl } from 'configuration/analytics-config';
+import { analyticsConfig, getVidiunServerUri, buildCDNUrl } from 'configuration/analytics-config';
 import { FrameEventManagerService, FrameEvents } from 'shared/modules/frame-event-manager/frame-event-manager.service';
 
 @Component({
@@ -16,12 +16,12 @@ export class LiveReportsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     let cdn_host = buildCDNUrl('');
     cdn_host = cdn_host.substr(cdn_host.indexOf('://') + 3); // remove protocol as Live Analytics app adds it itself
-    window['kmc'] = {
+    window['vmc'] = {
       'vars': {
-        'ks': analyticsConfig.ks,
+        'vs': analyticsConfig.vs,
         'partner_id': analyticsConfig.pid,
         'cdn_host': cdn_host,
-        'service_url': getKalturaServerUri(),
+        'service_url': getVidiunServerUri(),
         'liveanalytics': {
           'player_id': analyticsConfig.liveAnalytics.uiConfId || '',
           'map_urls': analyticsConfig.liveAnalytics.mapUrls || [],
@@ -40,7 +40,7 @@ export class LiveReportsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._url = null;
-    window['kmc'] = null;
+    window['vmc'] = null;
   }
 
 }

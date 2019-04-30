@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReportService } from 'shared/services';
-import { KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunReportType } from 'vidiun-ngx-client';
 import { TopOsConfig } from './top-os.config';
 import { BaseDevicesReportComponent, BaseDevicesReportConfig } from '../base-devices-report/base-devices-report.component';
 import { KalturaLogger } from '@kaltura-ng/kaltura-logger';

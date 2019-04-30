@@ -3,7 +3,7 @@ import { animate, AnimationEvent, state, style, transition, trigger } from '@ang
 import { DomHandler, OverlayPanel } from 'primeng/primeng';
 
 @Component({
-  selector: 'k-overlayPanel',
+  selector: 'v-overlayPanel',
   template: `
     <div [ngClass]="'ui-overlaypanel ui-widget ui-widget-content ui-corner-all ui-shadow'" [ngStyle]="style" [class]="styleClass" (click)="onPanelClick($event)"
          [@animation]="'visible'" (@animation.start)="onAnimationStart($event)" *ngIf="visible">

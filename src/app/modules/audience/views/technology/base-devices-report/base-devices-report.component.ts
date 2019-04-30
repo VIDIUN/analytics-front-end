@@ -1,11 +1,11 @@
 import { EventEmitter, Inject, InjectionToken, Input, OnDestroy, Output } from '@angular/core';
-import { AreaBlockerMessage, AreaBlockerMessageButton } from '@kaltura-ng/kaltura-ui';
+import { AreaBlockerMessage, AreaBlockerMessageButton } from '@vidiun-ng/vidiun-ui';
 import { AuthService, ErrorDetails, ErrorsManagerService, ReportConfig, ReportHelper, ReportService } from 'shared/services';
-import { KalturaEndUserReportInputFilter, KalturaFilterPager, KalturaObjectBaseFactory, KalturaReportInterval, KalturaReportTable, KalturaReportTotal, KalturaReportType } from 'kaltura-ngx-client';
+import { VidiunEndUserReportInputFilter, VidiunFilterPager, VidiunObjectBaseFactory, VidiunReportInterval, VidiunReportTable, VidiunReportTotal, VidiunReportType } from 'vidiun-ngx-client';
 import { TranslateService } from '@ngx-translate/core';
 import { ReportDataBaseConfig, ReportDataConfig } from 'shared/services/storage-data-base.config';
 import { DateChangeEvent } from 'shared/components/date-filter/date-filter.service';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { devicesFilterToServerValue } from 'shared/utils/devices-filter-to-server-value';
 import { significantDigits } from 'shared/utils/significant-digits';
 import { TrendService } from 'shared/services/trend.service';
@@ -91,7 +91,7 @@ export abstract class BaseDevicesReportComponent implements OnDestroy {
   protected _order = '-count_plays';
   protected _totalPlaysCount = 0;
   protected _devices: string[] = [];
-  protected _reportType: KalturaReportType;
+  protected _reportType: VidiunReportType;
   
   public abstract _title: string;
   
@@ -102,16 +102,16 @@ export abstract class BaseDevicesReportComponent implements OnDestroy {
   public _devicesSelectActive = false;
   public _tags: any[] = [];
   public _selectedDevices: string[] = [];
-  public _pager: KalturaFilterPager = new KalturaFilterPager({ pageSize: 10, pageIndex: 1 });
+  public _pager: VidiunFilterPager = new VidiunFilterPager({ pageSize: 10, pageIndex: 1 });
   public _blockerMessage: AreaBlockerMessage = null;
   public _totalCount: number;
   public _columns: string[] = [];
   public _tableData: TableRow<any>[] = [];
   public _isBusy = false;
-  public _reportInterval: KalturaReportInterval = KalturaReportInterval.months;
+  public _reportInterval: VidiunReportInterval = VidiunReportInterval.months;
   public _chartDataLoaded = false;
   public _dataConfig: ReportDataConfig;
-  public _filter: KalturaEndUserReportInputFilter = new KalturaEndUserReportInputFilter(
+  public _filter: VidiunEndUserReportInputFilter = new VidiunEndUserReportInputFilter(
     {
       searchInTags: true,
       searchInAdminTags: false
@@ -151,7 +151,7 @@ export abstract class BaseDevicesReportComponent implements OnDestroy {
     }
   }
   
-  private _handleTable(table: KalturaReportTable): void {
+  private _handleTable(table: VidiunReportTable): void {
     const { columns, tableData } = this._reportService.parseTableData(table, this._dataConfig.table);
     this._insertColumnAfter('plays_distribution', 'count_plays', columns);
     this._insertColumnAfter('plays_trend', 'plays_distribution', columns);
@@ -172,7 +172,7 @@ export abstract class BaseDevicesReportComponent implements OnDestroy {
     });
   }
   
-  private _handleTotals(totals: KalturaReportTotal): void {
+  private _handleTotals(totals: VidiunReportTotal): void {
     const tabsData = this._reportService.parseTotals(totals, this._dataConfig.totals);
     if (tabsData.length) {
       this._totalPlaysCount = Number(tabsData[0].value);
@@ -301,11 +301,11 @@ export abstract class BaseDevicesReportComponent implements OnDestroy {
   }
   
   private _getDrillDownFilterPropByReportType(): string {
-    if ([KalturaReportType.browsers, KalturaReportType.browsersFamilies].indexOf(this._reportType) > -1) {
+    if ([VidiunReportType.browsers, VidiunReportType.browsersFamilies].indexOf(this._reportType) > -1) {
       return 'browserFamilyIn';
     }
 
-    if ([KalturaReportType.operatingSystem, KalturaReportType.operatingSystemFamilies].indexOf(this._reportType) > -1) {
+    if ([VidiunReportType.operatingSystem, VidiunReportType.operatingSystemFamilies].indexOf(this._reportType) > -1) {
       return 'operatingSystemFamilyIn';
     }
   }

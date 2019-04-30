@@ -8,8 +8,8 @@
     <div class="kFilter kOverrideFAIcons">
       <div class="kDropDown" (click)="_refineFilterOpened = !_refineFilterOpened">
         <span>{{'app.filters.filter' | translate}}</span>
-        <i *ngIf="!_refineFilterOpened" class="kIcondropdown_arrow_bottom"></i>
-        <i *ngIf="_refineFilterOpened" class="kIcondropdown_arrow_top"></i>
+        <i *ngIf="!_refineFilterOpened" class="vIcondropdown_arrow_bottom"></i>
+        <i *ngIf="_refineFilterOpened" class="vIcondropdown_arrow_top"></i>
       </div>
     </div>
     <app-date-filter #dateFilter
@@ -47,7 +47,7 @@
 
     <!-- Example -->
     <!-- IMPORTANT: set infinite and autoPlay to false in case there's only ONE item -->
-    <!--<div class="kMiniReportContainer">-->
+    <!--<div class="vMiniReportContainer">-->
     <!--<ui-carousel [infinite]="false"-->
     <!--[autoPlay]="false"-->
     <!--[autoPlaySpeed]="5000"-->
@@ -56,13 +56,13 @@
     <!--[speed]="200"-->
     <!--height="280px">-->
     <!--<ui-carousel-item>-->
-    <!--<div class="kInsights">Some stuff</div>-->
+    <!--<div class="vInsights">Some stuff</div>-->
     <!--</ui-carousel-item>-->
     <!--</ui-carousel>-->
     <!--</div>-->
   </div>
 
-  <div id="highlights-report" class="kReportContainer">
+  <div id="highlights-report" class="vReportContainer">
     <app-contributors-highlights [dateFilterComponent]="dateFilter"
                                  [dateFilter]="_dateFilter"
                                  [refineFilter]="_refineFilter"></app-contributors-highlights>

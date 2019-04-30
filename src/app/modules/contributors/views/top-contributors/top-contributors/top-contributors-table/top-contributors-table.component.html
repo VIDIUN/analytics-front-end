@@ -31,18 +31,18 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-data>
-        <tr class="kTopVideoRow">
+        <tr class="vTopVideoRow">
           <td [ngStyle]="{'width': '60px', 'text-align': 'center'}">
-            <div class="kReportRowIndex kFirst" *ngIf="data.index === 1">
+            <div class="vReportRowIndex vFirst" *ngIf="data.index === 1">
               <img src="assets/images/ribbon_large.svg">
               <span>{{data.index}}</span>
             </div>
-            <div class="kReportRowIndex" *ngIf="data.index !== 1">
+            <div class="vReportRowIndex" *ngIf="data.index !== 1">
               <span>{{data.index}}</span>
             </div>
           </td>
           <td [ngStyle]="{'width': '105px', 'padding-left': '10px'}">
-            <div class="kUser">
+            <div class="vUser">
               <i class="icon-small-viewer-contributor"></i>
             </div>
           </td>
@@ -71,7 +71,7 @@
               </div>
             </td>
             <td [ngStyle]="{'width': '220px'}">
-              <div class="kTableCell">
+              <div class="vTableCell">
                 <i class="icon-small-time"></i>
                 <span class="kCellValue">{{data['added_msecs']}}</span>
               </div>
@@ -88,8 +88,8 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <div class="emptymessage">
-          <div class="kEmptyMessage" *ngIf="!firstTimeLoading">{{'app.common.noResults' | translate}}</div>
-          <div class="kEmptyMessage" *ngIf="firstTimeLoading">&nbsp;</div>
+          <div class="vEmptyMessage" *ngIf="!firstTimeLoading">{{'app.common.noResults' | translate}}</div>
+          <div class="vEmptyMessage" *ngIf="firstTimeLoading">&nbsp;</div>
         </div>
       </ng-template>
     </p-table>
@@ -100,6 +100,6 @@
                (onPageChange)="_onPaginationChanged($event)"></p-paginator>
 </div>
 
-<k-overlayPanel #overlay appendTo="body">
+<v-overlayPanel #overlay appendTo="body">
   <app-contributor-details-overlay *ngIf="_userId" [userId]="_userId"></app-contributor-details-overlay>
-</k-overlayPanel>
+</v-overlayPanel>

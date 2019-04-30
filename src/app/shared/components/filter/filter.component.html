@@ -11,22 +11,22 @@
            [clearAllLabel]="'app.common.clearAll' | translate"
            (onTagRemove)="_removeFilter($event)"
            (onRemoveAll)="_removeAll()">
-    </kTags>
+    </vTags>
   </div>
   <div *ngIf="showFilters"
        [@state]="_state"
        (@state.done)="_filtersAnimationDone($event)">
-    <div class="kRefineFiltersMain">
-      <div class="kFilterContainer kOverrideFAIcons">
-        <div class="kFilterContainerRow">
-          <div class="kListFilters">
+    <div class="vRefineFiltersMain">
+      <div class="vFilterContainer vOverrideFAIcons">
+        <div class="vFilterContainerRow">
+          <div class="vListFilters">
             <app-checkboxes-list-filter [label]="'app.filters.mediaType.title' | translate"
                                         [options]="_mediaTypes"
                                         [selectedFilters]="_selectedValues['mediaType']"
                                         (itemSelected)="_onItemSelected($event, 'mediaType')"
                                         (itemUnselected)="_onItemUnselected($event, 'mediaType')"></app-checkboxes-list-filter>
 
-            <app-checkboxes-list-filter class="kLastItem"
+            <app-checkboxes-list-filter class="vLastItem"
                                         [label]="'app.filters.entrySources.title' | translate"
                                         [options]="_entrySources"
                                         [selectedFilters]="_selectedValues['entrySources']"

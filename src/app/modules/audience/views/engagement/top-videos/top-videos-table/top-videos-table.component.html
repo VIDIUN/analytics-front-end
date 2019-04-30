@@ -31,13 +31,13 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-data>
-        <tr class="kTopVideoRow">
+        <tr class="vTopVideoRow">
           <td [ngStyle]="{'width': '60px', 'text-align': 'center'}">
-            <div class="kReportRowIndex kFirst" *ngIf="data.index === 1">
+            <div class="vReportRowIndex vFirst" *ngIf="data.index === 1">
               <img src="assets/images/ribbon_large.svg">
               <span>{{data.index}}</span>
             </div>
-            <div class="kReportRowIndex" *ngIf="data.index !== 1">
+            <div class="vReportRowIndex" *ngIf="data.index !== 1">
               <span>{{data.index}}</span>
             </div>
           </td>
@@ -93,8 +93,8 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <div class="emptymessage">
-          <div class="kEmptyMessage" *ngIf="!firstTimeLoading">{{'app.common.noResults' | translate}}</div>
-          <div class="kEmptyMessage" *ngIf="firstTimeLoading">&nbsp;</div>
+          <div class="vEmptyMessage" *ngIf="!firstTimeLoading">{{'app.common.noResults' | translate}}</div>
+          <div class="vEmptyMessage" *ngIf="firstTimeLoading">&nbsp;</div>
         </div>
       </ng-template>
     </p-table>

@@ -49,10 +49,10 @@ export class MiniTopVideosComponent extends EngagementBaseReportComponent implem
   public _compareFirstTimeLoading = true;
   public _currentDates: string;
   public _compareDates: string;
-  public _reportInterval = KalturaReportInterval.days;
-  public _compareFilter: KalturaEndUserReportInputFilter = null;
-  public _pager = new KalturaFilterPager({ pageSize: 3, pageIndex: 1 });
-  public _filter = new KalturaEndUserReportInputFilter({
+  public _reportInterval = VidiunReportInterval.days;
+  public _compareFilter: VidiunEndUserReportInputFilter = null;
+  public _pager = new VidiunFilterPager({ pageSize: 3, pageIndex: 1 });
+  public _filter = new VidiunEndUserReportInputFilter({
     searchInTags: true,
     searchInAdminTags: false
   });

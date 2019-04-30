@@ -18,12 +18,12 @@ import {
   ReportGetTotalAction,
   ReportGetUrlForReportAsCsvAction,
   ReportGetUrlForReportAsCsvActionArgs
-} from 'kaltura-ngx-client';
+} from 'vidiun-ngx-client';
 import { analyticsConfig } from 'configuration/analytics-config';
 import { Observable } from 'rxjs/Observable';
 import { ISubscription } from 'rxjs/Subscription';
 import { TranslateService } from '@ngx-translate/core';
-import { cancelOnDestroy } from '@kaltura-ng/kaltura-common';
+import { cancelOnDestroy } from '@vidiun-ng/vidiun-common';
 import { Tab } from 'shared/components/report-tabs/report-tabs.component';
 import { ReportDataConfig, ReportDataItemConfig } from 'shared/services/storage-data-base.config';
 import { DateFilterUtils } from 'shared/components/date-filter/date-filter-utils';
@@ -41,10 +41,10 @@ export type ReportConfig = {
 };
 
 export type Report = {
-  totals: KalturaReportTotal,
-  graphs: KalturaReportGraph[],
-  table: KalturaReportTable,
-  baseTotals?: KalturaReportBaseTotal[]
+  totals: VidiunReportTotal,
+  graphs: VidiunReportGraph[],
+  table: VidiunReportTable,
+  baseTotals?: VidiunReportBaseTotal[]
 };
 
 export interface AccumulativeData {
@@ -71,7 +71,7 @@ export class ReportService implements OnDestroy {
     this._logger = _logger.subLogger('ReportService');
   }
   
-  private _responseIsType(response: KalturaResponse<any>, type: any): boolean {
+  private _responseIsType(response: VidiunResponse<any>, type: any): boolean {
     return response.result instanceof type
       || Array.isArray(response.result) && response.result.length && response.result[0] instanceof type;
   }
@@ -131,9 +131,9 @@ export class ReportService implements OnDestroy {
           request.push(getTotal);
         }
         
-        this._querySubscription = this._kalturaClient.multiRequest(request)
+        this._querySubscription = this._vidiunClient.multiRequest(request)
           .pipe(cancelOnDestroy(this))
-          .subscribe((responses: KalturaMultiResponse) => {
+          .subscribe((responses: VidiunMultiResponse) => {
               if (responses.hasErrors()) {
                 const err = responses.getFirstError();
                 if (err) {
@@ -148,13 +148,13 @@ export class ReportService implements OnDestroy {
                   totals: null
                 };
                 responses.forEach(response => {
-                  if (this._responseIsType(response, KalturaReportTable)) {
+                  if (this._responseIsType(response, VidiunReportTable)) {
                     report.table = response.result;
-                  } else if (this._responseIsType(response, KalturaReportTotal)) {
+                  } else if (this._responseIsType(response, VidiunReportTotal)) {
                     report.totals = response.result;
-                  } else if (this._responseIsType(response, KalturaReportGraph)) {
+                  } else if (this._responseIsType(response, VidiunReportGraph)) {
                     report.graphs = response.result;
-                  } else if (this._responseIsType(response, KalturaReportBaseTotal)) {
+                  } else if (this._responseIsType(response, VidiunReportBaseTotal)) {
                     report.baseTotals = response.result;
                   }
                 });
@@ -191,7 +191,7 @@ export class ReportService implements OnDestroy {
           this._exportSubscription = null;
         }
         
-        this._exportSubscription = this._kalturaClient.request(exportAction)
+        this._exportSubscription = this._vidiunClient.request(exportAction)
           .pipe(cancelOnDestroy(this))
           .subscribe((response: string) => {
               observer.next(response);
@@ -211,7 +211,7 @@ export class ReportService implements OnDestroy {
   ngOnDestroy() {
   }
   
-  public parseTableData(table: KalturaReportTable, config: ReportDataItemConfig): { columns: string[], tableData: { [key: string]: string }[] } {
+  public parseTableData(table: VidiunReportTable, config: ReportDataItemConfig): { columns: string[], tableData: { [key: string]: string }[] } {
     // parse table columns
     let columns = table.header.toLowerCase().split(analyticsConfig.valueSeparator);
     const tableData = [];
@@ -241,7 +241,7 @@ export class ReportService implements OnDestroy {
     return { columns, tableData };
   }
   
-  public parseTotals(totals: KalturaReportTotal | KalturaReportTable, config: ReportDataItemConfig, selected?: string): Tab[] {
+  public parseTotals(totals: VidiunReportTotal | VidiunReportTable, config: ReportDataItemConfig, selected?: string): Tab[] {
     const tabsData = [];
     const data = totals.data.split(analyticsConfig.valueSeparator);
   
@@ -282,7 +282,7 @@ export class ReportService implements OnDestroy {
     
     let lineChartData = {};
     let barChartData = {};
-    graphs.forEach((graph: KalturaReportGraph) => {
+    graphs.forEach((graph: VidiunReportGraph) => {
       if (!config.fields[graph.id]) {
         return;
       }
@@ -296,7 +296,7 @@ export class ReportService implements OnDestroy {
           let name = label;
           
           if (!config.fields[graph.id].nonDateGraphLabel) {
-            name = reportInterval === KalturaReportInterval.months
+            name = reportInterval === VidiunReportInterval.months
               ? DateFilterUtils.formatMonthString(label, analyticsConfig.locale)
               : DateFilterUtils.formatFullDateString(label);
           } else {
@@ -330,9 +330,9 @@ export class ReportService implements OnDestroy {
           ? config.fields[graph.id].graphTooltip(value)
           : value;
         return `
-          <div class="kGraphTooltip">
+          <div class="vGraphTooltip">
             ${name}<br/>
-            <span class="kBullet" style="color: ${color}">&bull;</span>&nbsp;
+            <span class="vBullet" style="color: ${color}">&bull;</span>&nbsp;
             ${formattedValue}
           </div>
         `;
@@ -502,7 +502,7 @@ export class ReportService implements OnDestroy {
     return { barChartData, lineChartData };
   }
   
-  public getGraphDataFromTable(table: KalturaReportTable,
+  public getGraphDataFromTable(table: VidiunReportTable,
                                dataConfig: ReportDataConfig,
                                period: { from: number, to: number },
                                reportInterval: KalturaReportInterval,

@@ -20,7 +20,7 @@ export class EngagementComponent {
   public _dateRange = DateRanges.Last30D;
   public _timeUnit = KalturaReportInterval.days;
   public _totalCount: number;
-  public _reportType: KalturaReportType = KalturaReportType.userUsage;
+  public _reportType: VidiunReportType = VidiunReportType.userUsage;
   public _selectedMetrics: string;
   public _dateFilter: DateChangeEvent = null;
   public _refineFilter: RefineFilter = null;
